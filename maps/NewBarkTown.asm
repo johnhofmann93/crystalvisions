@@ -302,3 +302,45 @@ NewBarkTown_MapEvents:
 	object_event  6,  8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
 	object_event 12,  9, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
 	object_event  3,  2, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownRivalScript, EVENT_RIVAL_NEW_BARK_TOWN
+	object_event  8, 11, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, DebugWarpNPC, EVENT_DEBUG_WARP
+
+DebugWarpNPC:
+	opentext
+	writetext DebugWarpText
+	promptbutton
+	loadmenu DebugWarp_MenuHeader
+	verticalmenu
+	closewindow
+	closetext
+	ifequal 1, DebugWarp_BlackthornGym
+	ifequal 2, DebugWarp_Goldenrod
+	ifequal 3, DebugWarp_Ecruteak
+	end
+
+DebugWarp_BlackthornGym:
+	warp BLACKTHORN_GYM_1F, 4, 4
+	end
+
+DebugWarp_Goldenrod:
+	warp GOLDENROD_CITY, 10, 10
+	end
+
+DebugWarp_Ecruteak:
+	warp ECRUTEAK_CITY, 10, 10
+	end
+
+DebugWarp_MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	dw .MenuData
+	db 1 ; default option
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
+	db 3 ; items
+	db "Blackthorn Gym@"
+	db "Goldenrod City@"
+	db "Ecruteak City@"
+
+DebugWarpText:
+	text "DEBUG: Warp to?"
+	done
