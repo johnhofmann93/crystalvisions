@@ -80,6 +80,7 @@ DEF NUM_SPRITEANIMDICT_ENTRIES EQU 10
 	const SPRITE_ANIM_OBJ_INTRO_UNOWN_F             ; 2a
 	const SPRITE_ANIM_OBJ_INTRO_SUICUNE_AWAY        ; 2b
 	const SPRITE_ANIM_OBJ_CELEBI                    ; 2c
+	const SPRITE_ANIM_OBJ_HO_OH                     ; 2d
 DEF NUM_SPRITE_ANIM_OBJS EQU const_value
 
 ; DoSpriteAnimFrame.Jumptable indexes (see engine/sprite_anims/functions.asm)
@@ -116,6 +117,7 @@ DEF NUM_SPRITE_ANIM_OBJS EQU const_value
 	const SPRITE_ANIM_FUNC_INTRO_SUICUNE             ; 1d
 	const SPRITE_ANIM_FUNC_INTRO_PICHU_WOOPER        ; 1e
 	const SPRITE_ANIM_FUNC_CELEBI                    ; 1f
+	const SPRITE_ANIM_FUNC_HO_OH                     ; 20
 	const SPRITE_ANIM_FUNC_INTRO_UNOWN               ; 20
 	const SPRITE_ANIM_FUNC_INTRO_UNOWN_F             ; 21
 	const SPRITE_ANIM_FUNC_INTRO_SUICUNE_AWAY        ; 22
@@ -189,6 +191,7 @@ DEF NUM_SPRITE_ANIM_FUNCS EQU const_value
 	const SPRITE_ANIM_FRAMESET_INTRO_UNOWN_F             ; 3f
 	const SPRITE_ANIM_FRAMESET_CELEBI_LEFT               ; 40
 	const SPRITE_ANIM_FRAMESET_CELEBI_RIGHT              ; 41
+	const SPRITE_ANIM_FRAMESET_HO_OH               		 ; 42
 DEF NUM_SPRITE_ANIM_FRAMESETS EQU const_value
 
 ; SpriteAnimOAMData indexes (see data/sprite_anims/oam.asm)
@@ -322,6 +325,7 @@ DEF NUM_SPRITE_ANIM_FRAMESETS EQU const_value
 	const SPRITE_ANIM_OAMSET_INTRO_SUICUNE_AWAY          ; 7e
 	const SPRITE_ANIM_OAMSET_CELEBI_1                    ; 7f
 	const SPRITE_ANIM_OAMSET_CELEBI_2                    ; 80
+	const SPRITE_ANIM_OAMSET_HO_OH_1                     ; 81
 	const SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_1            ; 81
 	const SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_2            ; 82
 	const SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_3            ; 83

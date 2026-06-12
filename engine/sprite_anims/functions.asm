@@ -46,6 +46,7 @@ DoSpriteAnimFrame:
 	dw SpriteAnimFunc_IntroSuicune
 	dw SpriteAnimFunc_IntroPichuWooper
 	dw SpriteAnimFunc_Celebi
+	dw SpriteAnimFunc_HoOh
 	dw SpriteAnimFunc_IntroUnown
 	dw SpriteAnimFunc_IntroUnownF
 	dw SpriteAnimFunc_IntroSuicuneAway
@@ -843,6 +844,11 @@ SpriteAnimFunc_EZChatCursor:
 SpriteAnimFunc_Celebi:
 	farcall UpdateCelebiPosition
 	ret
+	
+SpriteAnimFunc_HoOh:
+        farcall UpdateHoOhPosition
+        ret
+
 
 AnimSeqs_AnonJumptable:
 	ld hl, sp+0

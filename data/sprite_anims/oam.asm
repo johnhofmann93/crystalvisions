@@ -136,6 +136,7 @@ SpriteAnimOAMData:
 	spriteanimoam $80, .OAMData_IntroSuicuneAway         ; SPRITE_ANIM_OAMSET_INTRO_SUICUNE_AWAY
 	spriteanimoam $00, .OAMData_Celebi                   ; SPRITE_ANIM_OAMSET_CELEBI_1
 	spriteanimoam $04, .OAMData_Celebi                   ; SPRITE_ANIM_OAMSET_CELEBI_2
+	spriteanimoam $00, .OAMData_HoOh                     ; SPRITE_ANIM_OAMSET_HO_OH_1
 	spriteanimoam $d0, .OAMData_GameFreakLogo1_3         ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_1
 	spriteanimoam $d3, .OAMData_GameFreakLogo1_3         ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_2
 	spriteanimoam $d6, .OAMData_GameFreakLogo1_3         ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_3
@@ -1094,6 +1095,14 @@ SpriteAnimOAMData:
 	dbsprite  0, -1,  0,  0, $01, PAL_OW_GREEN
 	dbsprite -1,  0,  0,  0, $02, PAL_OW_GREEN
 	dbsprite  0,  0,  0,  0, $03, PAL_OW_GREEN
+
+
+.OAMData_HoOh:
+        db 4
+        dbsprite  0, -1,  0,  0, $00, PAL_OW_RED
+        dbsprite  1, -1,  0,  0, $01, PAL_OW_RED
+        dbsprite  0,  0,  0,  0, $02, PAL_OW_RED
+        dbsprite  1,  0,  0,  0, $03, PAL_OW_RED
 
 .OAMData_GameFreakLogo1_3:
 	db 9

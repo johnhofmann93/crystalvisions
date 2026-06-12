@@ -7,14 +7,11 @@
 	const ROUTE29_COOLTRAINER_M2
 	const ROUTE29_TUSCANY
 	const ROUTE29_POKE_BALL
-	const ROUTE29_HO_OH
-
 
 Route29_MapScripts:
 	def_scene_scripts
 	scene_script Route29Noop1Scene, SCENE_ROUTE29_NOOP
 	scene_script Route29Noop2Scene, SCENE_ROUTE29_CATCH_TUTORIAL
-	scene_script Route29HoOhScene, SCENE_ROUTE29_HO_OH
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, Route29TuscanyCallback
@@ -35,9 +32,9 @@ Route29HoOhEvent:
 	setscene SCENE_ROUTE29_NOOP
 	pause 10
 	cry HO_OH
-	moveobject ROUTE29_HO_OH, 57, 5
-	appear ROUTE29_HO_OH
-	applymovement ROUTE29_HO_OH, Route29HoOhMovement
+	turnobject PLAYER, UP
+	showemote EMOTE_SHOCK, PLAYER, 20
+	special HoOhFlyoverEvent
 	pause 10
 	opentext
 	writetext Route29HoOhText
@@ -45,19 +42,6 @@ Route29HoOhEvent:
 	closetext
 .Done:
 	end
-
-Route29HoOhMovement:
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step_end
 
 Route29HoOhText:
 	text "A rainbow #MON"
@@ -464,9 +448,7 @@ Route29_MapEvents:
 	def_coord_events
 	coord_event 53,  8, SCENE_ROUTE29_CATCH_TUTORIAL, Route29Tutorial1
 	coord_event 53,  9, SCENE_ROUTE29_CATCH_TUTORIAL, Route29Tutorial2
-	coord_event 52,  7, SCENE_ROUTE29_NOOP, Route29HoOhEvent
-	coord_event 52,  8, SCENE_ROUTE29_NOOP, Route29HoOhEvent
-	coord_event 52,  9, SCENE_ROUTE29_NOOP, Route29HoOhEvent
+	coord_event 36, 16, SCENE_ROUTE29_NOOP, Route29HoOhEvent
 
 
 
@@ -484,4 +466,3 @@ Route29_MapEvents:
 	object_event 13,  4, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route29CooltrainerMScript, -1
 	object_event 29, 12, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TuscanyScript, EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
 	object_event 48,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route29Potion, EVENT_ROUTE_29_POTION
-	object_event 58,  3, SPRITE_HO_OH, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_HO_OH

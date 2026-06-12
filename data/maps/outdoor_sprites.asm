@@ -330,7 +330,7 @@ NewBarkGroupSprites:
 	db SPRITE_BUG_CATCHER
 	db SPRITE_COOLTRAINER_F
 	db SPRITE_POKE_BALL
-	db SPRITE_HO_OH
+	db SPRITE_FRUIT_TREE
 
 CherrygroveGroupSprites:
 	db SPRITE_SUICUNE
