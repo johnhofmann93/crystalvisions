@@ -128,7 +128,6 @@ PokemonActionSubmenu:
 
 .Actions:
 	dbw MONMENUITEM_CUT,        MonMenu_Cut
-	dbw MONMENUITEM_FLY,        MonMenu_Fly
 	dbw MONMENUITEM_SURF,       MonMenu_Surf
 	dbw MONMENUITEM_STRENGTH,   MonMenu_Strength
 	dbw MONMENUITEM_FLASH,      MonMenu_Flash
@@ -141,6 +140,7 @@ PokemonActionSubmenu:
 	dbw MONMENUITEM_WATERFALL,  MonMenu_Waterfall
 	dbw MONMENUITEM_ROCKSMASH,  MonMenu_RockSmash
 	dbw MONMENUITEM_SWEETSCENT, MonMenu_SweetScent
+	dbw MONMENUITEM_SURGE,      MonMenu_Surge
 	dbw MONMENUITEM_STATS,      OpenPartyStats
 	dbw MONMENUITEM_SWITCH,     SwitchPartyMons
 	dbw MONMENUITEM_ITEM,       GiveTakePartyMonItem
@@ -792,6 +792,18 @@ MonMenu_SweetScent:
 	farcall SweetScentFromMenu
 	ld b, $4
 	ld a, $2
+	ret
+
+MonMenu_Surge:
+	farcall SurgeFunction
+	ld a, [wFieldMoveSucceeded]
+	and a
+	jr z, .Fail
+	ld b, $4
+	ld a, $2
+	ret
+.Fail:
+	ld a, $3
 	ret
 
 ChooseMoveToDelete:
