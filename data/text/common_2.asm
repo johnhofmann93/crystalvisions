@@ -500,17 +500,15 @@ _CantGetOffBikeText::
 	done
 
 _GotOnBikeText::
-	text "<PLAYER> got on the"
-	line "@"
 	text_ram wStringBuffer2
-	text "."
+	text " carried"
+	line "you on its back!"
 	done
 
 _GotOffBikeText::
-	text "<PLAYER> got off"
-	line "the @"
 	text_ram wStringBuffer2
-	text "."
+	text " slowed"
+	line "down. You got off!"
 	done
 
 _AskCutText::

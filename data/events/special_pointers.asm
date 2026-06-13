@@ -183,6 +183,4 @@ SpecialsPointers::
 
 	add_special InitialSetDSTFlag
 	add_special InitialClearDSTFlag
-	add_special MountSurgeEffect
-	add_special DismountSurgeEffect
 	add_special UnusedDummySpecial ; unused

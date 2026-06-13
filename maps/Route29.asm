@@ -32,6 +32,7 @@ Route29HoOhEvent:
 	setscene SCENE_ROUTE29_NOOP
 	pause 10
 	cry HO_OH
+	special FadeOutMusic
 	turnobject PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 20
 	special HoOhFlyoverEvent
@@ -40,6 +41,7 @@ Route29HoOhEvent:
 	writetext Route29HoOhText
 	waitbutton
 	closetext
+	special RestartMapMusic
 .Done:
 	end
 
@@ -47,6 +49,9 @@ Route29HoOhText:
 	text "A rainbow #MON"
 	line "soared across"
 	cont "the sky!"
+	para "<PLAYER>"
+	line "watched it fly"
+	cont "into the distance."
 	done
 
 Route29TuscanyCallback:
@@ -449,7 +454,7 @@ Route29_MapEvents:
 	coord_event 53,  8, SCENE_ROUTE29_CATCH_TUTORIAL, Route29Tutorial1
 	coord_event 53,  9, SCENE_ROUTE29_CATCH_TUTORIAL, Route29Tutorial2
 	coord_event 36, 16, SCENE_ROUTE29_NOOP, Route29HoOhEvent
-
+	coord_event 36, 17, SCENE_ROUTE29_NOOP, Route29HoOhEvent
 
 
 

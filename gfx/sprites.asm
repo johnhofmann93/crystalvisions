@@ -1,7 +1,7 @@
 SECTION "Sprites 1", ROMX
 
 ChrisSpriteGFX::               INCBIN "gfx/sprites/chris.2bpp"
-ChrisBikeSpriteGFX::           INCBIN "gfx/sprites/chris_bike.2bpp"
+ChrisBikeSpriteGFX::           INCBIN "gfx/sprites/monster.2bpp"
 GameboyKidSpriteGFX::          INCBIN "gfx/sprites/gameboy_kid.2bpp"
 RivalSpriteGFX::               INCBIN "gfx/sprites/rival.2bpp"
 OakSpriteGFX::                 INCBIN "gfx/sprites/oak.2bpp"
@@ -100,7 +100,7 @@ FruitTreeSpriteGFX::           INCBIN "gfx/sprites/fruit_tree.2bpp"
 GoldTrophySpriteGFX::          INCBIN "gfx/sprites/gold_trophy.2bpp"
 SilverTrophySpriteGFX::        INCBIN "gfx/sprites/silver_trophy.2bpp"
 KrisSpriteGFX::                INCBIN "gfx/sprites/kris.2bpp"
-KrisBikeSpriteGFX::            INCBIN "gfx/sprites/kris_bike.2bpp"
+KrisBikeSpriteGFX::            INCBIN "gfx/sprites/monster.2bpp"
 KurtOutsideSpriteGFX::         INCBIN "gfx/sprites/kurt_outside.2bpp"
 SuicuneSpriteGFX::             INCBIN "gfx/sprites/suicune.2bpp"
 EnteiSpriteGFX::               INCBIN "gfx/sprites/entei.2bpp"
