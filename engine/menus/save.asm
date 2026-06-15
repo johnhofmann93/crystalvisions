@@ -702,6 +702,8 @@ CheckPrimarySaveFile:
 	ld de, wOptions
 	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
+	ld hl, wOptions
+    set BATTLE_SHIFT, [hl]
 	call CloseSRAM
 	ld a, TRUE
 	ld [wSaveFileExists], a
@@ -723,6 +725,8 @@ CheckBackupSaveFile:
 	ld de, wOptions
 	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
+	ld hl, wOptions
+    set BATTLE_SHIFT, [hl]
 	ld a, $2
 	ld [wSaveFileExists], a
 

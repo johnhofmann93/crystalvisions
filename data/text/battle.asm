@@ -304,7 +304,7 @@ BattleText_UsersStringBuffer1Activated:
 
 BattleText_ItemsCantBeUsedHere:
 	text "Items can't be"
-	line "used here."
+	line "used in battle."
 	prompt
 
 BattleText_MonIsAlreadyOut:

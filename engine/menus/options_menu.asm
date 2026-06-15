@@ -2,7 +2,6 @@
 	const_def
 	const OPT_TEXT_SPEED    ; 0
 	const OPT_BATTLE_SCENE  ; 1
-	const OPT_BATTLE_STYLE  ; 2
 	const OPT_SOUND         ; 3
 	const OPT_PRINT         ; 4
 	const OPT_MENU_ACCOUNT  ; 5
@@ -79,8 +78,6 @@ StringOptions:
 	db "        :<LF>"
 	db "BATTLE SCENE<LF>"
 	db "        :<LF>"
-	db "BATTLE STYLE<LF>"
-	db "        :<LF>"
 	db "SOUND<LF>"
 	db "        :<LF>"
 	db "PRINT<LF>"
@@ -98,7 +95,6 @@ GetOptionPointer:
 ; entries correspond to OPT_* constants
 	dw Options_TextSpeed
 	dw Options_BattleScene
-	dw Options_BattleStyle
 	dw Options_Sound
 	dw Options_Print
 	dw Options_MenuAccount

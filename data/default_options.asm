@@ -1,6 +1,6 @@
 DefaultOptions:
 ; wOptions: med text speed
-	db TEXT_DELAY_MED
+	db TEXT_DELAY_MED | 1 << BATTLE_SHIFT
 ; wSaveFileExists: no
 	db FALSE
 ; wTextboxFrame: frame 1
