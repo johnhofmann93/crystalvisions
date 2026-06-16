@@ -655,45 +655,66 @@ BattleCommand_CheckObedience:
 	and a
 	ret nz
 
-	; If the Pokémon's Trainer ID doesn't match the player's,
-	; some conditions need to be met.
-	ld a, MON_OT_ID
-	call BattlePartyAttr
-
-	ld a, [wPlayerID]
-	cp [hl]
-	jr nz, .obeylevel
-	inc hl
-	ld a, [wPlayerID + 1]
-	cp [hl]
-	ret z
+	;Obedience applies to all pokemon, not just traded ones.
+	;Removed OT ID check
 
 .obeylevel
+	; Check if Elite 4 has been beaten
+	ld de, EVENT_BEAT_ELITE_FOUR
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr nz, .elitecap
+
 	; The maximum obedience level is constrained by owned badges:
 	ld hl, wJohtoBadges
 
 	; risingbadge
 	bit RISINGBADGE, [hl]
-	ld a, MAX_LEVEL + 1
+	ld a, 50
+	jr nz, .getlevel
+
+	; glacierbadge
+	bit GLACIERBADGE, [hl]
+	ld a, 45
 	jr nz, .getlevel
 
 	; stormbadge
 	bit STORMBADGE, [hl]
-	ld a, 70
+	ld a, 40
+	jr nz, .getlevel
+
+	; mineralbadge
+	bit MINERALBADGE, [hl]
+	ld a, 35
 	jr nz, .getlevel
 
 	; fogbadge
 	bit FOGBADGE, [hl]
-	ld a, 50
+	ld a, 30
+	jr nz, .getlevel
+
+	; plainbadge
+	bit PLAINBADGE, [hl]
+	ld a, 25
 	jr nz, .getlevel
 
 	; hivebadge
 	bit HIVEBADGE, [hl]
-	ld a, 30
+	ld a, 20
+	jr nz, .getlevel
+
+	; zephyrbadge
+	bit ZEPHYRBADGE, [hl]
+	ld a, 15
 	jr nz, .getlevel
 
 	; no badges
 	ld a, 10
+
+.elitecap
+	ld a, MAX_LEVEL + 1
 
 .getlevel
 ; c = obedience level
