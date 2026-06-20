@@ -609,9 +609,8 @@ wWildMonPP:: ds NUM_MOVES
 wAmuletCoin:: db
 
 wSomeoneIsRampaging:: db
+	ds 2
 
-wPlayerJustGotFrozen:: db
-wEnemyJustGotFrozen:: db
 wBattleEnd::
 
 

@@ -375,9 +375,9 @@ WokeUpText:
 	line "woke up!"
 	prompt
 
-FrozenSolidText:
-	text "<USER>"
-	line "is frozen solid!"
+HurtByFrostbiteText:
+	text "<USER>'s"
+	line "hurt by frostbite!"
 	prompt
 
 FlinchedText:
@@ -724,9 +724,9 @@ DefrostedOpponentText:
 	line "was defrosted!"
 	prompt
 
-WasFrozenText:
+GotAFrostbiteText:
 	text "<TARGET>"
-	line "was frozen solid!"
+	line "was frostbitten!"
 	prompt
 
 WontRiseAnymoreText:

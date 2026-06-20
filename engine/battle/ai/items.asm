@@ -320,7 +320,7 @@ AI_Items:
 	jp c, .Use
 .FailToxicCheck:
 	ld a, [wEnemyMonStatus]
-	and 1 << FRZ | SLP_MASK
+	and SLP_MASK
 	jp z, .DontUse
 	jp .Use
 
@@ -734,7 +734,7 @@ AI_HealStatus:
 	ld hl, wEnemySubStatus3
 	res SUBSTATUS_CONFUSED, [hl]
 	ld hl, wEnemySubStatus1
-	res SUBSTATUS_NIGHTMARE, [h1]
+	res SUBSTATUS_NIGHTMARE, [hl]
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_TOXIC, [hl]
 	farcall CalcEnemyStats

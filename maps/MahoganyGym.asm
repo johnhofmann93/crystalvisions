@@ -249,12 +249,12 @@ BoarderRonaldBeatenText:
 	line "do a thing."
 	done
 
-BoarderRonaldAfterBattleText:
+ BoarderRonaldAfterBattleText:
 	text "I think there's a"
-	line "move a #MON"
+	line "move a frostbitten"
 
-	para "can use while it's"
-	line "frozen."
+	para "#MON can use to"
+	line "cure itself."
 	done
 
 BoarderBradSeenText:
