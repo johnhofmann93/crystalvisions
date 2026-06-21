@@ -2554,6 +2554,8 @@ PlayerAttackDamage:
 	ld b, a
 	ld c, [hl]
 
+	call SandstormSpDefBoost
+
 	ld a, [wEnemyScreens]
 	bit SCREENS_LIGHT_SCREEN, a
 	jr z, .specialcrit
@@ -2713,6 +2715,36 @@ LightBallBoost:
 	pop bc
 	ret
 
+SandstormSpDefBoost:
+; If Sandstorm is active and the defending Pokemon is Rock-type,
+; boost its Special Defense (in bc) by 50%.
+	ld a, [wBattleWeather]
+	cp WEATHER_SANDSTORM
+	ret nz
+
+	ld hl, wEnemyMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .ok
+	ld hl, wBattleMonType1
+.ok
+	ld a, [hli]
+	cp ROCK
+	jr z, .boost
+	ld a, [hl]
+	cp ROCK
+	ret nz
+
+.boost
+	ld h, b
+	ld l, c
+	srl b
+	rr c
+	add hl, bc
+	ld b, h
+	ld c, l
+	ret
+
 SpeciesItemBoost:
 ; Return in hl the stat value at hl.
 
@@ -2797,6 +2829,8 @@ EnemyAttackDamage:
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
+
+	call SandstormSpDefBoost
 
 	ld a, [wPlayerScreens]
 	bit SCREENS_LIGHT_SCREEN, a
