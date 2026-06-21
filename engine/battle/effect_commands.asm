@@ -630,51 +630,53 @@ BattleCommand_CheckObedience:
 	and a
 	jr nz, .elitecap
 
-	; The maximum obedience level is constrained by owned badges:
+	; Obedience threshold based on total Johto badge count.
 	ld hl, wJohtoBadges
-
-	; risingbadge
-	bit RISINGBADGE, [hl]
+	ld b, 1
+	call CountSetBits
+	; c = badge count
+	ld a, c
+	cp 8
 	ld a, 50
-	jr nz, .getlevel
+	jr nc, .getlevel   ; 8 badges
 
-	; glacierbadge
-	bit GLACIERBADGE, [hl]
+	ld a, c
+	cp 7
 	ld a, 45
-	jr nz, .getlevel
+	jr nc, .getlevel   ; 7 badges
 
-	; stormbadge
-	bit STORMBADGE, [hl]
+	ld a, c
+	cp 6
 	ld a, 40
-	jr nz, .getlevel
+	jr nc, .getlevel   ; 6 badges
 
-	; mineralbadge
-	bit MINERALBADGE, [hl]
+	ld a, c
+	cp 5
 	ld a, 35
-	jr nz, .getlevel
+	jr nc, .getlevel   ; 5 badges
 
-	; fogbadge
-	bit FOGBADGE, [hl]
+	ld a, c
+	cp 4
 	ld a, 30
-	jr nz, .getlevel
+	jr nc, .getlevel   ; 4 badges
 
-	; plainbadge
-	bit PLAINBADGE, [hl]
+	ld a, c
+	cp 3
 	ld a, 25
-	jr nz, .getlevel
+	jr nc, .getlevel   ; 3 badges
 
-	; hivebadge
-	bit HIVEBADGE, [hl]
+	ld a, c
+	cp 2
 	ld a, 20
-	jr nz, .getlevel
+	jr nc, .getlevel   ; 2 badges
 
-	; zephyrbadge
-	bit ZEPHYRBADGE, [hl]
+	ld a, c
+	cp 1
 	ld a, 15
-	jr nz, .getlevel
+	jr nc, .getlevel   ; 1 badge
 
-	; no badges
-	ld a, 10
+	ld a, 10           ; 0 badges
+	jr .getlevel
 
 .elitecap
 	ld a, MAX_LEVEL + 1

@@ -1524,3 +1524,48 @@ _MomLostGearBookletText::
 	para "Come back again in"
 	line "a while."
 	prompt
+
+GymSignObeyCapText0::
+	text "#MON up to"
+	line "Lv.10 will obey."
+	done
+
+GymSignObeyCapText1::
+	text "#MON up to"
+	line "Lv.15 will obey."
+	done
+
+GymSignObeyCapText2::
+	text "#MON up to"
+	line "Lv.20 will obey."
+	done
+
+GymSignObeyCapText3::
+	text "#MON up to"
+	line "Lv.25 will obey."
+	done
+
+GymSignObeyCapText4::
+	text "#MON up to"
+	line "Lv.30 will obey."
+	done
+
+GymSignObeyCapText5::
+	text "#MON up to"
+	line "Lv.35 will obey."
+	done
+
+GymSignObeyCapText6::
+	text "#MON up to"
+	line "Lv.40 will obey."
+	done
+
+GymSignObeyCapText7::
+	text "#MON up to"
+	line "Lv.45 will obey."
+	done
+
+GymSignObeyCapText8::
+	text "#MON up to"
+	line "Lv.50 will obey."
+	done

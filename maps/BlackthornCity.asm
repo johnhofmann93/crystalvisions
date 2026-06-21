@@ -125,7 +125,47 @@ BlackthornCitySign:
 	jumptext BlackthornCitySignText
 
 BlackthornGymSign:
-	jumptext BlackthornGymSignText
+	opentext
+	writetext BlackthornGymSignText
+	waitbutton
+	readvar VAR_BADGES
+	ifgreater 7, .cap8
+	ifgreater 6, .cap7
+	ifgreater 5, .cap6
+	ifgreater 4, .cap5
+	ifgreater 3, .cap4
+	ifgreater 2, .cap3
+	ifgreater 1, .cap2
+	ifgreater 0, .cap1
+	farwritetext GymSignObeyCapText0
+	sjump .done
+.cap1:
+	farwritetext GymSignObeyCapText1
+	sjump .done
+.cap2:
+	farwritetext GymSignObeyCapText2
+	sjump .done
+.cap3:
+	farwritetext GymSignObeyCapText3
+	sjump .done
+.cap4:
+	farwritetext GymSignObeyCapText4
+	sjump .done
+.cap5:
+	farwritetext GymSignObeyCapText5
+	sjump .done
+.cap6:
+	farwritetext GymSignObeyCapText6
+	sjump .done
+.cap7:
+	farwritetext GymSignObeyCapText7
+	sjump .done
+.cap8:
+	farwritetext GymSignObeyCapText8
+.done:
+	waitbutton
+	closetext
+	end
 
 MoveDeletersHouseSign:
 	jumptext MoveDeletersHouseSignText
