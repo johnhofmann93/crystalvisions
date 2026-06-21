@@ -11,6 +11,7 @@
 	const CIANWOODCITY_POKEFAN_F
 	const CIANWOODCITY_EUSINE
 	const CIANWOODCITY_SUICUNE
+	const CIANWOODCITY_GURT
 
 CianwoodCity_MapScripts:
 	def_scene_scripts
@@ -417,6 +418,188 @@ CianwoodPokeSeerSignText:
 	line "AHEAD"
 	done
 
+GurtScript:
+	faceplayer
+	opentext
+	checkevent EVENT_GAVE_KURT_RED_APRICORN
+	iftrue .GiveRedApricornBall
+	checkevent EVENT_GAVE_KURT_BLU_APRICORN
+	iftrue .GiveBluApricornBall
+	checkevent EVENT_GAVE_KURT_YLW_APRICORN
+	iftrue .GiveYlwApricornBall
+	checkevent EVENT_GAVE_KURT_GRN_APRICORN
+	iftrue .GiveGrnApricornBall
+	checkevent EVENT_GAVE_KURT_WHT_APRICORN
+	iftrue .GiveWhtApricornBall
+	checkevent EVENT_GAVE_KURT_BLK_APRICORN
+	iftrue .GiveBlkApricornBall
+	checkevent EVENT_GAVE_KURT_PNK_APRICORN
+	iftrue .GivePnkApricornBall
+	checkitem RED_APRICORN
+	iftrue .AskApricorn
+	checkitem BLU_APRICORN
+	iftrue .AskApricorn
+	checkitem YLW_APRICORN
+	iftrue .AskApricorn
+	checkitem GRN_APRICORN
+	iftrue .AskApricorn
+	checkitem WHT_APRICORN
+	iftrue .AskApricorn
+	checkitem BLK_APRICORN
+	iftrue .AskApricorn
+	checkitem PNK_APRICORN
+	iftrue .AskApricorn
+	writetext GurtIntroText
+	waitbutton
+	closetext
+	end
+
+.AskApricorn:
+	writetext GurtAskApricornText
+	promptbutton
+	special SelectApricornForKurt
+	ifequal FALSE, .Cancel
+	ifequal BLU_APRICORN, .Blu
+	ifequal YLW_APRICORN, .Ylw
+	ifequal GRN_APRICORN, .Grn
+	ifequal WHT_APRICORN, .Wht
+	ifequal BLK_APRICORN, .Blk
+	ifequal PNK_APRICORN, .Pnk
+; .Red
+	setevent EVENT_GAVE_KURT_RED_APRICORN
+	sjump .GiveRedApricornBall
+
+.Blu:
+	setevent EVENT_GAVE_KURT_BLU_APRICORN
+	sjump .GiveBluApricornBall
+
+.Ylw:
+	setevent EVENT_GAVE_KURT_YLW_APRICORN
+	sjump .GiveYlwApricornBall
+
+.Grn:
+	setevent EVENT_GAVE_KURT_GRN_APRICORN
+	sjump .GiveGrnApricornBall
+
+.Wht:
+	setevent EVENT_GAVE_KURT_WHT_APRICORN
+	sjump .GiveWhtApricornBall
+
+.Blk:
+	setevent EVENT_GAVE_KURT_BLK_APRICORN
+	sjump .GiveBlkApricornBall
+
+.Pnk:
+	setevent EVENT_GAVE_KURT_PNK_APRICORN
+	sjump .GivePnkApricornBall
+
+.GiveRedApricornBall:
+	writetext GurtHereYouGoText
+	promptbutton
+	callasm KurtSelectRedBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_RED_APRICORN
+	sjump ._TurnedOutGreat
+
+.GiveBluApricornBall:
+	writetext GurtHereYouGoText
+	promptbutton
+	callasm KurtSelectBluBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_BLU_APRICORN
+	sjump ._TurnedOutGreat
+
+.GiveYlwApricornBall:
+	writetext GurtHereYouGoText
+	promptbutton
+	callasm KurtSelectYlwBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_YLW_APRICORN
+	sjump ._TurnedOutGreat
+
+.GiveGrnApricornBall:
+	writetext GurtHereYouGoText
+	promptbutton
+	callasm KurtSelectGrnBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_GRN_APRICORN
+	sjump ._TurnedOutGreat
+
+.GiveWhtApricornBall:
+	writetext GurtHereYouGoText
+	promptbutton
+	callasm KurtSelectWhtBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_WHT_APRICORN
+	sjump ._TurnedOutGreat
+
+.GiveBlkApricornBall:
+	writetext GurtHereYouGoText
+	promptbutton
+	callasm KurtSelectBlkBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_BLK_APRICORN
+	sjump ._TurnedOutGreat
+
+.GivePnkApricornBall:
+	writetext GurtHereYouGoText
+	promptbutton
+	callasm KurtSelectPnkBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_PNK_APRICORN
+
+._TurnedOutGreat:
+	writetext GurtTurnedOutGreatText
+	waitbutton
+.NoRoomForBall:
+	closetext
+	end
+
+.Cancel:
+	writetext GurtCancelText
+	waitbutton
+	closetext
+	end
+
+GurtIntroText:
+	text "GURT: I'm GURT!"
+	line "KURT's youngest"
+	para "brother. I'll make"
+	line "BALLS if you've"
+	para "got APRICORNS!"
+	done
+
+GurtAskApricornText:
+	text "GURT: Nice! Give"
+	line "me that APRICORN"
+	para "and I'll have your"
+	line "BALL ready fast!"
+	done
+
+GurtHereYouGoText:
+	text "GURT: Here! The"
+	line "family secret!"
+	done
+
+GurtTurnedOutGreatText:
+	text "GURT: Come back"
+	line "whenever!"
+	done
+
+GurtCancelText:
+	text "GURT: No prob!"
+	line "Swing by when"
+	para "you've got some"
+	line "APRICORNS!"
+	done
+
 CianwoodCity_MapEvents:
 	db 0, 0 ; filler
 
@@ -455,3 +638,4 @@ CianwoodCity_MapEvents:
 	object_event 10, 46, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityChucksWife, -1
 	object_event 11, 21, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
 	object_event 10, 14, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
+	object_event 19, 29, SPRITE_KURT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GurtScript, -1

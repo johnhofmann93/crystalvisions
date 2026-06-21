@@ -3242,7 +3242,7 @@ wPlayerMonSelection:: ds 3
 wdc5f:: db
 wdc60:: db
 
-	ds 18
+	ds 9
 
 wStepCount:: db
 wPoisonStepCount:: db

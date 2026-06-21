@@ -230,6 +230,8 @@ FindApricornsInBag:
 .nope
 	inc hl
 	inc hl
+	inc hl
+	inc hl
 	jr .loop
 
 .done

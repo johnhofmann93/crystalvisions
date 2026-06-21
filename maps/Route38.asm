@@ -5,6 +5,7 @@
 	const ROUTE38_BEAUTY1
 	const ROUTE38_SAILOR
 	const ROUTE38_FRUIT_TREE
+	const ROUTE38_APRICORN_TREE
 	const ROUTE38_BEAUTY2
 
 Route38_MapScripts:
@@ -320,6 +321,9 @@ Route38TrainerTips:
 Route38FruitTree:
 	fruittree FRUITTREE_ROUTE_38
 
+Route38ApricornTree:
+	fruittree FRUITTREE_ROUTE_38_APRICORN
+
 BirdKeeperTobySeenText:
 	text "Fly high into the"
 	line "sky, my beloved"
@@ -490,4 +494,5 @@ Route38_MapEvents:
 	object_event 19,  9, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBeautyValerie, -1
 	object_event 24,  5, SPRITE_SAILOR, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSailorHarry, -1
 	object_event 12, 10, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route38FruitTree, -1
+	object_event 14, 10, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route38ApricornTree, -1
 	object_event  5,  8, SPRITE_BEAUTY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBeautyOlivia, -1

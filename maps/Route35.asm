@@ -9,6 +9,7 @@
 	const ROUTE35_SUPER_NERD
 	const ROUTE35_OFFICER
 	const ROUTE35_FRUIT_TREE
+	const ROUTE35_APRICORN_TREE
 	const ROUTE35_POKE_BALL
 
 Route35_MapScripts:
@@ -274,6 +275,9 @@ Route35TMRollout:
 Route35FruitTree:
 	fruittree FRUITTREE_ROUTE_35
 
+Route35ApricornTree:
+	fruittree FRUITTREE_ROUTE_35_APRICORN
+
 CamperIvanSeenText:
 	text "I've been getting"
 	line "#MON data off"
@@ -485,4 +489,5 @@ Route35_MapEvents:
 	object_event  5, 10, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerJugglerIrwin, -1
 	object_event  5,  6, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TrainerOfficerDirk, -1
 	object_event  2, 25, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route35FruitTree, -1
+	object_event  4, 25, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route35ApricornTree, -1
 	object_event 13, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route35TMRollout, EVENT_ROUTE_35_TM_ROLLOUT

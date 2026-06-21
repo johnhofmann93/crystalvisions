@@ -5,6 +5,7 @@ DEF MAHOGANYTOWN_RAGECANDYBAR_PRICE EQU 300
 	const MAHOGANYTOWN_GRAMPS
 	const MAHOGANYTOWN_FISHER
 	const MAHOGANYTOWN_LASS
+	const MAHOGANYTOWN_BURT
 
 MahoganyTown_MapScripts:
 	def_scene_scripts
@@ -284,6 +285,187 @@ MahoganyGymSignText:
 	line "Winter's Harshness"
 	done
 
+BurtScript:
+	faceplayer
+	opentext
+	checkevent EVENT_GAVE_KURT_RED_APRICORN
+	iftrue .GiveRedApricornBall
+	checkevent EVENT_GAVE_KURT_BLU_APRICORN
+	iftrue .GiveBluApricornBall
+	checkevent EVENT_GAVE_KURT_YLW_APRICORN
+	iftrue .GiveYlwApricornBall
+	checkevent EVENT_GAVE_KURT_GRN_APRICORN
+	iftrue .GiveGrnApricornBall
+	checkevent EVENT_GAVE_KURT_WHT_APRICORN
+	iftrue .GiveWhtApricornBall
+	checkevent EVENT_GAVE_KURT_BLK_APRICORN
+	iftrue .GiveBlkApricornBall
+	checkevent EVENT_GAVE_KURT_PNK_APRICORN
+	iftrue .GivePnkApricornBall
+	checkitem RED_APRICORN
+	iftrue .AskApricorn
+	checkitem BLU_APRICORN
+	iftrue .AskApricorn
+	checkitem YLW_APRICORN
+	iftrue .AskApricorn
+	checkitem GRN_APRICORN
+	iftrue .AskApricorn
+	checkitem WHT_APRICORN
+	iftrue .AskApricorn
+	checkitem BLK_APRICORN
+	iftrue .AskApricorn
+	checkitem PNK_APRICORN
+	iftrue .AskApricorn
+	writetext BurtIntroText
+	waitbutton
+	closetext
+	end
+
+.AskApricorn:
+	writetext BurtAskApricornText
+	promptbutton
+	special SelectApricornForKurt
+	ifequal FALSE, .Cancel
+	ifequal BLU_APRICORN, .Blu
+	ifequal YLW_APRICORN, .Ylw
+	ifequal GRN_APRICORN, .Grn
+	ifequal WHT_APRICORN, .Wht
+	ifequal BLK_APRICORN, .Blk
+	ifequal PNK_APRICORN, .Pnk
+; .Red
+	setevent EVENT_GAVE_KURT_RED_APRICORN
+	sjump .GiveRedApricornBall
+
+.Blu:
+	setevent EVENT_GAVE_KURT_BLU_APRICORN
+	sjump .GiveBluApricornBall
+
+.Ylw:
+	setevent EVENT_GAVE_KURT_YLW_APRICORN
+	sjump .GiveYlwApricornBall
+
+.Grn:
+	setevent EVENT_GAVE_KURT_GRN_APRICORN
+	sjump .GiveGrnApricornBall
+
+.Wht:
+	setevent EVENT_GAVE_KURT_WHT_APRICORN
+	sjump .GiveWhtApricornBall
+
+.Blk:
+	setevent EVENT_GAVE_KURT_BLK_APRICORN
+	sjump .GiveBlkApricornBall
+
+.Pnk:
+	setevent EVENT_GAVE_KURT_PNK_APRICORN
+	sjump .GivePnkApricornBall
+
+.GiveRedApricornBall:
+	writetext BurtHereYouGoText
+	promptbutton
+	callasm KurtSelectRedBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_RED_APRICORN
+	sjump ._TurnedOutGreat
+
+.GiveBluApricornBall:
+	writetext BurtHereYouGoText
+	promptbutton
+	callasm KurtSelectBluBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_BLU_APRICORN
+	sjump ._TurnedOutGreat
+
+.GiveYlwApricornBall:
+	writetext BurtHereYouGoText
+	promptbutton
+	callasm KurtSelectYlwBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_YLW_APRICORN
+	sjump ._TurnedOutGreat
+
+.GiveGrnApricornBall:
+	writetext BurtHereYouGoText
+	promptbutton
+	callasm KurtSelectGrnBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_GRN_APRICORN
+	sjump ._TurnedOutGreat
+
+.GiveWhtApricornBall:
+	writetext BurtHereYouGoText
+	promptbutton
+	callasm KurtSelectWhtBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_WHT_APRICORN
+	sjump ._TurnedOutGreat
+
+.GiveBlkApricornBall:
+	writetext BurtHereYouGoText
+	promptbutton
+	callasm KurtSelectBlkBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_BLK_APRICORN
+	sjump ._TurnedOutGreat
+
+.GivePnkApricornBall:
+	writetext BurtHereYouGoText
+	promptbutton
+	callasm KurtSelectPnkBall
+	verbosegiveitemvar ITEM_FROM_MEM, VAR_KURT_APRICORNS
+	iffalse .NoRoomForBall
+	clearevent EVENT_GAVE_KURT_PNK_APRICORN
+
+._TurnedOutGreat:
+	writetext BurtTurnedOutGreatText
+	waitbutton
+.NoRoomForBall:
+	closetext
+	end
+
+.Cancel:
+	writetext BurtCancelText
+	waitbutton
+	closetext
+	end
+
+BurtIntroText:
+	text "BURT: I'm BURT."
+	line "KURT's brother."
+	para "I make BALLS from"
+	line "APRICORNS, too."
+	done
+
+BurtAskApricornText:
+	text "BURT: An APRICORN!"
+	line "Hand it over and"
+	para "I'll have your BALL"
+	line "done in no time."
+	done
+
+BurtHereYouGoText:
+	text "BURT: Here you go!"
+	line "Runs in the family."
+	done
+
+BurtTurnedOutGreatText:
+	text "BURT: Come back"
+	line "anytime!"
+	done
+
+BurtCancelText:
+	text "BURT: No worries."
+	line "Come back when"
+	para "you've got some"
+	line "APRICORNS!"
+	done
+
 MahoganyTown_MapEvents:
 	db 0, 0 ; filler
 
@@ -309,3 +491,4 @@ MahoganyTown_MapEvents:
 	object_event  6,  9, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownGrampsScript, -1
 	object_event  6, 14, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MahoganyTownFisherScript, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
 	object_event 12,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownLassScript, EVENT_MAHOGANY_MART_OWNERS
+	object_event 14, 11, SPRITE_KURT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BurtScript, -1

@@ -148,43 +148,43 @@ ItemEffects:
 	dw NoEffect            ; STAR_PIECE
 	dw BasementKeyEffect   ; BASEMENT_KEY
 	dw NoEffect            ; PASS
-	dw NoEffect            ; ITEM_87
-	dw NoEffect            ; ITEM_88
-	dw NoEffect            ; ITEM_89
+	dw PokeBallEffect      ; CURVE_BALL
+	dw PokeBallEffect      ; THUNDER_BALL
+	dw PokeBallEffect      ; WEATHER_BALL
 	dw NoEffect            ; CHARCOAL
 	dw RestoreHPEffect     ; BERRY_JUICE
 	dw NoEffect            ; SCOPE_LENS
-	dw NoEffect            ; ITEM_8D
-	dw NoEffect            ; ITEM_8E
+	dw PokeBallEffect      ; LEGEND_BALL
+	dw PokeBallEffect      ; MAGNET_BALL
 	dw NoEffect            ; METAL_COAT
 	dw NoEffect            ; DRAGON_FANG
-	dw NoEffect            ; ITEM_91
+	dw PokeBallEffect      ; DUSK_BALL
 	dw NoEffect            ; LEFTOVERS
-	dw NoEffect            ; ITEM_93
-	dw NoEffect            ; ITEM_94
-	dw NoEffect            ; ITEM_95
+	dw PokeBallEffect      ; AIR_BALL
+	dw PokeBallEffect      ; EGG_BALL
+	dw PokeBallEffect      ; ICE_BALL
 	dw RestorePPEffect     ; MYSTERYBERRY
 	dw NoEffect            ; DRAGON_SCALE
 	dw NoEffect            ; BERSERK_GENE
-	dw NoEffect            ; ITEM_99
-	dw NoEffect            ; ITEM_9A
-	dw NoEffect            ; ITEM_9B
+	dw PokeBallEffect      ; LOW_BALL
+	dw PokeBallEffect      ; VENOM_BALL
+	dw PokeBallEffect      ; HIGH_BALL
 	dw SacredAshEffect     ; SACRED_ASH
 	dw PokeBallEffect      ; HEAVY_BALL
 	dw NoEffect            ; FLOWER_MAIL
-	dw PokeBallEffect      ; LEVEL_BALL
+	dw PokeBallEffect      ; NET_BALL
 	dw PokeBallEffect      ; LURE_BALL
 	dw PokeBallEffect      ; FAST_BALL
-	dw NoEffect            ; ITEM_A2
+	dw PokeBallEffect      ; POWER_BALL
 	dw NoEffect            ; LIGHT_BALL
 	dw PokeBallEffect      ; FRIEND_BALL
-	dw PokeBallEffect      ; MOON_BALL
+	dw PokeBallEffect      ; STONE_BALL
 	dw PokeBallEffect      ; LOVE_BALL
 	dw NormalBoxEffect     ; NORMAL_BOX
 	dw GorgeousBoxEffect   ; GORGEOUS_BOX
 	dw EvoStoneEffect      ; SUN_STONE
 	dw NoEffect            ; POLKADOT_BOW
-	dw NoEffect            ; ITEM_AB
+	dw PokeBallEffect      ; BURN_BALL
 	dw NoEffect            ; UP_GRADE
 	dw RestoreHPEffect     ; BERRY
 	dw RestoreHPEffect     ; GOLD_BERRY
@@ -270,11 +270,6 @@ PokeBallEffect:
 	jp hl
 
 .skip_or_return_from_ball_fn
-	ld a, [wCurItem]
-	cp LEVEL_BALL
-	ld a, b
-	jp z, .skip_hp_calc
-
 	ld a, b
 	ldh [hMultiplicand + 2], a
 
@@ -545,6 +540,10 @@ PokeBallEffect:
 	set BATTLERESULT_CAUGHT_CELEBI, [hl]
 .not_celebi
 
+	ld a, [wCurItem]
+	cp EGG_BALL
+	call z, TeachEggMovesBall
+
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jr z, .SendToPC
@@ -722,16 +721,29 @@ PokeBallEffect:
 BallMultiplierFunctionTable:
 ; table of routines that increase or decrease the catch rate based on
 ; which ball is used in a certain situation.
-	dbw ULTRA_BALL,  UltraBallMultiplier
-	dbw GREAT_BALL,  GreatBallMultiplier
-	dbw SAFARI_BALL, SafariBallMultiplier ; Safari Ball, leftover from RBY
-	dbw HEAVY_BALL,  HeavyBallMultiplier
-	dbw LEVEL_BALL,  LevelBallMultiplier
-	dbw LURE_BALL,   LureBallMultiplier
-	dbw FAST_BALL,   FastBallMultiplier
-	dbw MOON_BALL,   MoonBallMultiplier
-	dbw LOVE_BALL,   LoveBallMultiplier
-	dbw PARK_BALL,   ParkBallMultiplier
+	dbw ULTRA_BALL,   UltraBallMultiplier
+	dbw GREAT_BALL,   GreatBallMultiplier
+	dbw SAFARI_BALL,  SafariBallMultiplier ; Safari Ball, leftover from RBY
+	dbw HEAVY_BALL,   HeavyBallMultiplier
+	dbw NET_BALL,     NetBallMultiplier
+	dbw LURE_BALL,    LureBallMultiplier
+	dbw FAST_BALL,    FastBallMultiplier
+	dbw STONE_BALL,   StoneBallMultiplier
+	dbw LOVE_BALL,    LoveBallMultiplier
+	dbw PARK_BALL,    ParkBallMultiplier
+	dbw AIR_BALL,     AirBallMultiplier
+	dbw ICE_BALL,     IceBallMultiplier
+	dbw LOW_BALL,     LowBallMultiplier
+	dbw VENOM_BALL,   VenomBallMultiplier
+	dbw HIGH_BALL,    HighBallMultiplier
+	dbw POWER_BALL,   PowerBallMultiplier
+	dbw BURN_BALL,    BurnBallMultiplier
+	dbw CURVE_BALL,   CurveBallMultiplier
+	dbw THUNDER_BALL, ThunderBallMultiplier
+	dbw WEATHER_BALL, WeatherBallMultiplier
+	dbw LEGEND_BALL,  LegendBallMultiplier
+	dbw MAGNET_BALL,  MagnetBallMultiplier
+	dbw DUSK_BALL,    DuskBallMultiplier
 	db -1 ; end
 
 UltraBallMultiplier:
@@ -754,10 +766,10 @@ ParkBallMultiplier:
 	ret
 
 HeavyBall_GetDexEntryBank:
-; BUG: Heavy Ball uses wrong weight value for three Pokémon (see docs/bugs_and_glitches.md)
 	push hl
 	push de
 	ld a, [wEnemyMonSpecies]
+	dec a
 	rlca
 	rlca
 	maskbits NUM_DEX_ENTRY_BANKS
@@ -894,7 +906,8 @@ LureBallMultiplier:
 	ld b, a
 	ret
 
-MoonBallMultiplier:
+StoneBallMultiplier:
+; 4x if species evolves via any item
 	push bc
 	ld a, [wTempEnemyMonSpecies]
 	dec a
@@ -906,26 +919,25 @@ MoonBallMultiplier:
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarWord
 	pop bc
-
+.loop
 	push bc
 	ld a, BANK("Evolutions and Attacks")
-	call GetFarByte
+	call GetFarByte   ; read evo type
+	pop bc
+	and a             ; 0 = end of evolutions
+	ret z
 	cp EVOLVE_ITEM
-	pop bc
-	ret nz
-
-; BUG: Moon Ball does not boost catch rate (see docs/bugs_and_glitches.md)
+	jr z, .found
+	push af           ; save type to check for EVOLVE_STAT
 	inc hl
 	inc hl
-	inc hl
-
-	push bc
-	ld a, BANK("Evolutions and Attacks")
-	call GetFarByte
-	cp MOON_STONE_RED ; BURN_HEAL
-	pop bc
-	ret nz
-
+	inc hl            ; skip 3 bytes (type+param1+param2)
+	pop af
+	cp EVOLVE_STAT
+	jr nz, .loop
+	inc hl            ; EVOLVE_STAT has 4 bytes total
+	jr .loop
+.found
 	sla b
 	jr c, .max
 	sla b
@@ -974,12 +986,11 @@ LoveBallMultiplier:
 	inc d   ; female
 .got_wild_gender
 
-; BUG: Love Ball boosts catch rate for the wrong gender (see docs/bugs_and_glitches.md)
 	ld a, d
 	pop de
 	cp d
 	pop bc
-	ret nz
+	ret z
 
 	sla b
 	jr c, .max
@@ -999,62 +1010,287 @@ LoveBallMultiplier:
 	ret
 
 FastBallMultiplier:
-	ld a, [wTempEnemyMonSpecies]
-	ld c, a
-	ld hl, FleeMons
-	ld d, 3
-
-.loop
-; BUG: Fast Ball only boosts catch rate for three Pokémon (see docs/bugs_and_glitches.md)
-	ld a, BANK(FleeMons)
-	call GetFarByte
-
-	inc hl
-	cp -1
-	jr z, .next
-	cp c
-	jr nz, .next
-	sla b
-	jr c, .max
-
+; 2x if target's speed stat is >= 100
+	ld a, [wEnemySpeed]
+	cp 100
+	ret c
 	sla b
 	ret nc
-
-.max
 	ld b, $ff
 	ret
 
-.next
-	dec d
-	jr nz, .loop
+NetBallMultiplier:
+; 2x if target is Bug or Water type
+	ld a, [wEnemyMonType1]
+	cp BUG
+	jr z, .boost
+	cp WATER
+	jr z, .boost
+	ld a, [wEnemyMonType2]
+	cp BUG
+	jr z, .boost
+	cp WATER
+	ret nz
+.boost
+	sla b
+	ret nc
+	ld b, $ff
 	ret
 
-LevelBallMultiplier:
-; multiply catch rate by 8 if player mon level / 4 > enemy mon level
-; multiply catch rate by 4 if player mon level / 2 > enemy mon level
-; multiply catch rate by 2 if player mon level > enemy mon level
+LowBallMultiplier:
+; 2x if enemy level < player level, 4x if enemy level < player/2
 	ld a, [wBattleMonLevel]
 	ld c, a
 	ld a, [wEnemyMonLevel]
 	cp c
-	ret nc ; if player is lower level, we're done here
+	ret nc
 	sla b
 	jr c, .max
-
 	srl c
 	cp c
-	ret nc ; if player/2 is lower level, we're done here
-	sla b
-	jr c, .max
-
-	srl c
-	cp c
-	ret nc ; if player/4 is lower level, we're done here
+	ret nc
 	sla b
 	ret nc
-
 .max
 	ld b, $ff
+	ret
+
+HighBallMultiplier:
+; 2x if enemy level > player level
+	ld a, [wEnemyMonLevel]
+	ld c, a
+	ld a, [wBattleMonLevel]
+	cp c
+	ret nc
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+
+AirBallMultiplier:
+; 2x if target is Flying type
+	ld a, [wEnemyMonType1]
+	cp FLYING
+	jr z, .boost
+	ld a, [wEnemyMonType2]
+	cp FLYING
+	ret nz
+.boost
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+
+IceBallMultiplier:
+; 2x if target is Ice type or frozen
+	ld a, [wEnemyMonType1]
+	cp ICE
+	jr z, .boost
+	ld a, [wEnemyMonType2]
+	cp ICE
+	jr z, .boost
+	ld a, [wEnemyMonStatus]
+	bit FRZ, a
+	ret z
+.boost
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+
+VenomBallMultiplier:
+; 2x if target is Poison type or poisoned
+	ld a, [wEnemyMonType1]
+	cp POISON
+	jr z, .boost
+	ld a, [wEnemyMonType2]
+	cp POISON
+	jr z, .boost
+	ld a, [wEnemyMonStatus]
+	bit PSN, a
+	ret z
+.boost
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+
+PowerBallMultiplier:
+; 2x if target's attack stat is >= 100
+	ld a, [wEnemyAttack]
+	cp 100
+	ret c
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+
+BurnBallMultiplier:
+; 2x if target is Fire type or burned
+	ld a, [wEnemyMonType1]
+	cp FIRE
+	jr z, .boost
+	ld a, [wEnemyMonType2]
+	cp FIRE
+	jr z, .boost
+	ld a, [wEnemyMonStatus]
+	bit BRN, a
+	ret z
+.boost
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+
+CurveBallMultiplier:
+; 2x if any of the target's stats have been lowered
+	ld hl, wEnemyStatLevels
+	ld c, 7 ; ATK DEF SPD SPATK SPDEF ACC EVA
+.loop
+	ld a, [hli]
+	cp BASE_STAT_LEVEL
+	jr c, .boost
+	dec c
+	jr nz, .loop
+	ret
+.boost
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+
+ThunderBallMultiplier:
+; 2x if target is Electric type or paralyzed
+	ld a, [wEnemyMonType1]
+	cp ELECTRIC
+	jr z, .boost
+	ld a, [wEnemyMonType2]
+	cp ELECTRIC
+	jr z, .boost
+	ld a, [wEnemyMonStatus]
+	bit PAR, a
+	ret z
+.boost
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+
+WeatherBallMultiplier:
+; 2x if weather is active (not fading)
+	ld a, [wBattleWeather]
+	and a
+	ret z
+	cp 4            ; 4+ = fading weather
+	ret nc
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+
+LegendBallMultiplier:
+; 4x if target is a roaming legendary
+	ld a, [wTempEnemyMonSpecies]
+	ld hl, .LegendaryTable
+.loop
+	ld c, [hl]
+	inc hl
+	inc c
+	ret z           ; end of table, no match
+	dec c
+	cp c
+	jr nz, .loop
+	sla b
+	jr c, .max
+	sla b
+	ret nc
+.max
+	ld b, $ff
+	ret
+.LegendaryTable
+	db LUGIA
+	db HO_OH
+	db ENTEI
+	db RAIKOU
+	db SUICUNE
+	db CELEBI
+	db -1
+
+MagnetBallMultiplier:
+; 2x if target is Steel type
+	ld a, [wEnemyMonType1]
+	cp STEEL
+	jr z, .boost
+	ld a, [wEnemyMonType2]
+	cp STEEL
+	ret nz
+.boost
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+
+DuskBallMultiplier:
+; 2x if target is Dark, Ghost, or Psychic type
+	ld a, [wEnemyMonType1]
+	cp DARK
+	jr z, .boost
+	cp GHOST
+	jr z, .boost
+	cp PSYCHIC_TYPE
+	jr z, .boost
+	ld a, [wEnemyMonType2]
+	cp DARK
+	jr z, .boost
+	cp GHOST
+	jr z, .boost
+	cp PSYCHIC_TYPE
+	ret nz
+.boost
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+
+TeachEggMovesBall:
+; overwrites wEnemyMonMoves/PP with the species' egg moves before party/box copy
+	ld a, [wEnemyMonSpecies]
+	dec a
+	ld c, a
+	ld b, 0
+	ld hl, EggMovePointers
+	add hl, bc
+	add hl, bc
+	ld a, BANK(EggMovePointers)
+	call GetFarWord
+	; check if species has any egg moves
+	ld a, BANK("Egg Moves")
+	call GetFarByte
+	cp -1
+	ret z           ; no egg moves, leave wild moves intact
+	; clear all 4 move slots
+	xor a
+	ld [wEnemyMonMoves],     a
+	ld [wEnemyMonMoves + 1], a
+	ld [wEnemyMonMoves + 2], a
+	ld [wEnemyMonMoves + 3], a
+	; copy up to 4 egg moves
+	ld de, wEnemyMonMoves
+	ld b, NUM_MOVES
+.loop
+	ld a, BANK("Egg Moves")
+	call GetFarByte
+	cp -1
+	jr z, .done
+	ld [de], a
+	inc de
+	inc hl
+	dec b
+	jr nz, .loop
+.done
+	ld hl, wEnemyMonMoves
+	ld de, wEnemyMonPP
+	predef FillPP
 	ret
 
 ; BallDodgedText and BallMissedText were used in Gen 1.

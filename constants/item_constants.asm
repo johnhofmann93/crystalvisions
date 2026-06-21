@@ -140,43 +140,43 @@
 	const STAR_PIECE   ; 84
 	const BASEMENT_KEY ; 85
 	const PASS         ; 86
-	const ITEM_87      ; 87
-	const ITEM_88      ; 88
-	const ITEM_89      ; 89
+	const CURVE_BALL   ; 87
+	const THUNDER_BALL ; 88
+	const WEATHER_BALL ; 89
 	const CHARCOAL     ; 8a
 	const BERRY_JUICE  ; 8b
 	const SCOPE_LENS   ; 8c
-	const ITEM_8D      ; 8d
-	const ITEM_8E      ; 8e
+	const LEGEND_BALL  ; 8d
+	const MAGNET_BALL  ; 8e
 	const METAL_COAT   ; 8f
 	const DRAGON_FANG  ; 90
-	const ITEM_91      ; 91
+	const DUSK_BALL    ; 91
 	const LEFTOVERS    ; 92
-	const ITEM_93      ; 93
-	const ITEM_94      ; 94
-	const ITEM_95      ; 95
+	const AIR_BALL     ; 93
+	const EGG_BALL     ; 94
+	const ICE_BALL     ; 95
 	const MYSTERYBERRY ; 96
 	const DRAGON_SCALE ; 97
 	const BERSERK_GENE ; 98
-	const ITEM_99      ; 99
-	const ITEM_9A      ; 9a
-	const ITEM_9B      ; 9b
+	const LOW_BALL     ; 99
+	const VENOM_BALL   ; 9a
+	const HIGH_BALL    ; 9b
 	const SACRED_ASH   ; 9c
 	const HEAVY_BALL   ; 9d
 	const FLOWER_MAIL  ; 9e
-	const LEVEL_BALL   ; 9f
+	const NET_BALL     ; 9f
 	const LURE_BALL    ; a0
 	const FAST_BALL    ; a1
-	const ITEM_A2      ; a2
+	const POWER_BALL   ; a2
 	const LIGHT_BALL   ; a3
 	const FRIEND_BALL  ; a4
-	const MOON_BALL    ; a5
+	const STONE_BALL   ; a5
 	const LOVE_BALL    ; a6
 	const NORMAL_BOX   ; a7
 	const GORGEOUS_BOX ; a8
 	const SUN_STONE    ; a9
 	const POLKADOT_BOW ; aa
-	const ITEM_AB      ; ab
+	const BURN_BALL    ; ab
 	const UP_GRADE     ; ac
 	const BERRY        ; ad
 	const GOLD_BERRY   ; ae

@@ -135,43 +135,43 @@ ItemDescriptions:
 	dw StarPieceDesc
 	dw BasementKeyDesc
 	dw PassDesc
-	dw TeruSama9Desc
-	dw TeruSama10Desc
-	dw TeruSama11Desc
+	dw CurveBallDesc
+	dw ThunderBallDesc
+	dw WeatherBallDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
-	dw TeruSama12Desc
-	dw TeruSama13Desc
+	dw LegendBallDesc
+	dw MagnetBallDesc
 	dw MetalCoatDesc
 	dw DragonFangDesc
-	dw TeruSama14Desc
+	dw DuskBallDesc
 	dw LeftoversDesc
-	dw TeruSama15Desc
-	dw TeruSama16Desc
-	dw TeruSama17Desc
+	dw AirBallDesc
+	dw EggBallDesc
+	dw IceBallDesc
 	dw MysteryBerryDesc
 	dw DragonScaleDesc
 	dw BerserkGeneDesc
-	dw TeruSama18Desc
-	dw TeruSama19Desc
-	dw TeruSama20Desc
+	dw LowBallDesc
+	dw VenomBallDesc
+	dw HighBallDesc
 	dw SacredAshDesc
 	dw HeavyBallDesc
 	dw FlowerMailDesc
-	dw LevelBallDesc
+	dw NetBallDesc
 	dw LureBallDesc
 	dw FastBallDesc
-	dw TeruSama21Desc
+	dw PowerBallDesc
 	dw LightBallDesc
 	dw FriendBallDesc
-	dw MoonBallDesc
+	dw StoneBallDesc
 	dw LoveBallDesc
 	dw NormalBoxDesc
 	dw GorgeousBoxDesc
 	dw SunStoneDesc
 	dw PolkadotBowDesc
-	dw TeruSama22Desc
+	dw BurnBallDesc
 	dw UpGradeDesc
 	dw BerryDesc
 	dw GoldBerryDesc
@@ -781,14 +781,17 @@ PassDesc:
 	db   "A ticket for the"
 	next "MAGNET TRAIN.@"
 
-TeruSama9Desc:
-	db   "?@"
+CurveBallDesc:
+	db   "A BALL for #MON"
+	next "with lowered stats.@"
 
-TeruSama10Desc:
-	db   "?@"
+ThunderBallDesc:
+	db   "Good vs ELECTRIC"
+	next "or paralyzed #MON.@"
 
-TeruSama11Desc:
-	db   "?@"
+WeatherBallDesc:
+	db   "Better in rain,"
+	next "sun, or sandstorm.@"
 
 CharcoalDesc:
 	db   "Powers up fire-"
@@ -802,11 +805,13 @@ ScopeLensDesc:
 	db   "Raises critical"
 	next "hit ratio. (HOLD)@"
 
-TeruSama12Desc:
-	db   "?@"
+LegendBallDesc:
+	db   "For catching the"
+	next "rarest #MON.@"
 
-TeruSama13Desc:
-	db   "?@"
+MagnetBallDesc:
+	db   "Good for catching"
+	next "STEEL-type #MON.@"
 
 MetalCoatDesc:
 	db   "Powers up steel-"
@@ -816,21 +821,25 @@ DragonFangDesc:
 	db   "Powers up dragon-"
 	next "type moves. (HOLD)@"
 
-TeruSama14Desc:
-	db   "?@"
+DuskBallDesc:
+	db   "Good vs DARK,"
+	next "GHOST, PSYCHIC.@"
 
 LeftoversDesc:
 	db   "Restores HP during"
 	next "battle. (HOLD)@"
 
-TeruSama15Desc:
-	db   "?@"
+AirBallDesc:
+	db   "Good for catching"
+	next "FLYING-type #MON.@"
 
-TeruSama16Desc:
-	db   "?@"
+EggBallDesc:
+	db   "Caught #MON learns"
+	next "its egg moves.@"
 
-TeruSama17Desc:
-	db   "?@"
+IceBallDesc:
+	db   "Good vs ICE-type"
+	next "or frozen #MON.@"
 
 MysteryBerryDesc:
 	db   "A self-restore"
@@ -844,14 +853,17 @@ BerserkGeneDesc:
 	db   "Boosts ATTACK but"
 	next "causes confusion.@"
 
-TeruSama18Desc:
-	db   "?@"
+LowBallDesc:
+	db   "A BALL for lower-"
+	next "level #MON.@"
 
-TeruSama19Desc:
-	db   "?@"
+VenomBallDesc:
+	db   "Good vs POISON-type"
+	next "or poisoned #MON.@"
 
-TeruSama20Desc:
-	db   "?@"
+HighBallDesc:
+	db   "A BALL for higher-"
+	next "level #MON.@"
 
 SacredAshDesc:
 	db   "Fully revives all"
@@ -865,9 +877,9 @@ FlowerMailDesc:
 	db   "Flower-print MAIL."
 	next "(HOLD)@"
 
-LevelBallDesc:
-	db   "A BALL for lower-"
-	next "level #MON.@"
+NetBallDesc:
+	db   "Good for catching"
+	next "BUG and WATER #MON.@"
 
 LureBallDesc:
 	db   "A BALL for #MON"
@@ -877,8 +889,9 @@ FastBallDesc:
 	db   "A BALL for catch-"
 	next "ing fast #MON.@"
 
-TeruSama21Desc:
-	db   "?@"
+PowerBallDesc:
+	db   "Good for catching"
+	next "high-ATTACK #MON.@"
 
 LightBallDesc:
 	db   "An odd, electrical"
@@ -888,9 +901,9 @@ FriendBallDesc:
 	db   "A BALL that makes"
 	next "#MON friendly.@"
 
-MoonBallDesc:
-	db   "A BALL for MOON"
-	next "STONE evolvers.@"
+StoneBallDesc:
+	db   "For #MON that"
+	next "evolve with items.@"
 
 LoveBallDesc:
 	db   "For catching the"
@@ -912,8 +925,9 @@ PolkadotBowDesc:
 	db   "Powers up normal-"
 	next "type moves. (HOLD)@"
 
-TeruSama22Desc:
-	db   "?@"
+BurnBallDesc:
+	db   "Good vs FIRE-type"
+	next "or burned #MON.@"
 
 UpGradeDesc:
 	db   "A mysterious box"

@@ -1,3 +1,63 @@
+KurtSelectWhtBall::
+	ld hl, .balls
+	jr KurtSelectBallByTime
+.balls
+	db STONE_BALL, AIR_BALL, EGG_BALL
+
+KurtSelectBluBall::
+	ld hl, .balls
+	jr KurtSelectBallByTime
+.balls
+	db LURE_BALL, ICE_BALL, LOW_BALL
+
+KurtSelectGrnBall::
+	ld hl, .balls
+	jr KurtSelectBallByTime
+.balls
+	db NET_BALL, VENOM_BALL, HIGH_BALL
+
+KurtSelectPnkBall::
+	ld hl, .balls
+	jr KurtSelectBallByTime
+.balls
+	db LOVE_BALL, FRIEND_BALL, HEAVY_BALL
+
+KurtSelectRedBall::
+	ld hl, .balls
+	jr KurtSelectBallByTime
+.balls
+	db POWER_BALL, BURN_BALL, CURVE_BALL
+
+KurtSelectYlwBall::
+	ld hl, .balls
+	jr KurtSelectBallByTime
+.balls
+	db FAST_BALL, THUNDER_BALL, WEATHER_BALL
+
+KurtSelectBlkBall::
+	ld hl, .balls
+	jr KurtSelectBallByTime
+.balls
+	db LEGEND_BALL, MAGNET_BALL, DUSK_BALL
+
+KurtSelectBallByTime:
+; hl = pointer to 3-byte table: morning, day, evening
+; reads wTimeOfDay, offsets into table, stores result in wScriptVar
+	ld a, [wTimeOfDay]
+	ld e, 0
+	cp MORN_F
+	jr z, .got
+	inc e
+	cp DAY_F
+	jr z, .got
+	inc e
+.got
+	ld d, 0
+	add hl, de
+	ld a, [hl]
+	ld [wScriptVar], a
+	ret
+
 Kurt_PrintTextWhichApricorn:
 	ld hl, .WhichApricornText
 	call PrintText
