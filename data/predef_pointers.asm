@@ -36,6 +36,7 @@ PredefPointers::
 	add_predef LearnLevelMoves
 	add_predef FillMoves
 	add_predef EvolveAfterBattle
+	add_predef EvolveMidBattle
 	add_predef TradeAnimationPlayer2
 	add_predef TradeAnimation
 	add_predef CopyMonToTempMon

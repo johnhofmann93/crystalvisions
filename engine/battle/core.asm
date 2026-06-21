@@ -1983,6 +1983,8 @@ HandleEnemyMonFaint:
 	call CheckEnemyTrainerDefeated
 	jp z, WinTrainerBattle
 
+	predef EvolveMidBattle
+
 	ld hl, wBattleMonHP
 	ld a, [hli]
 	or [hl]
