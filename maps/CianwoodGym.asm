@@ -19,7 +19,19 @@ CianwoodGymChuckScript:
 	opentext
 	checkevent EVENT_BEAT_CHUCK
 	iftrue .FightDone
-	writetext ChuckIntroText1
+	readvar VAR_BADGES
+	ifequal 6, .IntroSeventhBadge
+	ifequal 5, .IntroSixthBadge
+	ifequal 4, .IntroFifthBadge
+.IntroFifthBadge:
+	writetext Chuck_IntroFifthBadge
+	sjump .FinishedIntro
+.IntroSixthBadge:
+	writetext Chuck_IntroSixthBadge
+	sjump .FinishedIntro
+.IntroSeventhBadge:
+	writetext Chuck_IntroSeventhBadge
+.FinishedIntro:
 	waitbutton
 	closetext
 	turnobject CIANWOODGYM_CHUCK, RIGHT
@@ -38,7 +50,19 @@ CianwoodGymChuckScript:
 	waitbutton
 	closetext
 	winlosstext ChuckLossText, 0
+	readvar VAR_BADGES
+    ifequal 6, .LoadTeamForSeventhBadge
+    ifequal 5, .LoadTeamForSixthBadge
+    ifequal 4, .LoadTeamForFifthBadge
+.LoadTeamForFifthBadge:
 	loadtrainer CHUCK, CHUCK1
+    sjump .FinishedLoadingTrainer
+.LoadTeamForSixthBadge:
+    loadtrainer CHUCK, CHUCK2
+    sjump .FinishedLoadingTrainer
+.LoadTeamForSeventhBadge:
+    loadtrainer CHUCK, CHUCK3
+.FinishedLoadingTrainer
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK
@@ -147,11 +171,56 @@ CianwoodGymMovement_ChuckChucksBoulder:
 	remove_sliding
 	step_end
 
-ChuckIntroText1:
+Chuck_IntroFifthBadge:
 	text "WAHAHAH!"
 
 	para "So you've come"
 	line "this far!"
+
+	para "Just 4 BADGES?"
+	line "A white belt!"
+
+	para "Let me tell you,"
+	line "I'm tough!"
+
+	para "My #MON will"
+	line "crush stones and"
+	cont "shatter bones!"
+
+	para "Watch this!"
+	done
+
+Chuck_IntroSixthBadge:
+	text "WAHAHAH!"
+
+	para "So you've come"
+	line "this far!"
+
+	para "You have 5 BADGES."
+	line "A yellow belt!"
+
+	para "Let me tell you,"
+	line "I'm tough!"
+
+	para "My #MON will"
+	line "crush stones and"
+	cont "shatter bones!"
+
+	para "Watch this!"
+	done
+
+Chuck_IntroSeventhBadge:
+	text "WAHAHAH!"
+
+	para "So you've come"
+	line "this far!"
+
+	para "You have 6 BADGES!"
+	line "A worthy foe!"
+
+	para "That old man PRYCE"
+	line "was no match for"
+	cont "your skill."
 
 	para "Let me tell you,"
 	line "I'm tough!"

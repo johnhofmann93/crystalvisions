@@ -17,11 +17,35 @@ MahoganyGymPryceScript:
 	opentext
 	checkevent EVENT_BEAT_PRYCE
 	iftrue .FightDone
-	writetext PryceText_Intro
+	readvar VAR_BADGES
+	ifequal 6, .IntroSeventhBadge
+	ifequal 5, .IntroSixthBadge
+	ifequal 4, .IntroFifthBadge
+.IntroFifthBadge:
+	writetext Pryce_IntroFifthBadge
+	sjump .FinishedIntro
+.IntroSixthBadge:
+	writetext Pryce_IntroSixthBadge
+	sjump .FinishedIntro
+.IntroSeventhBadge:
+	writetext Pryce_IntroSeventhBadge
+.FinishedIntro:
 	waitbutton
 	closetext
 	winlosstext PryceText_Impressed, 0
+	readvar VAR_BADGES
+    ifequal 6, .LoadTeamForSeventhBadge
+    ifequal 5, .LoadTeamForSixthBadge
+    ifequal 4, .LoadTeamForFifthBadge
+.LoadTeamForFifthBadge:
 	loadtrainer PRYCE, PRYCE1
+    sjump .FinishedLoadingTrainer
+.LoadTeamForSixthBadge:
+    loadtrainer PRYCE, 2
+    sjump .FinishedLoadingTrainer
+.LoadTeamForSeventhBadge:
+    loadtrainer PRYCE, 3
+.FinishedLoadingTrainer
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_PRYCE
@@ -147,7 +171,7 @@ MahoganyGymStatue:
 	gettrainername STRING_BUFFER_4, PRYCE, PRYCE1
 	jumpstd GymStatue2Script
 
-PryceText_Intro:
+Pryce_IntroFifthBadge:
 	text "#MON have many"
 	line "experiences in"
 
@@ -158,24 +182,79 @@ PryceText_Intro:
 	line "and suffered much"
 	cont "in my life."
 
-	para "Since I am your"
-	line "elder, let me show"
-	cont "you what I mean."
-
-	para "I have been with"
-	line "#MON since"
-
-	para "before you were"
-	line "born."
-
 	para "I do not lose"
 	line "easily."
+
+	para "You are early"
+	line "in your life as"
+	cont "a TRAINER."
+
+	para "Only 4 badges."
+	line "I will hold back."
 
 	para "I, PRYCE--the"
 	line "winter trainer--"
 
-	para "shall demonstrate"
-	line "my power!"
+	para "shall teach you"
+	line "a lesson!"
+	done
+
+Pryce_IntroSixthBadge:
+	text "#MON have many"
+	line "experiences in"
+
+	para "their lives, just "
+	line "like we do. "
+
+	para "I, too, have seen"
+	line "and suffered much"
+	cont "in my life."
+
+	para "I do not lose"
+	line "easily."
+
+	para "You are early"
+	line "in your life as"
+	cont "a TRAINER."
+
+	para "You have 5 badges."
+	line "I will hold back"
+	cont "only slightly."
+
+	para "I, PRYCE--the"
+	line "winter trainer--"
+
+	para "shall teach you"
+	line "a lesson!"
+	done
+
+Pryce_IntroSeventhBadge:
+	text "#MON have many"
+	line "experiences in"
+
+	para "their lives, just "
+	line "like we do. "
+
+	para "I, too, have seen"
+	line "and suffered much"
+	cont "in my life."
+
+	para "I do not lose"
+	line "easily."
+
+	para "Oh! 6 BADGES."
+	line "Very impressive."
+	cont "But..."
+
+	para "You are early"
+	line "in your life"
+	cont "as a TRAINER."
+
+	para "I, PRYCE--the"
+	line "winter trainer--"
+
+	para "shall teach you"
+	line "a lesson!"
 	done
 
 PryceText_Impressed:

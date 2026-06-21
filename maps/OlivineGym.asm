@@ -12,11 +12,35 @@ OlivineGymJasmineScript:
 	opentext
 	checkevent EVENT_BEAT_JASMINE
 	iftrue .FightDone
-	writetext Jasmine_SteelTypeIntro
+	readvar VAR_BADGES
+	ifequal 6, .IntroSeventhBadge
+	ifequal 5, .IntroSixthBadge
+	ifequal 4, .IntroFifthBadge
+.IntroFifthBadge:
+	writetext Jasmine_IntroFifthBadge
+	sjump .FinishedIntro
+.IntroSixthBadge:
+	writetext Jasmine_IntroSixthBadge
+	sjump .FinishedIntro
+.IntroSeventhBadge:
+	writetext Jasmine_IntroSeventhBadge
+.FinishedIntro:
 	waitbutton
 	closetext
 	winlosstext Jasmine_BetterTrainer, 0
+	readvar VAR_BADGES
+    ifequal 6, .LoadTeamForSeventhBadge
+    ifequal 5, .LoadTeamForSixthBadge
+    ifequal 4, .LoadTeamForFifthBadge
+.LoadTeamForFifthBadge:
 	loadtrainer JASMINE, JASMINE1
+    sjump .FinishedLoadingTrainer
+.LoadTeamForSixthBadge:
+    loadtrainer JASMINE, JASMINE2
+    sjump .FinishedLoadingTrainer
+.LoadTeamForSeventhBadge:
+    loadtrainer JASMINE, JASMINE3
+.FinishedLoadingTrainer
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JASMINE
@@ -92,16 +116,10 @@ OlivineGymStatue:
 	gettrainername STRING_BUFFER_4, JASMINE, JASMINE1
 	jumpstd GymStatue2Script
 
-Jasmine_SteelTypeIntro:
+Jasmine_IntroFifthBadge:
 	text "…Thank you for"
 	line "your help at the"
 	cont "LIGHTHOUSE…"
-
-	para "But this is dif-"
-	line "ferent. Please"
-
-	para "allow me to intro-"
-	line "duce myself."
 
 	para "I am JASMINE, a"
 	line "GYM LEADER. I use"
@@ -114,12 +132,66 @@ Jasmine_SteelTypeIntro:
 	line "was only recently"
 	cont "discovered."
 
+	para "…You have only 4"
+	line "badges. I will"
+	cont "go easy on you."
+
+	para "…Um… May I begin?"
+	done
+
+Jasmine_IntroSixthBadge:
+	text "…Thank you for"
+	line "your help at the"
+	cont "LIGHTHOUSE…"
+
+	para "I am JASMINE, a"
+	line "GYM LEADER. I use"
+	cont "the steel-type."
+
+	para "…Do you know about"
+	line "the steel-type?"
+
+	para "It's a type that"
+	line "was only recently"
+	cont "discovered."
+
+	text "…You have 5 gym"
+	line "badges. I will"
+	cont "adjust my team."
+
+	para "…Um… May I begin?"
+	done
+
+Jasmine_IntroSeventhBadge:
+	text "…Thank you for"
+	line "your help at the"
+	cont "LIGHTHOUSE…"
+
+	para "And I see you"
+	line "beat PRYCE and"
+	cont "CHUCK already..."
+
+	para "I am JASMINE, a"
+	line "GYM LEADER. I use"
+	cont "the steel-type."
+
+	para "…Do you know about"
+	line "the steel-type?"
+
+	para "It's a type that"
+	line "was only recently"
+	cont "discovered."
+
+	text "…You have 6 gym"
+	line "badges. I will"
+	cont "go all out."
+
 	para "…Um… May I begin?"
 	done
 
 Jasmine_BetterTrainer:
-	text "…You are a better"
-	line "trainer than me,"
+	text "…You have proven"
+	line "your worth,"
 
 	para "in both skill and"
 	line "kindness."
