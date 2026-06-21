@@ -70,8 +70,37 @@
 	const MONMENUITEM_MILKDRINK  ; 13
 	const MONMENUITEM_SWEETSCENT ; 14
 	const MONMENUITEM_SURGE      ; 15
+	; alternate cut moves
+	const MONMENUITEM_SLASH      ; 16
+	const MONMENUITEM_METAL_CLAW ; 17
+	const MONMENUITEM_STEEL_WING ; 18
+	const MONMENUITEM_CROSS_CHOP ; 19
+	const MONMENUITEM_KARATE_CHOP ; 20
+	const MONMENUITEM_FURY_CUTTER ; 21
+	const MONMENUITEM_RAZOR_WIND  ; 22
+	const MONMENUITEM_RAZOR_LEAF  ; 23
+	; alternate strength moves
+	const MONMENUITEM_PSYCHIC_FM  ; 21
+	const MONMENUITEM_ROCK_SLIDE  ; 22
+	const MONMENUITEM_KINESIS     ; 23
+	const MONMENUITEM_GROWTH      ; 24
+	; alternate surf moves
+	const MONMENUITEM_HYDRO_PUMP  ; 25
+	; alternate flash moves
+	const MONMENUITEM_AURORA_BEAM ; 26
+	const MONMENUITEM_EMBER       ; 27
+	const MONMENUITEM_SUNNY_DAY   ; 28
+	; alternate whirlpool moves
+	const MONMENUITEM_RAPID_SPIN  ; 29
+	; alternate rock smash moves
+	const MONMENUITEM_IRON_TAIL   ; 30
+	const MONMENUITEM_MEGA_PUNCH  ; 31
+	const MONMENUITEM_MEGA_KICK   ; 32
+	const MONMENUITEM_CRUNCH      ; 33
+	const MONMENUITEM_ACID        ; 34
+	const MONMENUITEM_CRABHAMMER  ; 35
 	; options
-	const MONMENUITEM_STATS      ; 16
+	const MONMENUITEM_STATS      ; 21
 	const MONMENUITEM_SWITCH     ; 17
 	const MONMENUITEM_ITEM       ; 18
 	const MONMENUITEM_CANCEL     ; 19

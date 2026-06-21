@@ -305,7 +305,9 @@ _CantUseItemText::
 _UseCutText::
 	text_ram wStringBuffer2
 	text " used"
-	line "CUT!"
+	line "@"
+	text_ram wStringBuffer1
+	text "!"
 	prompt
 
 _CutNothingText::
@@ -324,7 +326,9 @@ _BlindingFlashText::
 _UsedSurfText::
 	text_ram wStringBuffer2
 	text " used"
-	line "SURF!"
+	line "@"
+	text_ram wStringBuffer1
+	text "!"
 	done
 
 _CantSurfText::
@@ -339,7 +343,10 @@ _AlreadySurfingText::
 
 _AskSurfText::
 	text "The water is calm."
-	line "Want to SURF?"
+	para "Want to use"
+	line "@"
+	text_ram wStringBuffer1
+	text "?"
 	done
 
 _UseWaterfallText::
@@ -394,11 +401,13 @@ _AlreadyUsingStrengthText::
 _UseStrengthText::
 	text_ram wStringBuffer2
 	text " used"
-	line "STRENGTH!"
+	line "@"
+	text_ram wStringBuffer1
+	text "!"
 	done
 
 _MoveBoulderText::
-	text_ram wStringBuffer1
+	text_ram wStringBuffer2
 	text " can"
 	line "move boulders."
 	prompt
@@ -408,7 +417,9 @@ _AskStrengthText::
 	line "able to move this."
 
 	para "Want to use"
-	line "STRENGTH?"
+	line "@"
+	text_ram wStringBuffer1
+	text "?"
 	done
 
 _BouldersMoveText::
@@ -424,7 +435,9 @@ _BouldersMayMoveText::
 _UseWhirlpoolText::
 	text_ram wStringBuffer2
 	text " used"
-	line "WHIRLPOOL!"
+	line "@"
+	text_ram wStringBuffer1
+	text "!"
 	prompt
 
 _MayPassWhirlpoolText::
@@ -440,7 +453,9 @@ _AskWhirlpoolText::
 	line "the way."
 
 	para "Want to use"
-	line "WHIRLPOOL?"
+	line "@"
+	text_ram wStringBuffer1
+	text "?"
 	done
 
 _UseHeadbuttText::
@@ -464,7 +479,9 @@ _AskHeadbuttText::
 _UseRockSmashText::
 	text_ram wStringBuffer2
 	text " used"
-	line "ROCK SMASH!"
+	line "@"
+	text_ram wStringBuffer1
+	text "!"
 	prompt
 
 _MaySmashText::
@@ -476,8 +493,10 @@ _AskRockSmashText::
 	text "This rock looks"
 	line "breakable."
 
-	para "Want to use ROCK"
-	line "SMASH?"
+	para "Want to use"
+	line "@"
+	text_ram wStringBuffer1
+	text "?"
 	done
 
 _RodBiteText::
@@ -515,7 +534,10 @@ _AskCutText::
 	text "This tree can be"
 	line "CUT!"
 
-	para "Want to use CUT?"
+	para "Want to use"
+	line "@"
+	text_ram wStringBuffer1
+	text "?"
 	done
 
 _CanCutText::

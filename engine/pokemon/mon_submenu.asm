@@ -133,11 +133,21 @@ GetMonSubmenuItems:
 	ld a, [de]
 	and a
 	jr z, .next
+	ld [wFieldMoveId], a   ; save move ID before IsFieldMove clobbers a and b
 	push hl
 	call IsFieldMove
 	pop hl
 	jr nc, .next
 	call AddMonMenuItem
+	; record the actual move ID that triggered this field-move menu slot
+	ld a, [wMonSubmenuCount]
+	dec a
+	ld e, a
+	ld d, 0
+	ld hl, wMonSubmenuMoveIds
+	add hl, de
+	ld a, [wFieldMoveId]
+	ld [hl], a
 
 .next
 	pop de
@@ -214,6 +224,9 @@ ResetMonSubmenu:
 	xor a
 	ld [wMonSubmenuCount], a
 	ld hl, wMonSubmenuItems
+	ld bc, NUM_MONMENU_ITEMS + 1
+	call ByteFill
+	ld hl, wMonSubmenuMoveIds
 	ld bc, NUM_MONMENU_ITEMS + 1
 	call ByteFill
 	ret

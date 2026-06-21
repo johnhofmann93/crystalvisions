@@ -19,6 +19,14 @@ FieldMoveJumptable:
 	scf
 	ret
 
+GetFieldMoveName:
+; Write the name of wFieldMoveId to wStringBuffer1.
+; Call this after GetPartyNickname (which overwrites wStringBuffer1 with the nickname).
+	ld a, [wFieldMoveId]
+	ld [wNamedObjectIndex], a
+	call GetMoveName
+	ret
+
 GetPartyNickname:
 ; write wCurPartyMon nickname to wStringBuffer1-3
 	ld hl, wPartyMonNicknames
@@ -205,6 +213,7 @@ Script_CutFromMenu:
 
 Script_Cut:
 	callasm GetPartyNickname
+	callasm GetFieldMoveName
 	writetext UseCutText
 	refreshmap
 	callasm CutDownTreeOrGrass
@@ -406,7 +415,8 @@ SurfFromMenuScript:
 
 UsedSurfScript:
 ; BUG: Surfing directly across a map connection does not load the new map (see docs/bugs_and_glitches.md)
-	writetext UsedSurfText ; "used SURF!"
+	callasm GetFieldMoveName
+	writetext UsedSurfText
 	waitbutton
 	closetext
 
@@ -513,8 +523,14 @@ TrySurfOW::
 
 	ld d, SURF
 	call CheckPartyMove
+	jr nc, .found
+	ld d, HYDRO_PUMP
+	call CheckPartyMove
 	jr c, .quit
 
+.found
+	ld a, d
+	ld [wFieldMoveId], a
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	jr nz, .quit
@@ -536,6 +552,7 @@ TrySurfOW::
 
 AskSurfScript:
 	opentext
+	callasm GetFieldMoveName
 	writetext AskSurfText
 	yesorno
 	iftrue UsedSurfScript
@@ -1010,6 +1027,7 @@ Script_StrengthFromMenu:
 
 Script_UsedStrength:
 	callasm SetStrengthFlag
+	callasm GetFieldMoveName
 	writetext .UseStrengthText
 	readmem wStrengthSpecies
 	cry 0 ; plays [wStrengthSpecies] cry
@@ -1040,6 +1058,7 @@ AskStrengthScript:
 
 .AskStrength:
 	opentext
+	callasm GetFieldMoveName
 	writetext AskStrengthText
 	yesorno
 	iftrue Script_UsedStrength
@@ -1061,16 +1080,29 @@ BouldersMayMoveText:
 TryStrengthOW:
 	ld d, STRENGTH
 	call CheckPartyMove
+	jr nc, .found
+	ld d, PSYCHIC_M
+	call CheckPartyMove
+	jr nc, .found
+	ld d, ROCK_SLIDE
+	call CheckPartyMove
+	jr nc, .found
+	ld d, KINESIS
+	call CheckPartyMove
+	jr nc, .found
+	ld d, GROWTH
+	call CheckPartyMove
 	jr c, .nope
 
+.found
+	ld a, d
+	ld [wFieldMoveId], a
 	ld de, ENGINE_PLAINBADGE
 	call CheckEngineFlag
 	jr c, .nope
-
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_STRENGTH_ACTIVE_F, [hl]
 	jr z, .already_using
-
 	ld a, 2
 	jr .done
 
@@ -1169,6 +1201,7 @@ Script_WhirlpoolFromMenu:
 
 Script_UsedWhirlpool:
 	callasm GetPartyNickname
+	callasm GetFieldMoveName
 	writetext UseWhirlpoolText
 	refreshmap
 	callasm DisappearWhirlpool
@@ -1195,7 +1228,14 @@ DisappearWhirlpool:
 TryWhirlpoolOW::
 	ld d, WHIRLPOOL
 	call CheckPartyMove
+	jr nc, .found
+	ld d, RAPID_SPIN
+	call CheckPartyMove
 	jr c, .failed
+
+.found
+	ld a, d
+	ld [wFieldMoveId], a
 	ld de, ENGINE_GLACIERBADGE
 	call CheckEngineFlag
 	jr c, .failed
@@ -1223,6 +1263,7 @@ Script_MightyWhirlpool:
 
 Script_AskWhirlpoolOW:
 	opentext
+	callasm GetFieldMoveName
 	writetext AskWhirlpoolText
 	yesorno
 	iftrue Script_UsedWhirlpool
@@ -1365,6 +1406,7 @@ RockSmashFromMenuScript:
 
 RockSmashScript:
 	callasm GetPartyNickname
+	callasm GetFieldMoveName
 	writetext UseRockSmashText
 	closetext
 	special WaitSFX
@@ -1395,6 +1437,7 @@ AskRockSmashScript:
 	ifequal 1, .no
 
 	opentext
+	callasm GetFieldMoveName
 	writetext AskRockSmashText
 	yesorno
 	iftrue RockSmashScript
@@ -1414,13 +1457,32 @@ AskRockSmashText:
 HasRockSmash:
 	ld d, ROCK_SMASH
 	call CheckPartyMove
-	jr nc, .yes
-; no
-	ld a, 1
-	jr .done
-.yes
+	jr nc, .found
+	ld d, IRON_TAIL
+	call CheckPartyMove
+	jr nc, .found
+	ld d, MEGA_PUNCH
+	call CheckPartyMove
+	jr nc, .found
+	ld d, MEGA_KICK
+	call CheckPartyMove
+	jr nc, .found
+	ld d, CRUNCH
+	call CheckPartyMove
+	jr nc, .found
+	ld d, ACID
+	call CheckPartyMove
+	jr nc, .found
+	ld d, CRABHAMMER
+	call CheckPartyMove
+	jr c, .no
+.found
+	ld a, d
+	ld [wFieldMoveId], a
 	xor a
 	jr .done
+.no
+	ld a, 1
 .done
 	ld [wScriptVar], a
 	ret
@@ -1766,12 +1828,38 @@ GotOffBikeText:
 TryCutOW::
 	ld d, CUT
 	call CheckPartyMove
+	jr nc, .found
+	ld d, SLASH
+	call CheckPartyMove
+	jr nc, .found
+	ld d, METAL_CLAW
+	call CheckPartyMove
+	jr nc, .found
+	ld d, STEEL_WING
+	call CheckPartyMove
+	jr nc, .found
+	ld d, CROSS_CHOP
+	call CheckPartyMove
+	jr nc, .found
+	ld d, KARATE_CHOP
+	call CheckPartyMove
+	jr nc, .found
+	ld d, FURY_CUTTER
+	call CheckPartyMove
+	jr nc, .found
+	ld d, RAZOR_WIND
+	call CheckPartyMove
+	jr nc, .found
+	ld d, RAZOR_LEAF
+	call CheckPartyMove
 	jr c, .cant_cut
 
+.found
+	ld a, d
+	ld [wFieldMoveId], a
 	ld de, ENGINE_HIVEBADGE
 	call CheckEngineFlag
 	jr c, .cant_cut
-
 	ld a, BANK(AskCutScript)
 	ld hl, AskCutScript
 	call CallScript
@@ -1787,6 +1875,7 @@ TryCutOW::
 
 AskCutScript:
 	opentext
+	callasm GetFieldMoveName
 	writetext AskCutText
 	yesorno
 	iffalse .declined

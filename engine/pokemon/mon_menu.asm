@@ -141,6 +141,29 @@ PokemonActionSubmenu:
 	dbw MONMENUITEM_ROCKSMASH,  MonMenu_RockSmash
 	dbw MONMENUITEM_SWEETSCENT, MonMenu_SweetScent
 	dbw MONMENUITEM_SURGE,      MonMenu_Surge
+	dbw MONMENUITEM_SLASH,      MonMenu_Cut
+	dbw MONMENUITEM_METAL_CLAW, MonMenu_Cut
+	dbw MONMENUITEM_STEEL_WING, MonMenu_Cut
+	dbw MONMENUITEM_CROSS_CHOP, MonMenu_Cut
+	dbw MONMENUITEM_KARATE_CHOP,MonMenu_Cut
+	dbw MONMENUITEM_FURY_CUTTER,MonMenu_Cut
+	dbw MONMENUITEM_RAZOR_WIND, MonMenu_Cut
+	dbw MONMENUITEM_RAZOR_LEAF, MonMenu_Cut
+	dbw MONMENUITEM_PSYCHIC_FM, MonMenu_Strength
+	dbw MONMENUITEM_ROCK_SLIDE, MonMenu_Strength
+	dbw MONMENUITEM_KINESIS,    MonMenu_Strength
+	dbw MONMENUITEM_GROWTH,     MonMenu_Strength
+	dbw MONMENUITEM_HYDRO_PUMP, MonMenu_Surf
+	dbw MONMENUITEM_AURORA_BEAM,MonMenu_Flash
+	dbw MONMENUITEM_EMBER,      MonMenu_Flash
+	dbw MONMENUITEM_SUNNY_DAY,  MonMenu_Flash
+	dbw MONMENUITEM_RAPID_SPIN, MonMenu_Whirlpool
+	dbw MONMENUITEM_IRON_TAIL,  MonMenu_RockSmash
+	dbw MONMENUITEM_MEGA_PUNCH, MonMenu_RockSmash
+	dbw MONMENUITEM_MEGA_KICK,  MonMenu_RockSmash
+	dbw MONMENUITEM_CRUNCH,     MonMenu_RockSmash
+	dbw MONMENUITEM_ACID,       MonMenu_RockSmash
+	dbw MONMENUITEM_CRABHAMMER, MonMenu_RockSmash
 	dbw MONMENUITEM_STATS,      OpenPartyStats
 	dbw MONMENUITEM_SWITCH,     SwitchPartyMons
 	dbw MONMENUITEM_ITEM,       GiveTakePartyMonItem
@@ -593,7 +616,22 @@ OpenPartyStats:
 	ld a, 0
 	ret
 
+LoadFieldMoveId:
+; Read wMonSubmenuMoveIds[cursor-1] into wFieldMoveId and pre-fill wStringBuffer1 with the move name.
+	ld a, [wMenuCursorY]
+	dec a
+	ld e, a
+	ld d, 0
+	ld hl, wMonSubmenuMoveIds
+	add hl, de
+	ld a, [hl]
+	ld [wFieldMoveId], a
+	ld [wNamedObjectIndex], a
+	call GetMoveName
+	ret
+
 MonMenu_Cut:
+	call LoadFieldMoveId
 	farcall CutFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -631,6 +669,7 @@ MonMenu_Fly:
 	ret
 
 MonMenu_Flash:
+	call LoadFieldMoveId
 	farcall FlashFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -644,6 +683,7 @@ MonMenu_Flash:
 	ret
 
 MonMenu_Strength:
+	call LoadFieldMoveId
 	farcall StrengthFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -657,6 +697,7 @@ MonMenu_Strength:
 	ret
 
 MonMenu_Whirlpool:
+	call LoadFieldMoveId
 	farcall WhirlpoolFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -696,6 +737,7 @@ MonMenu_Teleport:
 	ret
 
 MonMenu_Surf:
+	call LoadFieldMoveId
 	farcall SurfFunction
 	ld a, [wFieldMoveSucceeded]
 	and a
@@ -776,6 +818,7 @@ MonMenu_Headbutt:
 	ret
 
 MonMenu_RockSmash:
+	call LoadFieldMoveId
 	farcall RockSmashFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1

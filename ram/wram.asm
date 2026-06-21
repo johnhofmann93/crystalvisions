@@ -2288,6 +2288,8 @@ wQueuedScriptAddr:: dw
 
 wNumMoves:: db
 
+wFieldMoveId:: db
+
 wFieldMoveSucceeded::
 wItemEffectSucceeded::
 wBattlePlayerAction::
@@ -2513,6 +2515,7 @@ NEXTU
 ; mon submenu
 wMonSubmenuCount:: db
 wMonSubmenuItems:: ds NUM_MONMENU_ITEMS + 1
+wMonSubmenuMoveIds:: ds NUM_MONMENU_ITEMS + 1
 
 NEXTU
 ; field move data
