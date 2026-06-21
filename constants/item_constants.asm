@@ -284,7 +284,7 @@ ENDM
 
 DEF HM01 EQU const_value
 	add_hm CUT          ; f3
-	add_hm SURGE          ; f4
+	add_hm SURGE        ; f4
 	add_hm SURF         ; f5
 	add_hm STRENGTH     ; f6
 	add_hm FLASH        ; f7
