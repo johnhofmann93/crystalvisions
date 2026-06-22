@@ -190,14 +190,14 @@ BugsyText_HiveBadgeSpeech:
 	para "If you have it,"
 	line "#MON up to L30"
 
-	para "will obey you,"
-	line "even traded ones."
+	para "will obey you"
+	line "in battle."
 
 	para "#MON that know"
-	line "CUT will be able"
+	line "slicing moves"
 
-	para "to use it outside"
-	line "of battle too."
+	para "will be able to"
+	line "cut trees, too."
 
 	para "Here, I also want"
 	line "you to have this."

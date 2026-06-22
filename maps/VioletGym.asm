@@ -152,7 +152,7 @@ ReceivedZephyrBadgeText:
 	done
 
 FalknerZephyrBadgeText:
-	text "ZEPHYRBADGE enables"
+	text "ZEPHYRBADGE lets"
 	line "#MON to light up"
 
 	para "caves, if they"
