@@ -4906,7 +4906,7 @@ BattleMenu_Pack:
 	and a
 	jp nz, .ItemsCantBeUsed
 
-	ld a, [wBattleType]
+	ld a, [wBattleMode]
 	cp TRAINER_BATTLE
 	jp z, .ItemsCantBeUsed
 
