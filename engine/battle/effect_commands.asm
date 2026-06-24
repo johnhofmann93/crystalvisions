@@ -1071,6 +1071,7 @@ BattleCommand_DoTurn:
 	db EFFECT_ROLLOUT
 	db EFFECT_BIDE
 	db EFFECT_RAMPAGE
+	db EFFECT_HORN_DRILL
 	db -1
 
 CheckMimicUsed:
@@ -1875,6 +1876,8 @@ BattleCommand_LowerSub:
 	cp EFFECT_SOLARBEAM
 	jr z, .charge_turn
 	cp EFFECT_FLY
+	jr z, .charge_turn
+	cp EFFECT_HORN_DRILL
 	jr z, .charge_turn
 
 .already_charged
@@ -5507,6 +5510,10 @@ BattleCommand_Charge:
 
 	cp DIG
 	ld hl, .BattleDugText
+	jr z, .done
+
+	cp HORN_DRILL
+	ld hl, .BattleStartedRevvingUpText
 
 .done
 	ret
@@ -5533,6 +5540,10 @@ BattleCommand_Charge:
 
 .BattleDugText:
 	text_far _BattleDugText
+	text_end
+
+.BattleStartedRevvingUpText:
+	text_far _BattleStartedRevvingUpText
 	text_end
 
 BattleCommand_Unused3C:
