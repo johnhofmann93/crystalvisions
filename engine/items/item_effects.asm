@@ -95,7 +95,7 @@ ItemEffects:
 	dw StatusHealingEffect ; BURNT_BERRY
 	dw StatusHealingEffect ; ICE_BERRY
 	dw NoEffect            ; POISON_BARB
-	dw NoEffect            ; KINGS_ROCK
+	dw EvoStoneEffect      ; KINGS_ROCK
 	dw BitterBerryEffect   ; BITTER_BERRY
 	dw StatusHealingEffect ; MINT_BERRY
 	dw NoEffect            ; RED_APRICORN
@@ -164,7 +164,7 @@ ItemEffects:
 	dw PokeBallEffect      ; EGG_BALL
 	dw PokeBallEffect      ; ICE_BALL
 	dw RestorePPEffect     ; MYSTERYBERRY
-	dw NoEffect            ; DRAGON_SCALE
+	dw EvoStoneEffect      ; DRAGON_SCALE
 	dw NoEffect            ; BERSERK_GENE
 	dw PokeBallEffect      ; LOW_BALL
 	dw PokeBallEffect      ; VENOM_BALL
@@ -927,6 +927,10 @@ StoneBallMultiplier:
 	and a             ; 0 = end of evolutions
 	ret z
 	cp EVOLVE_ITEM
+	jr z, .found
+	cp EVOLVE_ITEM_MALE
+	jr z, .found
+	cp EVOLVE_ITEM_FEMALE
 	jr z, .found
 	push af           ; save type to check for EVOLVE_STAT
 	inc hl

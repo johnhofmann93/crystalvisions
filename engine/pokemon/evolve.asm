@@ -66,7 +66,7 @@ EvolveAfterBattle_MasterLoop:
 	ld b, a
 
 	cp EVOLVE_TRADE
-	jr z, .trade
+	jp z, .trade
 
 	ld a, [wLinkMode]
 	and a
@@ -75,6 +75,10 @@ EvolveAfterBattle_MasterLoop:
 	ld a, b
 	cp EVOLVE_ITEM
 	jp z, .item
+	cp EVOLVE_ITEM_MALE
+	jp z, .item_male
+	cp EVOLVE_ITEM_FEMALE
+	jp z, .item_female
 
 	ld a, [wForceEvolution]
 	and a
@@ -83,6 +87,10 @@ EvolveAfterBattle_MasterLoop:
 	ld a, b
 	cp EVOLVE_LEVEL
 	jp z, .level
+	cp EVOLVE_LEVEL_MALE
+	jp z, .level_male
+	cp EVOLVE_LEVEL_FEMALE
+	jp z, .level_female
 
 	cp EVOLVE_HAPPINESS
 	jr z, .happiness
@@ -113,7 +121,7 @@ EvolveAfterBattle_MasterLoop:
 	jp nz, .dont_evolve_2
 
 	inc hl
-	jr .proceed
+	jp .proceed
 
 .happiness
 	ld a, [wTempMonHappiness]
@@ -125,7 +133,7 @@ EvolveAfterBattle_MasterLoop:
 
 	ld a, [hli]
 	cp TR_ANYTIME
-	jr z, .proceed
+	jp z, .proceed
 	cp TR_MORNDAY
 	jr z, .happiness_daylight
 
@@ -133,13 +141,13 @@ EvolveAfterBattle_MasterLoop:
 	ld a, [wTimeOfDay]
 	cp NITE_F
 	jp nz, .dont_evolve_3
-	jr .proceed
+	jp .proceed
 
 .happiness_daylight
 	ld a, [wTimeOfDay]
 	cp NITE_F
 	jp z, .dont_evolve_3
-	jr .proceed
+	jp .proceed
 
 .trade
 	ld a, [wLinkMode]
@@ -152,7 +160,7 @@ EvolveAfterBattle_MasterLoop:
 	ld a, [hli]
 	ld b, a
 	inc a
-	jr z, .proceed
+	jp z, .proceed
 
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
@@ -164,7 +172,7 @@ EvolveAfterBattle_MasterLoop:
 
 	xor a
 	ld [wTempMonItem], a
-	jr .proceed
+	jp .proceed
 
 .item
 	ld a, [hli]
@@ -179,7 +187,45 @@ EvolveAfterBattle_MasterLoop:
 	ld a, [wLinkMode]
 	and a
 	jp nz, .dont_evolve_3
-	jr .proceed
+	jp .proceed
+
+.item_male
+	ld a, [hli]
+	ld b, a
+	ld a, [wCurItem]
+	cp b
+	jp nz, .dont_evolve_3
+
+	ld a, [wForceEvolution]
+	and a
+	jp z, .dont_evolve_3
+	ld a, [wLinkMode]
+	and a
+	jp nz, .dont_evolve_3
+
+	call .CheckOldSpeciesGender
+	jp c, .dont_evolve_3 ; genderless
+	jp z, .dont_evolve_3 ; female
+	jp .proceed
+
+.item_female
+	ld a, [hli]
+	ld b, a
+	ld a, [wCurItem]
+	cp b
+	jp nz, .dont_evolve_3
+
+	ld a, [wForceEvolution]
+	and a
+	jp z, .dont_evolve_3
+	ld a, [wLinkMode]
+	and a
+	jp nz, .dont_evolve_3
+
+	call .CheckOldSpeciesGender
+	jp c, .dont_evolve_3 ; genderless
+	jp nz, .dont_evolve_3 ; male
+	jp .proceed
 
 .level
 	ld a, [hli]
@@ -189,6 +235,35 @@ EvolveAfterBattle_MasterLoop:
 	jp c, .dont_evolve_3
 	call IsMonHoldingEverstone
 	jp z, .dont_evolve_3
+	jp .proceed
+
+.level_male
+	ld a, [hli]
+	ld b, a
+	ld a, [wTempMonLevel]
+	cp b
+	jp c, .dont_evolve_3
+	call IsMonHoldingEverstone
+	jp z, .dont_evolve_3
+
+	call .CheckOldSpeciesGender
+	jp c, .dont_evolve_3 ; genderless
+	jp z, .dont_evolve_3 ; female
+	jp .proceed
+
+.level_female
+	ld a, [hli]
+	ld b, a
+	ld a, [wTempMonLevel]
+	cp b
+	jp c, .dont_evolve_3
+	call IsMonHoldingEverstone
+	jp z, .dont_evolve_3
+
+	call .CheckOldSpeciesGender
+	jp c, .dont_evolve_3 ; genderless
+	jp nz, .dont_evolve_3 ; male
+	jp .proceed
 
 .proceed
 	ld a, [wTempMonLevel]
@@ -326,6 +401,18 @@ EvolveAfterBattle_MasterLoop:
 .dont_evolve_3
 	inc hl
 	jp .loop
+
+.CheckOldSpeciesGender:
+; Returns GetGender's result (c: genderless, z: female, nz: male)
+; for wEvolutionOldSpecies. Preserves hl.
+	push hl
+	ld a, [wEvolutionOldSpecies]
+	ld [wCurPartySpecies], a
+	xor a
+	ld [wMonType], a
+	predef GetGender
+	pop hl
+	ret
 
 .UnusedReturnToMap: ; unreferenced
 	pop hl

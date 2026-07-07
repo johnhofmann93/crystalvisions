@@ -7,6 +7,10 @@ SECTION "Evolutions and Attacks", ROMX
 ;    * db EVOLVE_TRADE, held item (or -1 for none), species
 ;    * db EVOLVE_HAPPINESS, TR_* constant (ANYTIME, MORNDAY, NITE), species
 ;    * db EVOLVE_STAT, level, ATK_*_DEF constant (LT, GT, EQ), species
+;    * db EVOLVE_LEVEL_MALE, level, species (male only; gender computed from DVs)
+;    * db EVOLVE_LEVEL_FEMALE, level, species (female only)
+;    * db EVOLVE_ITEM_MALE, used item, species (male only)
+;    * db EVOLVE_ITEM_FEMALE, used item, species (female only)
 ; - db 0 ; no more evolutions
 ; - Learnset (in increasing level order):
 ;    * db level, move
@@ -1056,7 +1060,7 @@ RapidashEvosAttacks:
 
 SlowpokeEvosAttacks:
 	db EVOLVE_LEVEL, 37, SLOWBRO
-	db EVOLVE_TRADE, KINGS_ROCK, SLOWKING
+	db EVOLVE_ITEM_MALE, KINGS_ROCK, SLOWKING
 	db 0 ; no more evolutions
 	db 1, CURSE
 	db 1, TACKLE
@@ -1585,7 +1589,7 @@ HorseaEvosAttacks:
 	db 0 ; no more level-up moves
 
 SeadraEvosAttacks:
-	db EVOLVE_TRADE, DRAGON_SCALE, KINGDRA
+	db EVOLVE_ITEM_MALE, DRAGON_SCALE, KINGDRA
 	db 0 ; no more evolutions
 	db 1, BUBBLE
 	db 1, SMOKESCREEN
@@ -2887,7 +2891,7 @@ SneaselEvosAttacks:
 	db 0 ; no more level-up moves
 
 TeddiursaEvosAttacks:
-	db EVOLVE_LEVEL, 30, URSARING
+	db EVOLVE_LEVEL_MALE, 30, URSARING
 	db 0 ; no more evolutions
 	db 1, SCRATCH
 	db 1, LEER

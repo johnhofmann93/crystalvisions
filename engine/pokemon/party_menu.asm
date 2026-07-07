@@ -360,10 +360,12 @@ PlacePartyMonEvoStoneCompatibility:
 	jr z, .next
 	push hl
 	ld a, b
+	ld [wCurPartyMon], a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, wPartyMon1Species
 	call AddNTimes
 	ld a, [hl]
+	ld [wCurPartySpecies], a
 	dec a
 	ld e, a
 	ld d, 0
@@ -407,7 +409,14 @@ PlacePartyMonEvoStoneCompatibility:
 	inc hl
 	inc hl
 	cp EVOLVE_ITEM
-	jr nz, .loop2
+	jr z, .check_item
+	cp EVOLVE_ITEM_MALE
+	jp z, .check_item_male
+	cp EVOLVE_ITEM_FEMALE
+	jp z, .check_item_female
+	jr .loop2
+
+.check_item
 	dec hl
 	dec hl
 	ld a, [wCurItem]
@@ -415,11 +424,46 @@ PlacePartyMonEvoStoneCompatibility:
 	inc hl
 	inc hl
 	jr nz, .loop2
+.able
 	ld de, .string_able
 	ret
 
 .nope
 	ld de, .string_not_able
+	ret
+
+.check_item_male
+	dec hl
+	dec hl
+	ld a, [wCurItem]
+	cp [hl]
+	inc hl
+	inc hl
+	jp nz, .loop2
+	call .CheckCurPartyMonGender
+	jp c, .loop2 ; genderless
+	jp z, .loop2 ; female -> not able (male variant)
+	jp .able
+
+.check_item_female
+	dec hl
+	dec hl
+	ld a, [wCurItem]
+	cp [hl]
+	inc hl
+	inc hl
+	jp nz, .loop2
+	call .CheckCurPartyMonGender
+	jp c, .loop2 ; genderless
+	jp nz, .loop2 ; male -> not able (female variant)
+	jp .able
+
+.CheckCurPartyMonGender:
+	push hl
+	xor a
+	ld [wMonType], a
+	predef GetGender
+	pop hl
 	ret
 
 .string_able
