@@ -1,12 +1,42 @@
 HiddenPowerDamage:
 ; Override Hidden Power's type and power based on the user's DVs.
 
-	ld hl, wBattleMonDVs
+	ld de, wBattleMonDVs
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_dvs
-	ld hl, wEnemyMonDVs
+	ld de, wEnemyMonDVs
 .got_dvs
+	call CalcHiddenPower
+	; a = type, d = power
+
+; Overwrite the current move type.
+	push af
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVarAddr
+	pop af
+	ld [hl], a
+
+; Get the rest of the damage formula variables
+; based on the new type, but keep base power.
+	ld a, d
+	push af
+	farcall BattleCommand_DamageStats ; damagestats
+	pop af
+	ld d, a
+	ret
+
+CalcHiddenPower::
+; Compute Hidden Power's type and base power from a mon's DVs.
+; in: de = pointer to that mon's 2-byte DVs.
+; out: a = type (TypeNames/PrintType-compatible index), d = power (31-70).
+; e also holds the type on return: the `farcall` trampoline (ReturnFarCall)
+; clobbers `a` with leftover garbage while restoring the ROM bank, but it
+; never touches d/e/h/l, so callers reaching this via `farcall` (rather than
+; a same-bank `call`) must read the type from e instead of a.
+
+	ld h, d
+	ld l, e
 
 ; Power:
 
@@ -90,19 +120,5 @@ HiddenPowerDamage:
 	add UNUSED_TYPES_END - UNUSED_TYPES
 
 .done
-
-; Overwrite the current move type.
-	push af
-	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVarAddr
-	pop af
-	ld [hl], a
-
-; Get the rest of the damage formula variables
-; based on the new type, but keep base power.
-	ld a, d
-	push af
-	farcall BattleCommand_DamageStats ; damagestats
-	pop af
-	ld d, a
+	ld e, a
 	ret

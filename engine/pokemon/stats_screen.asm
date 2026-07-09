@@ -770,58 +770,320 @@ LoadGreenPage:
 	db "MOVE@"
 
 LoadBluePage:
-	call .PlaceOTInfo
-	hlcoord 10, 8
-	ld de, SCREEN_WIDTH
-	ld b, 10
-	ld a, $31 ; vertical divider
-.vertical_divider
-	ld [hl], a
-	add hl, de
-	dec b
-	jr nz, .vertical_divider
-	hlcoord 11, 8
-	ld bc, 6
-	predef PrintTempMonStats
-	ret
-
-.PlaceOTInfo:
-	ld de, IDNoString
-	hlcoord 0, 9
+; 3-column stat table: current value / IV / stat exp, for all 6 stats.
+	ld de, .StatHeader
+	hlcoord 6, 8
 	call PlaceString
-	ld de, OTString
+	ld de, .IVHeader
+	hlcoord 10, 8
+	call PlaceString
+	ld de, .ExpHeader
+	hlcoord 13, 8
+	call PlaceString
+
+	ld de, .HPName
+	hlcoord 3, 9
+	call PlaceString
+	ld de, wTempMonMaxHP
+	hlcoord 6, 9
+	lb bc, 2, 3
+	call PrintNum
+	ld c, STAT_HP
+	hlcoord 10, 9
+	call .PrintIV
+	ld de, wTempMonHPExp
+	hlcoord 13, 9
+	lb bc, 2, 5
+	call PrintNum
+
+	ld de, .AtkName
+	hlcoord 2, 10
+	call PlaceString
+	ld de, wTempMonAttack
+	hlcoord 6, 10
+	lb bc, 2, 3
+	call PrintNum
+	ld c, STAT_ATK
+	hlcoord 10, 10
+	call .PrintIV
+	ld de, wTempMonAtkExp
+	hlcoord 13, 10
+	lb bc, 2, 5
+	call PrintNum
+
+	ld de, .DefName
+	hlcoord 2, 11
+	call PlaceString
+	ld de, wTempMonDefense
+	hlcoord 6, 11
+	lb bc, 2, 3
+	call PrintNum
+	ld c, STAT_DEF
+	hlcoord 10, 11
+	call .PrintIV
+	ld de, wTempMonDefExp
+	hlcoord 13, 11
+	lb bc, 2, 5
+	call PrintNum
+
+	ld de, .SatkName
 	hlcoord 0, 12
 	call PlaceString
-	hlcoord 2, 10
-	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
-	ld de, wTempMonID
+	ld de, wTempMonSpclAtk
+	hlcoord 6, 12
+	lb bc, 2, 3
 	call PrintNum
-	ld hl, .OTNamePointers
-	call GetNicknamePointer
-	call CopyNickname
-	farcall CorrectNickErrors
-	hlcoord 2, 13
+	ld c, STAT_SATK
+	hlcoord 10, 12
+	call .PrintIV
+	ld de, wTempMonSpcExp
+	hlcoord 13, 12
+	lb bc, 2, 5
+	call PrintNum
+
+	ld de, .SdefName
+	hlcoord 0, 13
 	call PlaceString
-	ld a, [wTempMonCaughtGender]
-	and a
-	jr z, .done
-	cp $7f
-	jr z, .done
-	and CAUGHT_GENDER_MASK
-	ld a, '♂'
-	jr z, .got_gender
-	ld a, '♀'
-.got_gender
-	hlcoord 9, 13
-	ld [hl], a
-.done
+	ld de, wTempMonSpclDef
+	hlcoord 6, 13
+	lb bc, 2, 3
+	call PrintNum
+	ld c, STAT_SDEF
+	hlcoord 10, 13
+	call .PrintIV
+	ld de, wTempMonSpcExp
+	hlcoord 13, 13
+	lb bc, 2, 5
+	call PrintNum
+
+	ld de, .SpdName
+	hlcoord 0, 14
+	call PlaceString
+	ld de, wTempMonSpeed
+	hlcoord 6, 14
+	lb bc, 2, 3
+	call PrintNum
+	ld c, STAT_SPD
+	hlcoord 10, 14
+	call .PrintIV
+	ld de, wTempMonSpdExp
+	hlcoord 13, 14
+	lb bc, 2, 5
+	call PrintNum
+
+	call StatsScreen_LoadHiddenPowerFont
+
+
+
+	ld de, wTempMonDVs
+	farcall CalcHiddenPower
+	; farcall clobbers a on return; read the type from e instead (see
+	; CalcHiddenPower's out: comment in engine/battle/hidden_power.asm).
+	; wNamedObjectIndex and wTextDecimalByte are the same byte (see
+	; ram/wram.asm), so print the power now, before writing the type
+	; into wNamedObjectIndex clobbers it.
+	ld a, d
+	ld [wTextDecimalByte], a
+	ld a, e
+	push af
+	ld de, wTextDecimalByte
+	hlcoord 8, 16
+	lb bc, 1, 2
+	call PrintNum
+
+	pop af
+	ld [wNamedObjectIndex], a
+	farcall GetTypeName
+	ld de, wStringBuffer1
+	hlcoord 0, 16
+	call PlaceString_UnownFont
 	ret
 
-.OTNamePointers:
-	dw wPartyMonOTs
-	dw wOTPartyMonOTs
-	dw sBoxMonOTs
-	dw wBufferMonOT
+.HiddenPowerName:
+	db "HIDDEN POWER@"
+
+.BPName:
+	db "BP@"
+
+.PrintIV:
+; c = STAT_HP..STAT_SDEF, hl = destination tilemap coord.
+	push hl
+	call .GetStatIV
+	ld [wTextDecimalByte], a
+	pop hl
+	ld de, wTextDecimalByte
+	lb bc, 1, 2
+	call PrintNum
+	ret
+
+.GetStatIV:
+; c = STAT_HP..STAT_SDEF. Returns a = that stat's IV (0-15).
+; Mirrors the DV layout/formula in CalcMonStatC (move_mon.asm):
+; wTempMonDVs+0 = Attack (hi nybble) / Defense (lo nybble)
+; wTempMonDVs+1 = Speed (hi nybble) / Special (lo nybble)
+; HP = (Atk&1)<<3 | (Def&1)<<2 | (Spd&1)<<1 | (Spc&1)
+	ld hl, wTempMonDVs
+	ld a, c
+	cp STAT_ATK
+	jr z, .iv_atk
+	cp STAT_DEF
+	jr z, .iv_def
+	cp STAT_SPD
+	jr z, .iv_spd
+	cp STAT_SATK
+	jr z, .iv_spc
+	cp STAT_SDEF
+	jr z, .iv_spc
+
+; STAT_HP
+	ld a, [hl]
+	swap a
+	and 1
+	add a
+	add a
+	add a
+	ld b, a
+	ld a, [hli]
+	and 1
+	add a
+	add a
+	add b
+	ld b, a
+	ld a, [hl]
+	swap a
+	and 1
+	add a
+	add b
+	ld b, a
+	ld a, [hl]
+	and 1
+	add b
+	ret
+
+.iv_atk
+	ld a, [hl]
+	swap a
+	and $f
+	ret
+
+.iv_def
+	ld a, [hl]
+	and $f
+	ret
+
+.iv_spd
+	inc hl
+	ld a, [hl]
+	swap a
+	and $f
+	ret
+
+.iv_spc
+	inc hl
+	ld a, [hl]
+	and $f
+	ret
+
+.StatHeader:
+	db "VAL@"
+
+.IVHeader:
+	db "DV@"
+
+.ExpHeader:
+	db "EXP@"
+
+.HPName:
+	db "HP@"
+
+.AtkName:
+	db "ATK@"
+
+.DefName:
+	db "DEF@"
+
+.SpdName:
+	db "SPEED@"
+
+.SatkName:
+	db "SpATK@"
+
+.SdefName:
+	db "SpDEF@"
+
+StatsScreen_LoadHiddenPowerFont:
+; Load the Unown alphabet into VRAM tile slots with no charmap character
+; mapped to them (see constants/charmap.asm), so nothing else on screen —
+; on any page, not just this one — is ever disturbed by the overwrite.
+	ld a, BANK(sScratch)
+	call OpenSRAM
+	ld hl, UnownFont
+	ld de, sScratch + $188
+	ld bc, 26 tiles
+	ld a, BANK(UnownFont)
+	call FarCopyBytes
+
+	; A-F -> 6-tile gap after "z" ($ba-$bf)
+	ld de, sScratch + $188
+	ld hl, vTiles1 tile $3a
+	lb bc, BANK(StatsScreen_LoadHiddenPowerFont), 6
+	call Request2bpp
+
+	; G-P -> 10-tile gap after "u"/"ü" ($c6-$cf)
+	ld de, sScratch + $188 + 6 tiles
+	ld hl, vTiles1 tile $46
+	lb bc, BANK(StatsScreen_LoadHiddenPowerFont), 10
+	call Request2bpp
+
+	; Q-X -> 8-tile gap after "'v" ($d7-$de)
+	ld de, sScratch + $188 + 16 tiles
+	ld hl, vTiles1 tile $57
+	lb bc, BANK(StatsScreen_LoadHiddenPowerFont), 8
+	call Request2bpp
+
+	; Y-Z -> 2-tile gap between "-" and "?" ($e4-$e5)
+	ld de, sScratch + $188 + 24 tiles
+	ld hl, vTiles1 tile $64
+	lb bc, BANK(StatsScreen_LoadHiddenPowerFont), 2
+	call Request2bpp
+
+	call CloseSRAM
+	ret
+
+PlaceString_UnownFont:
+; Print the @-terminated string at de, at hl, using the Unown-glyph tiles
+; loaded by StatsScreen_LoadHiddenPowerFont instead of the normal font.
+.loop
+	ld a, [de]
+	inc de
+	cp "@"
+	ret z
+	cp " "
+	jr z, .space
+	sub "A"
+	push de
+	push hl
+	ld d, 0
+	ld e, a
+	ld hl, UnownFontTileMap
+	add hl, de
+	ld a, [hl]
+	pop hl
+	pop de
+	ld [hli], a
+	jr .loop
+.space
+	ld [hl], " "
+	inc hl
+	jr .loop
+
+UnownFontTileMap:
+; Indexed by letter - "A" (0-25); values are the BG tile numbers
+; each letter was loaded to by StatsScreen_LoadHiddenPowerFont.
+	db $ba, $bb, $bc, $bd, $be, $bf ; A-F
+	db $c6, $c7, $c8, $c9, $ca, $cb, $cc, $cd, $ce, $cf ; G-P
+	db $d7, $d8, $d9, $da, $db, $dc, $dd, $de ; Q-X
+	db $e4, $e5 ; Y-Z
 
 IDNoString:
 	db "<ID>№.@"
