@@ -882,12 +882,16 @@ LoadBluePage:
 	; wNamedObjectIndex and wTextDecimalByte are the same byte (see
 	; ram/wram.asm), so print the power now, before writing the type
 	; into wNamedObjectIndex clobbers it.
+	; c (the secondary effect index) doesn't survive the PrintNum/GetTypeName
+	; calls below, so stash it on the stack until we need it.
+	ld a, c
+	push af
 	ld a, d
 	ld [wTextDecimalByte], a
 	ld a, e
 	push af
 	ld de, wTextDecimalByte
-	hlcoord 8, 16
+	hlcoord 16, 16
 	lb bc, 1, 2
 	call PrintNum
 
@@ -896,6 +900,13 @@ LoadBluePage:
 	farcall GetTypeName
 	ld de, wStringBuffer1
 	hlcoord 0, 16
+	call PlaceString_UnownFont
+
+	pop af
+	ld [wNamedObjectIndex], a
+	farcall GetHiddenPowerEffectName
+	ld de, wStringBuffer1
+	hlcoord 9, 16
 	call PlaceString_UnownFont
 	ret
 

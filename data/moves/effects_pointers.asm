@@ -159,4 +159,7 @@ MoveEffectsPointers:
 	dw Fly
 	dw DefenseCurl
 	dw HornDrillCharge
+	dw SpeedUpHit
+	dw SpecialAttackUpHit
+	dw SpecialDefenseUpHit
 	assert_table_length NUM_MOVE_EFFECTS

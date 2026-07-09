@@ -41,6 +41,13 @@ DoMove:
 ; Get the user's move effect.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
+	cp EFFECT_HIDDEN_POWER
+	jr nz, .not_hidden_power
+	farcall RerollHiddenPower
+	; e = the real effect to run this turn (farcall clobbers a; see
+	; RerollHiddenPower's out: comment in engine/battle/hidden_power.asm).
+	ld a, e
+.not_hidden_power
 	ld c, a
 	ld b, 0
 	ld hl, MoveEffectsPointers
