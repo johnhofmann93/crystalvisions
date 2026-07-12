@@ -103,7 +103,7 @@ ItemDescriptions:
 	dw TeruSama7Desc
 	dw PnkApricornDesc
 	dw BlackGlassesDesc
-	dw SlowpokeTailDesc
+	dw WooperTailDesc
 	dw PinkBowDesc
 	dw StickDesc
 	dw SmokeBallDesc
@@ -655,7 +655,7 @@ BlackGlassesDesc:
 	db   "Powers up dark-"
 	next "type moves. (HOLD)@"
 
-SlowpokeTailDesc:
+WooperTailDesc:
 	db   "Very tasty. Sell"
 	next "high.@"
 

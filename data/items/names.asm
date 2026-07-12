@@ -102,7 +102,7 @@ ItemNames::
 	li "TERU-SAMA"
 	li "PNK APRICORN"
 	li "BLACKGLASSES"
-	li "SLOWPOKETAIL"
+	li "WOOPERTAIL"
 	li "PINK BOW"
 	li "STICK"
 	li "SMOKE BALL"

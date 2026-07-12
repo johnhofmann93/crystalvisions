@@ -30,18 +30,18 @@ JohtoWaterWildMons:
 	db 20, TENTACRUEL
 	end_water_wildmons
 
-	def_water_wildmons SLOWPOKE_WELL_B1F
+	def_water_wildmons WOOPER_WELL_B1F
 	db 2 percent ; encounter rate
-	db 15, SLOWPOKE
-	db 20, SLOWPOKE
-	db 10, SLOWPOKE
+	db 15, WOOPER
+	db 20, WOOPER
+	db 10, WOOPER
 	end_water_wildmons
 
-	def_water_wildmons SLOWPOKE_WELL_B2F
+	def_water_wildmons WOOPER_WELL_B2F
 	db 2 percent ; encounter rate
-	db 15, SLOWPOKE
-	db 20, SLOWPOKE
-	db 20, SLOWBRO
+	db 15, WOOPER
+	db 20, WOOPER
+	db 20, QUAGSIRE
 	end_water_wildmons
 
 	def_water_wildmons ILEX_FOREST

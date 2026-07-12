@@ -20,7 +20,7 @@ Landmarks:
 	landmark  84, 124, UnionCaveName
 	landmark  82, 124, Route33Name
 	landmark  68, 124, AzaleaTownName
-	landmark  70, 122, SlowpokeWellName
+	landmark  70, 122, WooperWellName
 	landmark  52, 120, IlexForestName
 	landmark  52, 112, Route34Name
 	landmark  52,  92, GoldenrodCityName
@@ -121,7 +121,7 @@ SilverCaveName:      db "SILVER CAVE@"
 SproutTowerName:     db "SPROUT<BSP>TOWER@"
 RuinsOfAlphName:     db "RUINS<BSP>OF ALPH@"
 UnionCaveName:       db "UNION CAVE@"
-SlowpokeWellName:    db "SLOWPOKE<BSP>WELL@"
+WooperWellName:      db "WOOPER<BSP>WELL@"
 RadioTowerName:      db "RADIO TOWER@"
 PowerPlantName:      db "POWER PLANT@"
 NationalParkName:    db "NATIONAL<BSP>PARK@"

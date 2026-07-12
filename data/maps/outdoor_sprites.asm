@@ -455,7 +455,7 @@ AzaleaGroupSprites:
 	db SPRITE_LASS
 	db SPRITE_RIVAL
 	db SPRITE_FRUIT_TREE
-	db SPRITE_SLOWPOKE
+	db SPRITE_WOOPER
 
 GoldenrodGroupSprites:
 	db SPRITE_SUICUNE

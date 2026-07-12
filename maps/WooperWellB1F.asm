@@ -1,21 +1,21 @@
 	object_const_def
-	const SLOWPOKEWELLB1F_ROCKET1
-	const SLOWPOKEWELLB1F_ROCKET2
-	const SLOWPOKEWELLB1F_ROCKET3
-	const SLOWPOKEWELLB1F_ROCKET_GIRL
-	const SLOWPOKEWELLB1F_SLOWPOKE1
-	const SLOWPOKEWELLB1F_SLOWPOKE2
-	const SLOWPOKEWELLB1F_KURT
-	const SLOWPOKEWELLB1F_BOULDER
-	const SLOWPOKEWELLB1F_POKE_BALL
+	const WOOPERWELLB1F_ROCKET1
+	const WOOPERWELLB1F_ROCKET2
+	const WOOPERWELLB1F_ROCKET3
+	const WOOPERWELLB1F_ROCKET_GIRL
+	const WOOPERWELLB1F_WOOPER1
+	const WOOPERWELLB1F_WOOPER2
+	const WOOPERWELLB1F_KURT
+	const WOOPERWELLB1F_BOULDER
+	const WOOPERWELLB1F_POKE_BALL
 
-SlowpokeWellB1F_MapScripts:
+WooperWellB1F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
 
-SlowpokeWellB1FKurtScript:
-	jumptextfaceplayer SlowpokeWellB1FKurtText
+WooperWellB1FKurtScript:
+	jumptextfaceplayer WooperWellB1FKurtText
 
 TrainerGruntM29:
 	trainer GRUNTM, GRUNTM_29, EVENT_BEAT_ROCKET_GRUNTM_29, GruntM29SeenText, GruntM29BeatenText, 0, .Script
@@ -38,32 +38,32 @@ TrainerGruntM1:
 	closetext
 	special FadeOutToBlack
 	special ReloadSpritesNoPalettes
-	disappear SLOWPOKEWELLB1F_ROCKET1
-	disappear SLOWPOKEWELLB1F_ROCKET2
-	disappear SLOWPOKEWELLB1F_ROCKET3
-	disappear SLOWPOKEWELLB1F_ROCKET_GIRL
+	disappear WOOPERWELLB1F_ROCKET1
+	disappear WOOPERWELLB1F_ROCKET2
+	disappear WOOPERWELLB1F_ROCKET3
+	disappear WOOPERWELLB1F_ROCKET_GIRL
 	pause 15
 	special FadeInFromBlack
-	disappear SLOWPOKEWELLB1F_KURT
-	moveobject SLOWPOKEWELLB1F_KURT, 11, 6
-	appear SLOWPOKEWELLB1F_KURT
-	applymovement SLOWPOKEWELLB1F_KURT, KurtSlowpokeWellVictoryMovementData
+	disappear WOOPERWELLB1F_KURT
+	moveobject WOOPERWELLB1F_KURT, 11, 6
+	appear WOOPERWELLB1F_KURT
+	applymovement WOOPERWELLB1F_KURT, KurtWooperWellVictoryMovementData
 	turnobject PLAYER, RIGHT
 	opentext
-	writetext KurtLeaveSlowpokeWellText
+	writetext KurtLeaveWooperWellText
 	waitbutton
 	closetext
-	setevent EVENT_CLEARED_SLOWPOKE_WELL
+	setevent EVENT_CLEARED_WOOPER_WELL
 	variablesprite SPRITE_AZALEA_ROCKET, SPRITE_RIVAL
 	setmapscene AZALEA_TOWN, SCENE_AZALEATOWN_RIVAL_BATTLE
 	clearevent EVENT_ILEX_FOREST_APPRENTICE
 	clearevent EVENT_ILEX_FOREST_FARFETCHD
 	setevent EVENT_CHARCOAL_KILN_FARFETCH_D
 	setevent EVENT_CHARCOAL_KILN_APPRENTICE
-	setevent EVENT_SLOWPOKE_WELL_SLOWPOKES
-	setevent EVENT_SLOWPOKE_WELL_KURT
-	clearevent EVENT_AZALEA_TOWN_SLOWPOKES
-	clearevent EVENT_KURTS_HOUSE_SLOWPOKE
+	setevent EVENT_WOOPER_WELL_WOOPERS
+	setevent EVENT_WOOPER_WELL_KURT
+	clearevent EVENT_AZALEA_TOWN_WOOPERS
+	clearevent EVENT_KURTS_HOUSE_WOOPER
 	clearevent EVENT_KURTS_HOUSE_KURT_1
 	special FadeOutToWhite
 	special HealParty
@@ -93,38 +93,38 @@ TrainerGruntF1:
 	closetext
 	end
 
-SlowpokeWellB1FSlowpokeWithMailScript:
+WooperWellB1FWooperWithMailScript:
 	faceplayer
 	opentext
-	cry SLOWPOKE
-	writetext SlowpokeWellB1FSlowpokeWithMailText
+	cry WOOPER
+	writetext WooperWellB1FWooperWithMailText
 	yesorno
 	iftrue .ReadMail
 	closetext
 	end
 
 .ReadMail:
-	writetext SlowpokeWellB1FSlowpokeMailText
+	writetext WooperWellB1FWooperMailText
 	waitbutton
 	closetext
 	end
 
-SlowpokeWellB1FTaillessSlowpokeScript:
+WooperWellB1FTaillessWooperScript:
 	faceplayer
 	opentext
-	writetext SlowpokeWellB1FTaillessSlowpokeText
-	cry SLOWPOKE
+	writetext WooperWellB1FTaillessWooperText
+	cry WOOPER
 	waitbutton
 	closetext
 	end
 
-SlowpokeWellB1FBoulder:
+WooperWellB1FBoulder:
 	jumpstd StrengthBoulderScript
 
-SlowpokeWellB1FSuperPotion:
+WooperWellB1FSuperPotion:
 	itemball SUPER_POTION
 
-KurtSlowpokeWellVictoryMovementData:
+KurtWooperWellVictoryMovementData:
 	step LEFT
 	step LEFT
 	step LEFT
@@ -142,7 +142,7 @@ KurtSlowpokeWellVictoryMovementData:
 	turn_head LEFT
 	step_end
 
-SlowpokeWellB1FKurtText:
+WooperWellB1FKurtText:
 	text "KURT: Hey there,"
 	line "<PLAYER>!"
 
@@ -172,7 +172,7 @@ SlowpokeWellB1FKurtText:
 	cont "in my place!"
 	done
 
-KurtLeaveSlowpokeWellText:
+KurtLeaveWooperWellText:
 	text "KURT: Way to go,"
 	line "<PLAYER>!"
 
@@ -209,7 +209,7 @@ GruntM29AfterBattleText:
 	text "Sure, we've been"
 	line "hacking the tails"
 
-	para "off SLOWPOKE and"
+	para "off WOOPER and"
 	line "selling them."
 
 	para "Everything we do"
@@ -251,8 +251,8 @@ TrainerGruntM1WhenTalkText:
 	done
 
 GruntM2SeenText:
-	text "Quit taking SLOW-"
-	line "POKETAILS?"
+	text "Quit taking"
+	line "WOOPERTAILS?"
 
 	para "If we obeyed you,"
 	line "TEAM ROCKET's rep"
@@ -266,8 +266,8 @@ GruntM2BeatenText:
 
 GruntM2AfterBattleText:
 	text "We need the money,"
-	line "but selling SLOW-"
-	cont "POKETAILS?"
+	line "but selling"
+	cont "WOOPERTAILS?"
 
 	para "It's tough being a"
 	line "ROCKET GRUNT!"
@@ -285,22 +285,22 @@ GruntF1BeatenText:
 	done
 
 GruntF1AfterBattleText:
-	text "SLOWPOKETAILS"
+	text "WOOPERTAILS"
 	line "grow back fast!"
 
 	para "What's wrong with"
 	line "selling them?"
 	done
 
-SlowpokeWellB1FSlowpokeWithMailText:
-	text "A SLOWPOKE with"
+WooperWellB1FWooperWithMailText:
+	text "A WOOPER with"
 	line "its TAIL cut off…"
 
 	para "Huh? It has MAIL."
 	line "Read it?"
 	done
 
-SlowpokeWellB1FSlowpokeMailText:
+WooperWellB1FWooperMailText:
 	text "<PLAYER> read the"
 	line "MAIL."
 
@@ -308,34 +308,34 @@ SlowpokeWellB1FSlowpokeMailText:
 	line "after the house"
 
 	para "with Grandpa and"
-	line "SLOWPOKE."
+	line "WOOPER."
 
 	para "Love, Dad"
 	done
 
-SlowpokeWellB1FTaillessSlowpokeText:
-	text "A SLOWPOKE with"
+WooperWellB1FTaillessWooperText:
+	text "A WOOPER with"
 	line "its TAIL cut off…"
 	done
 
-SlowpokeWellB1F_MapEvents:
+WooperWellB1F_MapEvents:
 	db 0, 0 ; filler
 
 	def_warp_events
 	warp_event 17, 15, AZALEA_TOWN, 6
-	warp_event  7, 11, SLOWPOKE_WELL_B2F, 1
+	warp_event  7, 11, WOOPER_WELL_B2F, 1
 
 	def_coord_events
 
 	def_bg_events
 
 	def_object_events
-	object_event 15,  7, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM29, EVENT_SLOWPOKE_WELL_ROCKETS
-	object_event  5,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerGruntM1, EVENT_SLOWPOKE_WELL_ROCKETS
-	object_event  5,  6, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerGruntM2, EVENT_SLOWPOKE_WELL_ROCKETS
-	object_event 10,  4, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerGruntF1, EVENT_SLOWPOKE_WELL_ROCKETS
-	object_event  7,  4, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SlowpokeWellB1FSlowpokeWithMailScript, EVENT_SLOWPOKE_WELL_SLOWPOKES
-	object_event  6,  2, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SlowpokeWellB1FTaillessSlowpokeScript, EVENT_SLOWPOKE_WELL_SLOWPOKES
-	object_event 16, 14, SPRITE_KURT, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SlowpokeWellB1FKurtScript, EVENT_SLOWPOKE_WELL_KURT
-	object_event  3,  2, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SlowpokeWellB1FBoulder, -1
-	object_event 10,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SlowpokeWellB1FSuperPotion, EVENT_SLOWPOKE_WELL_B1F_SUPER_POTION
+	object_event 15,  7, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM29, EVENT_WOOPER_WELL_ROCKETS
+	object_event  5,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerGruntM1, EVENT_WOOPER_WELL_ROCKETS
+	object_event  5,  6, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerGruntM2, EVENT_WOOPER_WELL_ROCKETS
+	object_event 10,  4, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerGruntF1, EVENT_WOOPER_WELL_ROCKETS
+	object_event  7,  4, SPRITE_WOOPER, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WooperWellB1FWooperWithMailScript, EVENT_WOOPER_WELL_WOOPERS
+	object_event  6,  2, SPRITE_WOOPER, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WooperWellB1FTaillessWooperScript, EVENT_WOOPER_WELL_WOOPERS
+	object_event 16, 14, SPRITE_KURT, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WooperWellB1FKurtScript, EVENT_WOOPER_WELL_KURT
+	object_event  3,  2, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WooperWellB1FBoulder, -1
+	object_event 10,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, WooperWellB1FSuperPotion, EVENT_WOOPER_WELL_B1F_SUPER_POTION

@@ -779,14 +779,14 @@ OlivineLighthouse6F_Blocks:
 
 SECTION "Map Blocks 3", ROMX
 
-BetaSlowpokeWell1F_Blocks: ; unreferenced
-	INCBIN "maps/unused/BetaSlowpokeWell1F.blk"
+BetaWooperWell1F_Blocks: ; unreferenced
+	INCBIN "maps/unused/BetaWooperWell1F.blk"
 
-SlowpokeWellB1F_Blocks:
-	INCBIN "maps/SlowpokeWellB1F.blk"
+WooperWellB1F_Blocks:
+	INCBIN "maps/WooperWellB1F.blk"
 
-SlowpokeWellB2F_Blocks:
-	INCBIN "maps/SlowpokeWellB2F.blk"
+WooperWellB2F_Blocks:
+	INCBIN "maps/WooperWellB2F.blk"
 
 IlexForest_Blocks:
 	INCBIN "maps/IlexForest.blk"

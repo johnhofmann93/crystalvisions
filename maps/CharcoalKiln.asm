@@ -13,14 +13,14 @@ CharcoalKilnBoss:
 	opentext
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .GotCut
-	checkevent EVENT_CLEARED_SLOWPOKE_WELL
-	iftrue .SavedSlowpoke
+	checkevent EVENT_CLEARED_WOOPER_WELL
+	iftrue .SavedWooper
 	writetext CharcoalKilnBossText1
 	waitbutton
 	closetext
 	end
 
-.SavedSlowpoke:
+.SavedWooper:
 	writetext CharcoalKilnBossText2
 	waitbutton
 	closetext
@@ -76,7 +76,7 @@ CharcoalKilnRadio:
 	jumpstd Radio2Script
 
 CharcoalKilnBossText1:
-	text "All the SLOWPOKE"
+	text "All the WOOPER"
 	line "have disappeared"
 	cont "from the town."
 
@@ -90,7 +90,7 @@ CharcoalKilnBossText1:
 	done
 
 CharcoalKilnBossText2:
-	text "The SLOWPOKE have"
+	text "The WOOPER have"
 	line "returned…"
 
 	para "But my APPRENTICE"
@@ -115,7 +115,7 @@ CharcoalKilnBossText3:
 
 CharcoalKilnApprenticeText1:
 	text "Where have all the"
-	line "SLOWPOKE gone?"
+	line "WOOPER gone?"
 
 	para "Are they out play-"
 	line "ing somewhere?"
@@ -134,7 +134,7 @@ CharcoalKilnApprenticeText2:
 	done
 
 CharcoalKilnApprenticeText3:
-	text "The SLOWPOKE came"
+	text "The WOOPER came"
 	line "back, and you even"
 	cont "found FARFETCH'D."
 

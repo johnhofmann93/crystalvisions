@@ -1,7 +1,7 @@
 	object_const_def
 	const KURTSHOUSE_KURT1
 	const KURTSHOUSE_TWIN1
-	const KURTSHOUSE_SLOWPOKE
+	const KURTSHOUSE_WOOPER
 	const KURTSHOUSE_KURT2
 	const KURTSHOUSE_TWIN2
 
@@ -12,7 +12,7 @@ KurtsHouse_MapScripts:
 	callback MAPCALLBACK_OBJECTS, KurtsHouseKurtCallback
 
 KurtsHouseKurtCallback:
-	checkevent EVENT_CLEARED_SLOWPOKE_WELL
+	checkevent EVENT_CLEARED_WOOPER_WELL
 	iffalse .Done
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .Done
@@ -37,13 +37,13 @@ Kurt1:
 	opentext
 	checkevent EVENT_KURT_GAVE_YOU_LURE_BALL
 	iftrue .GotLureBall
-	checkevent EVENT_CLEARED_SLOWPOKE_WELL
-	iftrue .ClearedSlowpokeWell
+	checkevent EVENT_CLEARED_WOOPER_WELL
+	iftrue .ClearedWooperWell
 	writetext KurtsHouseKurtMakingBallsMustWaitText
 	waitbutton
 	closetext
 	special FadeOutMusic
-	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
+	setevent EVENT_AZALEA_TOWN_WOOPERTAIL_ROCKET
 	readvar VAR_FACING
 	ifequal UP, .RunAround
 	turnobject PLAYER, DOWN
@@ -65,7 +65,7 @@ Kurt1:
 	special RestartMapMusic
 	end
 
-.ClearedSlowpokeWell:
+.ClearedWooperWell:
 	writetext KurtsHouseKurtHonoredToMakeBallsText
 	promptbutton
 	verbosegiveitem LURE_BALL
@@ -335,19 +335,19 @@ KurtsGranddaughter1:
 	iftrue .Lonely
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue .Dad
-	checkevent EVENT_CLEARED_SLOWPOKE_WELL
-	iftrue .SlowpokeBack
-	checkevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
+	checkevent EVENT_CLEARED_WOOPER_WELL
+	iftrue .WooperBack
+	checkevent EVENT_AZALEA_TOWN_WOOPERTAIL_ROCKET
 	iftrue .Lonely
 	opentext
-	writetext KurtsGranddaughterSlowpokeGoneText
+	writetext KurtsGranddaughterWooperGoneText
 	waitbutton
 	closetext
 	end
 
-.SlowpokeBack:
+.WooperBack:
 	opentext
-	writetext KurtsGranddaughterSlowpokeBackText
+	writetext KurtsGranddaughterWooperBackText
 	waitbutton
 	closetext
 	end
@@ -392,11 +392,11 @@ KurtsGranddaughterFunScript:
 	closetext
 	end
 
-KurtsHouseSlowpoke:
+KurtsHouseWooper:
 	faceplayer
 	opentext
-	writetext KurtsHouseSlowpokeText
-	cry SLOWPOKE
+	writetext KurtsHouseWooperText
+	cry WOOPER
 	waitbutton
 	closetext
 	end
@@ -459,14 +459,14 @@ KurtsHouseKurtMakingBallsMustWaitText:
 	para "Anyway, they're at"
 	line "the WELL, cutting"
 
-	para "off SLOWPOKETAILS"
+	para "off WOOPERTAILS"
 	line "for sale!"
 
 	para "So I'm going to"
 	line "go give them a"
 	cont "lesson in pain!"
 
-	para "Hang on, SLOWPOKE!"
+	para "Hang on, WOOPER!"
 	line "Old KURT is on his"
 	cont "way!"
 	done
@@ -587,8 +587,8 @@ KurtsHouseKurtThisBallStartedToShakeText:
 	line "something to this!"
 	done
 
-KurtsGranddaughterSlowpokeGoneText:
-	text "The SLOWPOKE are"
+KurtsGranddaughterWooperGoneText:
+	text "The WOOPER are"
 	line "gone… Were they"
 
 	para "taken away by bad"
@@ -600,8 +600,8 @@ KurtsGranddaughterLonelyText:
 	line "I'm so lonely…"
 	done
 
-KurtsGranddaughterSlowpokeBackText:
-	text "The SLOWPOKE my"
+KurtsGranddaughterWooperBackText:
+	text "The WOOPER my"
 	line "dad gave me came"
 
 	para "back! Its TAIL is"
@@ -615,7 +615,7 @@ KurtsGranddaughterDadText:
 
 	para "I have to stay"
 	line "home with Grandpa"
-	cont "and SLOWPOKE."
+	cont "and WOOPER."
 	done
 
 KurtsGranddaughterHelpText:
@@ -640,9 +640,9 @@ KurtsGranddaughterGSBallText:
 	line "till he's done."
 	done
 
-KurtsHouseSlowpokeText:
-	text "SLOWPOKE: …"
-	line "Yawn?"
+KurtsHouseWooperText:
+	text "WOOPER: …"
+	line "Woop?"
 	done
 
 KurtsHouseOakPhotoText:
@@ -677,6 +677,6 @@ KurtsHouse_MapEvents:
 	def_object_events
 	object_event  3,  2, SPRITE_KURT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Kurt1, EVENT_KURTS_HOUSE_KURT_1
 	object_event  5,  3, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
-	object_event  6,  3, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsHouseSlowpoke, EVENT_KURTS_HOUSE_SLOWPOKE
+	object_event  6,  3, SPRITE_WOOPER, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsHouseWooper, EVENT_KURTS_HOUSE_WOOPER
 	object_event 14,  3, SPRITE_KURT, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Kurt2, EVENT_KURTS_HOUSE_KURT_2
 	object_event 11,  4, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2
