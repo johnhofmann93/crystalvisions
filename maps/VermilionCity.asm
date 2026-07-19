@@ -124,13 +124,14 @@ VermilionCityHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL
 
 VermilionCityTeacherText:
-	text "VERMILION PORT is"
-	line "KANTO's seaside"
-	cont "gateway."
+	text "The old FAST SHIP"
+	line "port here closed"
+	cont "down."
 
-	para "Luxury liners from"
-	line "around the world"
-	cont "dock here."
+	para "These days, it"
+	line "sails between"
+	cont "OLIVINE and"
+	cont "CIANWOOD instead."
 	done
 
 VermilionMachopOwnerText:
@@ -262,7 +263,7 @@ VermilionCityDiglettsCaveSignText:
 
 VermilionCityPortSignText:
 	text "VERMILION PORT"
-	line "ENTRANCE"
+	line "CLOSED"
 	done
 
 VermilionCity_MapEvents:
@@ -276,8 +277,6 @@ VermilionCity_MapEvents:
 	warp_event 21, 13, VERMILION_MART, 2
 	warp_event 21, 17, VERMILION_DIGLETTS_CAVE_SPEECH_HOUSE, 1
 	warp_event 10, 19, VERMILION_GYM, 1
-	warp_event 19, 31, VERMILION_PORT_PASSAGE, 1
-	warp_event 20, 31, VERMILION_PORT_PASSAGE, 2
 	warp_event 34,  7, DIGLETTS_CAVE, 1
 
 	def_coord_events

@@ -3,6 +3,7 @@
 	const OLIVINECITY_STANDING_YOUNGSTER
 	const OLIVINECITY_SAILOR2
 	const OLIVINECITY_OLIVINE_RIVAL
+	const OLIVINECITY_TELEPORTER
 
 OlivineCity_MapScripts:
 	def_scene_scripts
@@ -360,3 +361,89 @@ OlivineCity_MapEvents:
 	object_event 20, 13, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineCityStandingYoungsterScript, -1
 	object_event 17, 21, SPRITE_SAILOR, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineCitySailor2Script, -1
 	object_event 10, 11, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY
+	object_event 12, 21, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OlivineCityTeleporterScript, -1
+
+OlivineCityTeleporterScript:
+	faceplayer
+	opentext
+	writetext OlivineCityTeleporterText
+	waitbutton
+	closetext
+	loadmenu OlivineCityTeleporter_MenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .NewBark
+	ifequal 2, .Cherrygrove
+	ifequal 3, .Violet
+	ifequal 4, .Azalea
+	ifequal 5, .Goldenrod
+	ifequal 6, .Ecruteak
+	ifequal 7, .Olivine
+	ifequal 8, .Cianwood
+	ifequal 9, .Mahogany
+	ifequal 10, .Blackthorn
+	end
+
+.NewBark:
+	warp NEW_BARK_TOWN, 8, 10
+	end
+
+.Cherrygrove:
+	warp CHERRYGROVE_POKECENTER_1F, 4, 7
+	end
+
+.Violet:
+	warp VIOLET_POKECENTER_1F, 4, 7
+	end
+
+.Azalea:
+	warp AZALEA_POKECENTER_1F, 4, 7
+	end
+
+.Goldenrod:
+	warp GOLDENROD_POKECENTER_1F, 4, 7
+	end
+
+.Ecruteak:
+	warp ECRUTEAK_POKECENTER_1F, 4, 7
+	end
+
+.Olivine:
+	warp OLIVINE_POKECENTER_1F, 4, 7
+	end
+
+.Cianwood:
+	warp CIANWOOD_POKECENTER_1F, 4, 7
+	end
+
+.Mahogany:
+	warp MAHOGANY_POKECENTER_1F, 4, 7
+	end
+
+.Blackthorn:
+	warp BLACKTHORN_POKECENTER_1F, 4, 7
+	end
+
+OlivineCityTeleporter_MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw .MenuData
+	db 1 ; default option
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db 10 ; items
+	db "New Bark Town@"
+	db "Cherrygrove City@"
+	db "Violet City@"
+	db "Azalea Town@"
+	db "Goldenrod City@"
+	db "Ecruteak City@"
+	db "Olivine City@"
+	db "Cianwood City@"
+	db "Mahogany Town@"
+	db "Blackthorn City@"
+
+OlivineCityTeleporterText:
+	text "Where would you"
+	line "like to go?"
+	done

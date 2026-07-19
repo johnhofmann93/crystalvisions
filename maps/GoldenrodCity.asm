@@ -8,6 +8,7 @@
 	const GOLDENRODCITY_GRAMPS
 	const GOLDENRODCITY_ROCKETSCOUT
 	const GOLDENRODCITY_ROCKET1
+	const GOLDENRODCITY_TELEPORTER
 	const GOLDENRODCITY_ROCKET2
 	const GOLDENRODCITY_ROCKET3
 	const GOLDENRODCITY_ROCKET4
@@ -640,3 +641,89 @@ GoldenrodCity_MapEvents:
 	object_event 29,  7, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityRocket5Script, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 31, 10, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityRocket6Script, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 12, 22, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MoveTutorScript, EVENT_GOLDENROD_CITY_MOVE_TUTOR
+	object_event 14, 27, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodCityTeleporterScript, -1
+
+GoldenrodCityTeleporterScript:
+	faceplayer
+	opentext
+	writetext GoldenrodCityTeleporterText
+	waitbutton
+	closetext
+	loadmenu GoldenrodCityTeleporter_MenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .NewBark
+	ifequal 2, .Cherrygrove
+	ifequal 3, .Violet
+	ifequal 4, .Azalea
+	ifequal 5, .Goldenrod
+	ifequal 6, .Ecruteak
+	ifequal 7, .Olivine
+	ifequal 8, .Cianwood
+	ifequal 9, .Mahogany
+	ifequal 10, .Blackthorn
+	end
+
+.NewBark:
+	warp NEW_BARK_TOWN, 8, 10
+	end
+
+.Cherrygrove:
+	warp CHERRYGROVE_POKECENTER_1F, 4, 7
+	end
+
+.Violet:
+	warp VIOLET_POKECENTER_1F, 4, 7
+	end
+
+.Azalea:
+	warp AZALEA_POKECENTER_1F, 4, 7
+	end
+
+.Goldenrod:
+	warp GOLDENROD_POKECENTER_1F, 4, 7
+	end
+
+.Ecruteak:
+	warp ECRUTEAK_POKECENTER_1F, 4, 7
+	end
+
+.Olivine:
+	warp OLIVINE_POKECENTER_1F, 4, 7
+	end
+
+.Cianwood:
+	warp CIANWOOD_POKECENTER_1F, 4, 7
+	end
+
+.Mahogany:
+	warp MAHOGANY_POKECENTER_1F, 4, 7
+	end
+
+.Blackthorn:
+	warp BLACKTHORN_POKECENTER_1F, 4, 7
+	end
+
+GoldenrodCityTeleporter_MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw .MenuData
+	db 1 ; default option
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db 10 ; items
+	db "New Bark Town@"
+	db "Cherrygrove City@"
+	db "Violet City@"
+	db "Azalea Town@"
+	db "Goldenrod City@"
+	db "Ecruteak City@"
+	db "Olivine City@"
+	db "Cianwood City@"
+	db "Mahogany Town@"
+	db "Blackthorn City@"
+
+GoldenrodCityTeleporterText:
+	text "Where would you"
+	line "like to go?"
+	done

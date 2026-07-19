@@ -128,6 +128,13 @@ JohtoWaterWildMons:
 	db 20, TENTACRUEL
 	end_water_wildmons
 
+	def_water_wildmons CIANWOOD_PORT
+	db 2 percent ; encounter rate
+	db 35, TENTACOOL
+	db 30, TENTACOOL
+	db 35, TENTACRUEL
+	end_water_wildmons
+
 	def_water_wildmons ROUTE_30
 	db 2 percent ; encounter rate
 	db 20, POLIWAG

@@ -8,6 +8,7 @@
 	const CIANWOODCITY_ROCK4
 	const CIANWOODCITY_ROCK5
 	const CIANWOODCITY_ROCK6
+	const CIANWOODCITY_TELEPORTER
 	const CIANWOODCITY_POKEFAN_F
 	const CIANWOODCITY_EUSINE
 	const CIANWOODCITY_SUICUNE
@@ -179,6 +180,9 @@ CianwoodPokeSeerSign:
 
 CianwoodPokecenterSign:
 	jumpstd PokecenterSignScript
+
+CianwoodPortSign:
+	jumptext CianwoodPortSignText
 
 CianwoodCityRock:
 	jumpstd SmashRockScript
@@ -418,6 +422,13 @@ CianwoodPokeSeerSignText:
 	line "AHEAD"
 	done
 
+CianwoodPortSignText:
+	text "CIANWOOD PORT"
+
+	para "FAST SHIP to"
+	line "OLIVINE CITY"
+	done
+
 GurtScript:
 	faceplayer
 	opentext
@@ -611,6 +622,8 @@ CianwoodCity_MapEvents:
 	warp_event  9, 31, CIANWOOD_PHOTO_STUDIO, 1
 	warp_event 15, 37, CIANWOOD_LUGIA_SPEECH_HOUSE, 1
 	warp_event  5, 17, POKE_SEERS_HOUSE, 1
+	warp_event 25, 49, CIANWOOD_PORT, 1
+	warp_event 26, 49, CIANWOOD_PORT, 1
 
 	def_coord_events
 	coord_event 11, 16, SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE, CianwoodCitySuicuneAndEusine
@@ -622,6 +635,7 @@ CianwoodCity_MapEvents:
 	bg_event 19, 47, BGEVENT_READ, CianwoodPharmacySign
 	bg_event  8, 32, BGEVENT_READ, CianwoodPhotoStudioSign
 	bg_event  8, 24, BGEVENT_READ, CianwoodPokeSeerSign
+	bg_event 22, 49, BGEVENT_READ, CianwoodPortSign
 	bg_event  4, 19, BGEVENT_ITEM, CianwoodCityHiddenRevive
 	bg_event  5, 29, BGEVENT_ITEM, CianwoodCityHiddenMaxEther
 
@@ -639,3 +653,89 @@ CianwoodCity_MapEvents:
 	object_event 11, 21, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
 	object_event 10, 14, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	object_event 10, 35, SPRITE_KURT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GurtScript, -1
+	object_event 22, 43, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CianwoodCityTeleporterScript, -1
+
+CianwoodCityTeleporterScript:
+	faceplayer
+	opentext
+	writetext CianwoodCityTeleporterText
+	waitbutton
+	closetext
+	loadmenu CianwoodCityTeleporter_MenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .NewBark
+	ifequal 2, .Cherrygrove
+	ifequal 3, .Violet
+	ifequal 4, .Azalea
+	ifequal 5, .Goldenrod
+	ifequal 6, .Ecruteak
+	ifequal 7, .Olivine
+	ifequal 8, .Cianwood
+	ifequal 9, .Mahogany
+	ifequal 10, .Blackthorn
+	end
+
+.NewBark:
+	warp NEW_BARK_TOWN, 8, 10
+	end
+
+.Cherrygrove:
+	warp CHERRYGROVE_POKECENTER_1F, 4, 7
+	end
+
+.Violet:
+	warp VIOLET_POKECENTER_1F, 4, 7
+	end
+
+.Azalea:
+	warp AZALEA_POKECENTER_1F, 4, 7
+	end
+
+.Goldenrod:
+	warp GOLDENROD_POKECENTER_1F, 4, 7
+	end
+
+.Ecruteak:
+	warp ECRUTEAK_POKECENTER_1F, 4, 7
+	end
+
+.Olivine:
+	warp OLIVINE_POKECENTER_1F, 4, 7
+	end
+
+.Cianwood:
+	warp CIANWOOD_POKECENTER_1F, 4, 7
+	end
+
+.Mahogany:
+	warp MAHOGANY_POKECENTER_1F, 4, 7
+	end
+
+.Blackthorn:
+	warp BLACKTHORN_POKECENTER_1F, 4, 7
+	end
+
+CianwoodCityTeleporter_MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw .MenuData
+	db 1 ; default option
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db 10 ; items
+	db "New Bark Town@"
+	db "Cherrygrove City@"
+	db "Violet City@"
+	db "Azalea Town@"
+	db "Goldenrod City@"
+	db "Ecruteak City@"
+	db "Olivine City@"
+	db "Cianwood City@"
+	db "Mahogany Town@"
+	db "Blackthorn City@"
+
+CianwoodCityTeleporterText:
+	text "Where would you"
+	line "like to go?"
+	done

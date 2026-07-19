@@ -8,6 +8,7 @@
 	const AZALEATOWN_WOOPER3
 	const AZALEATOWN_WOOPER4
 	const AZALEATOWN_FRUIT_TREE
+	const AZALEATOWN_TELEPORTER
 	const AZALEATOWN_RIVAL
 	const AZALEATOWN_AZALEA_ROCKET3
 	const AZALEATOWN_KURT_OUTSIDE
@@ -533,3 +534,89 @@ AzaleaTown_MapEvents:
 	object_event 11, 10, SPRITE_AZALEA_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_AZALEA_TOWN
 	object_event 10, 16, SPRITE_AZALEA_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownRocket2Script, EVENT_WOOPER_WELL_ROCKETS
 	object_event  6,  5, SPRITE_KURT_OUTSIDE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownKurtScript, EVENT_AZALEA_TOWN_KURT
+	object_event 14,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, AzaleaTownTeleporterScript, -1
+
+AzaleaTownTeleporterScript:
+	faceplayer
+	opentext
+	writetext AzaleaTownTeleporterText
+	waitbutton
+	closetext
+	loadmenu AzaleaTownTeleporter_MenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .NewBark
+	ifequal 2, .Cherrygrove
+	ifequal 3, .Violet
+	ifequal 4, .Azalea
+	ifequal 5, .Goldenrod
+	ifequal 6, .Ecruteak
+	ifequal 7, .Olivine
+	ifequal 8, .Cianwood
+	ifequal 9, .Mahogany
+	ifequal 10, .Blackthorn
+	end
+
+.NewBark:
+	warp NEW_BARK_TOWN, 8, 10
+	end
+
+.Cherrygrove:
+	warp CHERRYGROVE_POKECENTER_1F, 4, 7
+	end
+
+.Violet:
+	warp VIOLET_POKECENTER_1F, 4, 7
+	end
+
+.Azalea:
+	warp AZALEA_POKECENTER_1F, 4, 7
+	end
+
+.Goldenrod:
+	warp GOLDENROD_POKECENTER_1F, 4, 7
+	end
+
+.Ecruteak:
+	warp ECRUTEAK_POKECENTER_1F, 4, 7
+	end
+
+.Olivine:
+	warp OLIVINE_POKECENTER_1F, 4, 7
+	end
+
+.Cianwood:
+	warp CIANWOOD_POKECENTER_1F, 4, 7
+	end
+
+.Mahogany:
+	warp MAHOGANY_POKECENTER_1F, 4, 7
+	end
+
+.Blackthorn:
+	warp BLACKTHORN_POKECENTER_1F, 4, 7
+	end
+
+AzaleaTownTeleporter_MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw .MenuData
+	db 1 ; default option
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db 10 ; items
+	db "New Bark Town@"
+	db "Cherrygrove City@"
+	db "Violet City@"
+	db "Azalea Town@"
+	db "Goldenrod City@"
+	db "Ecruteak City@"
+	db "Olivine City@"
+	db "Cianwood City@"
+	db "Mahogany Town@"
+	db "Blackthorn City@"
+
+AzaleaTownTeleporterText:
+	text "Where would you"
+	line "like to go?"
+	done

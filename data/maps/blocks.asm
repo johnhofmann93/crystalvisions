@@ -839,8 +839,8 @@ FastShipCabins_SE_SSE_CaptainsCabin_Blocks:
 OlivinePort_Blocks:
 	INCBIN "maps/OlivinePort.blk"
 
-VermilionPort_Blocks:
-	INCBIN "maps/VermilionPort.blk"
+CianwoodPort_Blocks:
+	INCBIN "maps/CianwoodPort.blk"
 
 OlivineCafe_Blocks:
 SafariZoneMainOffice_Blocks:
@@ -944,7 +944,6 @@ VictoryRoadGate_Blocks:
 	INCBIN "maps/VictoryRoadGate.blk"
 
 OlivinePortPassage_Blocks:
-VermilionPortPassage_Blocks:
 	INCBIN "maps/PortPassage.blk"
 
 FuchsiaGym_Blocks:

@@ -302,46 +302,90 @@ NewBarkTown_MapEvents:
 	object_event  6,  8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
 	object_event 12,  9, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
 	object_event  3,  2, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownRivalScript, EVENT_RIVAL_NEW_BARK_TOWN
-	object_event  8, 11, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, DebugWarpNPC, EVENT_DEBUG_WARP
+	object_event  8, 11, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeleporterScript, -1
 
-DebugWarpNPC:
+NewBarkTownTeleporterScript:
+	faceplayer
 	opentext
-	writetext DebugWarpText
-	promptbutton
-	loadmenu DebugWarp_MenuHeader
+	writetext NewBarkTownTeleporterText
+	waitbutton
+	closetext
+	loadmenu NewBarkTownTeleporter_MenuHeader
 	verticalmenu
 	closewindow
-	closetext
-	ifequal 1, DebugWarp_BlackthornGym
-	ifequal 2, DebugWarp_Goldenrod
-	ifequal 3, DebugWarp_Ecruteak
+	ifequal 1, .NewBark
+	ifequal 2, .Cherrygrove
+	ifequal 3, .Violet
+	ifequal 4, .Azalea
+	ifequal 5, .Goldenrod
+	ifequal 6, .Ecruteak
+	ifequal 7, .Olivine
+	ifequal 8, .Cianwood
+	ifequal 9, .Mahogany
+	ifequal 10, .Blackthorn
 	end
 
-DebugWarp_BlackthornGym:
-	warp BLACKTHORN_GYM_1F, 4, 4
+.NewBark:
+	warp NEW_BARK_TOWN, 8, 10
 	end
 
-DebugWarp_Goldenrod:
-	warp GOLDENROD_CITY, 10, 10
+.Cherrygrove:
+	warp CHERRYGROVE_POKECENTER_1F, 4, 7
 	end
 
-DebugWarp_Ecruteak:
-	warp ECRUTEAK_CITY, 10, 10
+.Violet:
+	warp VIOLET_POKECENTER_1F, 4, 7
 	end
 
-DebugWarp_MenuHeader:
+.Azalea:
+	warp AZALEA_POKECENTER_1F, 4, 7
+	end
+
+.Goldenrod:
+	warp GOLDENROD_POKECENTER_1F, 4, 7
+	end
+
+.Ecruteak:
+	warp ECRUTEAK_POKECENTER_1F, 4, 7
+	end
+
+.Olivine:
+	warp OLIVINE_POKECENTER_1F, 4, 7
+	end
+
+.Cianwood:
+	warp CIANWOOD_POKECENTER_1F, 4, 7
+	end
+
+.Mahogany:
+	warp MAHOGANY_POKECENTER_1F, 4, 7
+	end
+
+.Blackthorn:
+	warp BLACKTHORN_POKECENTER_1F, 4, 7
+	end
+
+NewBarkTownTeleporter_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default option
 .MenuData:
-	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
-	db 3 ; items
-	db "Blackthorn Gym@"
+	db STATICMENU_CURSOR ; flags
+	db 10 ; items
+	db "New Bark Town@"
+	db "Cherrygrove City@"
+	db "Violet City@"
+	db "Azalea Town@"
 	db "Goldenrod City@"
 	db "Ecruteak City@"
+	db "Olivine City@"
+	db "Cianwood City@"
+	db "Mahogany Town@"
+	db "Blackthorn City@"
 
-DebugWarpText:
-	text "DEBUG: Warp to?"
+NewBarkTownTeleporterText:
+	text "Where would you"
+	line "like to go?"
 	done
 	

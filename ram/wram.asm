@@ -3118,7 +3118,7 @@ wVictoryRoadSceneID::                             db
 wDragonsDenB1FSceneID::                           db
 wDragonShrineSceneID::                            db
 wOlivinePortSceneID::                             db
-wVermilionPortSceneID::                           db
+wCianwoodPortSceneID::                            db
 wFastShip1FSceneID::                              db
 wFastShipB1FSceneID::                             db
 wMountMoonSquareSceneID::                         db

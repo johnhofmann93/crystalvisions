@@ -9,13 +9,6 @@ KantoWaterWildMons:
 	db 20, SEAKING
 	end_water_wildmons
 
-	def_water_wildmons VERMILION_PORT
-	db 2 percent ; encounter rate
-	db 35, TENTACOOL
-	db 30, TENTACOOL
-	db 35, TENTACRUEL
-	end_water_wildmons
-
 	def_water_wildmons ROUTE_4
 	db 4 percent ; encounter rate
 	db 10, GOLDEEN

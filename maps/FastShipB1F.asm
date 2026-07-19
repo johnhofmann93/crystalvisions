@@ -51,41 +51,6 @@ FastShipB1FAlreadyBlocked:
 FastShipB1FSailorScript:
 	faceplayer
 	opentext
-	checkevent EVENT_FAST_SHIP_FIRST_TIME
-	iftrue .FirstTime
-	checkevent EVENT_FAST_SHIP_LAZY_SAILOR
-	iftrue .LazySailor
-	checkevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
-	iftrue .AlreadyInformed
-	writetext FastShipB1FOnDutySailorText
-	waitbutton
-	closetext
-	setevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
-	clearevent EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
-	end
-
-.AlreadyInformed:
-	writetext FastShipB1FOnDutySailorRefusedText
-	waitbutton
-	closetext
-	end
-
-.LazySailor:
-	writetext FastShipB1FOnDutySailorThanksText
-	checkevent EVENT_FAST_SHIP_FOUND_GIRL
-	iffalse .NotFoundGirl
-	waitbutton
-	closetext
-	end
-
-.NotFoundGirl:
-	promptbutton
-	writetext FastShipB1FOnDutySailorSawLittleGirlText
-	waitbutton
-	closetext
-	end
-
-.FirstTime:
 	writetext FastShipB1FOnDutySailorDirectionsText
 	waitbutton
 	closetext
@@ -218,42 +183,6 @@ FastShipB1FSailorBlocksLeftMovement:
 	turn_head DOWN
 	step_end
 
-FastShipB1FOnDutySailorText:
-	text "Hey, kid. Could I"
-	line "get you to look"
-	cont "for my buddy?"
-
-	para "He's goofing off"
-	line "somewhere, that"
-	cont "lazy bum!"
-
-	para "I want to go find"
-	line "him, but I'm on"
-	cont "duty right now."
-	done
-
-FastShipB1FOnDutySailorRefusedText:
-	text "Oh, gee…"
-
-	para "The CAPTAIN will"
-	line "be furious…"
-	done
-
-FastShipB1FOnDutySailorThanksText:
-	text "Thanks, kid!"
-	line "I chewed him out"
-
-	para "good so he'll quit"
-	line "slacking off!"
-	done
-
-FastShipB1FOnDutySailorSawLittleGirlText:
-	text "A little girl?"
-
-	para "I may have seen"
-	line "her go by here."
-	done
-
 FastShipB1FOnDutySailorDirectionsText:
 	text "The dining room is"
 	line "up ahead."
@@ -330,7 +259,7 @@ SailorGarrettAfterBattleText:
 	text "We get different"
 	line "passengers from"
 
-	para "VERMILION CITY to"
+	para "CIANWOOD CITY to"
 	line "OLIVINE CITY."
 	done
 
@@ -350,7 +279,7 @@ FisherJonahBeatenText:
 
 FisherJonahAfterBattleText:
 	text "I plan to fish off"
-	line "VERMILION's pier."
+	line "CIANWOOD's pier."
 	done
 
 BlackbeltWaiSeenText:

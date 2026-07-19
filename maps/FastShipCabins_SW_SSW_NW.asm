@@ -81,20 +81,12 @@ FastShipBed:
 	closetext
 	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
 	iftrue .AlreadyArrived
-	checkevent EVENT_FAST_SHIP_FOUND_GIRL
-	iftrue .CanArrive
-	checkevent EVENT_FAST_SHIP_FIRST_TIME
-	iftrue .CanArrive
-.AlreadyArrived:
-	end
-
-.CanArrive:
 	playsound SFX_ELEVATOR_END
 	pause 30
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue .ArrivedOlivine
 	opentext
-	writetext FastShipArrivedVermilionText
+	writetext FastShipArrivedCianwoodText
 	waitbutton
 	closetext
 	setevent EVENT_FAST_SHIP_HAS_ARRIVED
@@ -106,6 +98,9 @@ FastShipBed:
 	waitbutton
 	closetext
 	setevent EVENT_FAST_SHIP_HAS_ARRIVED
+	end
+
+.AlreadyArrived:
 	end
 
 FastShipCabinsNorthwestCabinTrashcan:
@@ -186,7 +181,7 @@ GuitaristClydeAfterBattleMobileText:
 	cont "the BATTLE TOWER…"
 
 	para "I should go back"
-	line "to VERMILION and"
+	line "to CIANWOOD and"
 	cont "redo my training…"
 	done
 
@@ -214,10 +209,10 @@ FastShipArrivedOlivineText:
 	cont "OLIVINE CITY."
 	done
 
-FastShipArrivedVermilionText:
+FastShipArrivedCianwoodText:
 	text "FAST SHIP S.S.AQUA"
 	line "has arrived in"
-	cont "VERMILION CITY."
+	cont "CIANWOOD CITY."
 	done
 
 FastShipCabins_SW_SSW_NW_MapEvents:

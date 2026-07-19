@@ -2,13 +2,11 @@
 	const FASTSHIP1F_SAILOR1
 	const FASTSHIP1F_SAILOR2
 	const FASTSHIP1F_SAILOR3
-	const FASTSHIP1F_GENTLEMAN
 
 FastShip1F_MapScripts:
 	def_scene_scripts
 	scene_script FastShip1FNoop1Scene,     SCENE_FASTSHIP1F_NOOP
 	scene_script FastShip1FEnterShipScene, SCENE_FASTSHIP1F_ENTER_SHIP
-	scene_script FastShip1FNoop2Scene,     SCENE_FASTSHIP1F_MEET_GRANDPA
 
 	def_callbacks
 
@@ -17,9 +15,6 @@ FastShip1FNoop1Scene:
 
 FastShip1FEnterShipScene:
 	sdefer FastShip1FEnterShipScript
-	end
-
-FastShip1FNoop2Scene:
 	end
 
 FastShip1FEnterShipScript:
@@ -31,12 +26,6 @@ FastShip1FEnterShipScript:
 	earthquake 30
 	blackoutmod FAST_SHIP_CABINS_SW_SSW_NW
 	clearevent EVENT_FAST_SHIP_HAS_ARRIVED
-	checkevent EVENT_FAST_SHIP_FIRST_TIME
-	iftrue .SkipGrandpa
-	setscene SCENE_FASTSHIP1F_MEET_GRANDPA
-	end
-
-.SkipGrandpa:
 	setscene SCENE_FASTSHIP1F_NOOP
 	end
 
@@ -47,7 +36,7 @@ FastShip1FSailor1Script:
 	iftrue .Arrived
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue .Olivine
-	writetext FastShip1FSailor1Text_ToVermilion
+	writetext FastShip1FSailor1Text_ToCianwood
 	waitbutton
 	closetext
 	end
@@ -61,16 +50,15 @@ FastShip1FSailor1Script:
 .Arrived:
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue ._Olivine
-	writetext FastShip1FSailor1Text_InVermilion
+	writetext FastShip1FSailor1Text_InCianwood
 	waitbutton
 	closetext
 	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
 	special FadeOutToWhite
 	waitsfx
-	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	setmapscene VERMILION_PORT, SCENE_VERMILIONPORT_LEAVE_SHIP
-	warp VERMILION_PORT, 7, 17
+	setmapscene CIANWOOD_PORT, SCENE_CIANWOODPORT_LEAVE_SHIP
+	warp CIANWOOD_PORT, 7, 17
 	end
 
 ._Olivine:
@@ -102,13 +90,13 @@ FastShip1FSailor2Script:
 	faceplayer
 	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
-	iftrue .Vermilion
+	iftrue .NotFirstTime
 	writetext FastShip1FSailor2Text_FirstTime
 	waitbutton
 	closetext
 	end
 
-.Vermilion:
+.NotFirstTime:
 	writetext FastShip1FSailor2Text
 	waitbutton
 	closetext
@@ -116,25 +104,6 @@ FastShip1FSailor2Script:
 
 FastShip1FSailor3Script:
 	jumptextfaceplayer FastShip1FSailor3Text
-
-WorriedGrandpaSceneRight:
-	moveobject FASTSHIP1F_GENTLEMAN, 20, 6
-
-WorriedGrandpaSceneLeft:
-	appear FASTSHIP1F_GENTLEMAN
-	applymovement FASTSHIP1F_GENTLEMAN, FastShip1F_GrandpaRunsInMovement
-	playsound SFX_TACKLE
-	applymovement PLAYER, FastShip1F_PlayerHitByGrandpaMovement
-	applymovement FASTSHIP1F_GENTLEMAN, FastShip1F_GrandpaApproachesPlayerMovement
-	opentext
-	writetext FastShip1FGrandpaText
-	waitbutton
-	closetext
-	turnobject PLAYER, RIGHT
-	applymovement FASTSHIP1F_GENTLEMAN, FastShip1F_GrandpaRunsOutMovement
-	disappear FASTSHIP1F_GENTLEMAN
-	setscene SCENE_FASTSHIP1F_NOOP
-	end
 
 FastShip1F_SailorStepAsideMovement:
 	slow_step LEFT
@@ -157,36 +126,6 @@ FastShip1F_PlayerEntersShipMovement:
 	turn_head DOWN
 	step_end
 
-FastShip1F_GrandpaRunsInMovement:
-	big_step RIGHT
-	big_step RIGHT
-	big_step RIGHT
-	big_step RIGHT
-	step_end
-
-FastShip1F_GrandpaApproachesPlayerMovement:
-	step RIGHT
-	step_end
-
-FastShip1F_GrandpaRunsOutMovement:
-	big_step DOWN
-	big_step RIGHT
-	big_step RIGHT
-	big_step RIGHT
-	big_step RIGHT
-	big_step RIGHT
-	big_step RIGHT
-	big_step DOWN
-	big_step DOWN
-	big_step DOWN
-	big_step DOWN
-	step_end
-
-FastShip1F_PlayerHitByGrandpaMovement:
-	big_step RIGHT
-	turn_head LEFT
-	step_end
-
 FastShip1F_StepUpMovement: ; unreferenced
 	step UP
 	step_end
@@ -205,10 +144,10 @@ FastShip1F_PlayerLeavesShipRightMovement:
 	step UP
 	step_end
 
-FastShip1FSailor1Text_ToVermilion:
+FastShip1FSailor1Text_ToCianwood:
 	text "FAST SHIP S.S.AQUA"
 	line "is en route to"
-	cont "VERMILION CITY."
+	cont "CIANWOOD CITY."
 
 	para "We will make an"
 	line "announcement when"
@@ -257,30 +196,16 @@ FastShip1FSailor3Text:
 	cont "their cabins."
 	done
 
-FastShip1FGrandpaText:
-	text "Whoa! Excuse me."
-	line "I was in a hurry!"
-
-	para "My granddaughter"
-	line "is missing!"
-
-	para "She's just a wee"
-	line "girl. If you see"
-
-	para "her, please let me"
-	line "know!"
-	done
-
 FastShip1FSailor1Text_InOlivine:
 	text "FAST SHIP S.S.AQUA"
 	line "has arrived in"
 	cont "OLIVINE CITY."
 	done
 
-FastShip1FSailor1Text_InVermilion:
+FastShip1FSailor1Text_InCianwood:
 	text "FAST SHIP S.S.AQUA"
 	line "has arrived in"
-	cont "VERMILION CITY."
+	cont "CIANWOOD CITY."
 	done
 
 FastShip1F_MapEvents:
@@ -301,8 +226,6 @@ FastShip1F_MapEvents:
 	warp_event 30, 14, FAST_SHIP_B1F, 2
 
 	def_coord_events
-	coord_event 24,  6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaSceneLeft
-	coord_event 25,  6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaSceneRight
 
 	def_bg_events
 
@@ -310,4 +233,3 @@ FastShip1F_MapEvents:
 	object_event 25,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor1Script, -1
 	object_event 14,  7, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor2Script, -1
 	object_event 22, 17, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor3Script, -1
-	object_event 19,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN

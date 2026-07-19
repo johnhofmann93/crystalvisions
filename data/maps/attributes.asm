@@ -577,14 +577,13 @@ ENDM
 	map_attributes PewterPokecenter2FBeta, PEWTER_POKECENTER_2F_BETA, $00, 0
 	map_attributes PewterSnoozeSpeechHouse, PEWTER_SNOOZE_SPEECH_HOUSE, $00, 0
 	map_attributes OlivinePort, OLIVINE_PORT, $0a, 0
-	map_attributes VermilionPort, VERMILION_PORT, $0a, 0
+	map_attributes CianwoodPort, CIANWOOD_PORT, $0a, 0
 	map_attributes FastShip1F, FAST_SHIP_1F, $00, 0
 	map_attributes FastShipCabins_NNW_NNE_NE, FAST_SHIP_CABINS_NNW_NNE_NE, $00, 0
 	map_attributes FastShipCabins_SW_SSW_NW, FAST_SHIP_CABINS_SW_SSW_NW, $00, 0
 	map_attributes FastShipCabins_SE_SSE_CaptainsCabin, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN, $00, 0
 	map_attributes FastShipB1F, FAST_SHIP_B1F, $00, 0
 	map_attributes OlivinePortPassage, OLIVINE_PORT_PASSAGE, $00, 0
-	map_attributes VermilionPortPassage, VERMILION_PORT_PASSAGE, $00, 0
 	map_attributes MountMoonSquare, MOUNT_MOON_SQUARE, $2d, 0
 	map_attributes MountMoonGiftShop, MOUNT_MOON_GIFT_SHOP, $00, 0
 	map_attributes TinTowerRoof, TIN_TOWER_ROOF, $00, 0
