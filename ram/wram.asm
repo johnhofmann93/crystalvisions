@@ -1556,6 +1556,7 @@ NEXTU
 wTrainerCardBadgeFrameCounter:: db
 wTrainerCardBadgeTileID:: db
 wTrainerCardBadgeAttributes:: db
+wTrainerCardLevelCap:: db
 
 NEXTU
 ; slot machine
@@ -2901,8 +2902,6 @@ wStartSecond:: db
 
 wRTC:: ds 4
 
-	ds 4
-
 wDST::
 ; bit 7: dst
 	db
@@ -2918,7 +2917,10 @@ wGameTimeFrames::  db
 
 wCurDay:: db
 
-	ds 1
+; Chosen wardrobe outfit color, 1-indexed into GetPlayerOutfitPalette's
+; .OutfitPalettes table (engine/overworld/player_object.asm). 0 means
+; unset; the player's gender-based default palette is used instead.
+wPlayerOutfitColor:: db
 
 wObjectFollow_Leader:: db
 wObjectFollow_Follower:: db
@@ -2997,6 +2999,12 @@ wBadges::
 wJohtoBadges:: flag_array NUM_JOHTO_BADGES
 wKantoBadges:: flag_array NUM_KANTO_BADGES
 
+; Order each Johto badge was actually obtained in (1-8), indexed by gym
+; badge bit position, packed 2 per byte (4 bits each; low nibble = even
+; index, high nibble = odd index). 0 means not yet obtained. Set by
+; EngineFlagAction when a Johto badge flag is newly set.
+wJohtoBadgeOrder:: ds NUM_JOHTO_BADGES / 2
+
 wTMsHMs:: ds NUM_TMS + NUM_HMS
 
 wNumItems:: db
@@ -3046,7 +3054,7 @@ wCeruleanGymSceneID::                             db
 wRoute25SceneID::                                 db
 wTrainerHouseB1FSceneID::                         db
 wVictoryRoadGateSceneID::                         db
-wSaffronMagnetTrainStationSceneID::               db
+wBlackthornMagnetTrainStationSceneID::            db
 wRoute16GateSceneID::                             db
 wRoute17Route18GateSceneID::                      db
 wIndigoPlateauPokecenter1FSceneID::               db

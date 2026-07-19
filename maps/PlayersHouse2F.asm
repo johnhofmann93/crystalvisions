@@ -79,8 +79,30 @@ PlayersHouseRadioScript:
 	closetext
 	end
 
-PlayersHouseBookshelfScript:
-	jumpstd PictureBookshelfScript
+PlayersHouseWardrobeScript:
+	opentext
+	writetext PlayersHouseWardrobeText
+	loadmenu PlayersHouseWardrobe_MenuHeader
+	verticalmenu
+	closewindow
+	special SetPlayerOutfitColorFromMenu
+	closetext
+	end
+
+PlayersHouseWardrobe_MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db 5 ; items
+	db "RED@"
+	db "BLUE@"
+	db "GREEN@"
+	db "BROWN@"
+	db "PINK@"
 
 PlayersHousePCScript:
 	opentext
@@ -91,6 +113,11 @@ PlayersHousePCScript:
 .Warp:
 	warp NONE, 0, 0
 	end
+
+PlayersHouseWardrobeText:
+	text "Pick an outfit"
+	line "color!"
+	done
 
 PlayersRadioText1:
 	text "PROF.OAK'S #MON"
@@ -123,7 +150,7 @@ PlayersHouse2F_MapEvents:
 	def_bg_events
 	bg_event  2,  1, BGEVENT_UP, PlayersHousePCScript
 	bg_event  3,  1, BGEVENT_READ, PlayersHouseRadioScript
-	bg_event  5,  1, BGEVENT_READ, PlayersHouseBookshelfScript
+	bg_event  5,  1, BGEVENT_READ, PlayersHouseWardrobeScript
 	bg_event  6,  0, BGEVENT_IFSET, PlayersHousePosterScript
 
 	def_object_events

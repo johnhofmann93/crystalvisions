@@ -68,6 +68,7 @@ SpecialsPointers::
 	add_special ClearTilemap ; bank 0; unused as special
 	add_special UpdateSprites ; bank 0
 	add_special UpdatePlayerSprite ; bank 0
+	add_special SetPlayerOutfitColorFromMenu
 	add_special GameCornerPrizeMonCheckDex
 	add_special UnusedSetSeenMon ; unused
 	add_special WaitSFX ; bank 0

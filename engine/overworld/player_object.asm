@@ -25,20 +25,21 @@ SpawnPlayer:
 	call CopyPlayerObjectTemplate
 	ld b, PLAYER
 	call PlayerSpawn_ConvertCoords
+	call ReapplyPlayerOutfitPalette
+	ld a, PLAYER
+	ld [wCenteredObject], a
+	ret
+
+ReapplyPlayerOutfitPalette::
+; Writes the player's current outfit palette (wardrobe color if set,
+; otherwise the gender default) into their map object and live object
+; struct. Does not redraw sprites; callers that need an on-screen update
+; outside of a fresh spawn should call UpdateSprites afterward.
 	ld a, PLAYER_OBJECT
 	call GetMapObject
 	ld hl, MAPOBJECT_PALETTE
 	add hl, bc
-	ln e, PAL_NPC_RED, OBJECTTYPE_SCRIPT
-	ld a, [wPlayerSpriteSetupFlags]
-	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
-	jr nz, .ok
-	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
-	jr z, .ok
-	ln e, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT
-
-.ok
+	call GetPlayerOutfitPalette
 	ld [hl], e
 	ld a, PLAYER_OBJECT
 	ldh [hMapObjectIndex], a
@@ -47,9 +48,89 @@ SpawnPlayer:
 	ldh [hObjectStructIndex], a
 	ld de, wObjectStructs
 	call CopyMapObjectToObjectStruct
-	ld a, PLAYER
-	ld [wCenteredObject], a
 	ret
+
+SetPlayerOutfitColorFromMenu::
+; special: wScriptVar = chosen wardrobe menu index (1-5, 1-indexed into
+; GetPlayerOutfitPalette's .OutfitPalettes), or 0 if the menu was
+; cancelled. Stores the choice and applies it to the on-screen sprite
+; immediately, without disturbing the player's current position (unlike
+; ReapplyPlayerOutfitPalette's full CopyMapObjectToObjectStruct, which
+; also re-copies the map object's stale spawn coordinates).
+	ld a, [wScriptVar]
+	and a
+	ret z
+
+	ld [wPlayerOutfitColor], a
+
+; Update the map object template so future spawns/map transitions use it.
+	ld a, PLAYER_OBJECT
+	call GetMapObject
+	ld hl, MAPOBJECT_PALETTE
+	add hl, bc
+	call GetPlayerOutfitPalette
+	ld [hl], e
+
+; Patch just the palette bits of the live object struct, preserving its
+; other OBJECT_PALETTE flag bits (e.g. SWIMMING_F).
+	ld a, e
+	and MAPOBJECT_PALETTE_MASK
+	swap a
+	and OAM_PALETTE
+	ld d, a
+
+	ld a, PLAYER_OBJECT
+	call GetObjectStruct
+	ld hl, OBJECT_PALETTE
+	add hl, bc
+	ld a, [hl]
+	and ~OAM_PALETTE
+	or d
+	ld [hl], a
+
+	call UpdateSprites
+	ret
+
+GetPlayerOutfitPalette::
+; Returns e = the MAPOBJECT_PALETTE byte for the player: the wardrobe-
+; chosen outfit color if set (wPlayerOutfitColor, 1-indexed into
+; .OutfitPalettes), otherwise the usual gender-based default.
+; Does not modify hl.
+	push hl
+	ld a, [wPlayerOutfitColor]
+	and a
+	jr z, .gender_default
+
+	dec a
+	ld c, a
+	ld b, 0
+	ld hl, .OutfitPalettes
+	add hl, bc
+	ld a, [hl]
+	jr .got_palette
+
+.gender_default
+	ld b, PAL_NPC_RED
+	ld a, [wPlayerSpriteSetupFlags]
+	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
+	jr nz, .use_b
+	ld a, [wPlayerGender]
+	bit PLAYERGENDER_FEMALE_F, a
+	jr z, .use_b
+	ld b, PAL_NPC_BLUE
+
+.use_b
+	ld a, b
+
+.got_palette
+	swap a
+	or OBJECTTYPE_SCRIPT
+	ld e, a
+	pop hl
+	ret
+
+.OutfitPalettes:
+	db PAL_NPC_RED, PAL_NPC_BLUE, PAL_NPC_GREEN, PAL_NPC_BROWN, PAL_NPC_PINK
 
 PlayerObjectTemplate:
 ; A dummy map object used to initialize the player object.

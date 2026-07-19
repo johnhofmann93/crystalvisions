@@ -329,14 +329,145 @@ rept 4
 endr
 	dec c
 	jr nz, .loop2
+	call TrainerCard_Page2_3_PrintBadgeOrder
 	xor a
 	ld [wTrainerCardBadgeFrameCounter], a
 	ld hl, TrainerCard_JohtoBadgesOAM
 	call TrainerCard_Page2_3_OAMUpdate
+	call TrainerCard_Page2_3_PrintLevelCap
 	ret
 
 .BadgesTilemap:
 	db $79, $7a, $7b, $7c, $7d, -1 ; "BADGES"
+
+TrainerCard_Page2_3_PrintBadgeOrder:
+; Each badge slot's art starts with its own number-box tile (the first of
+; its 10-tile block from TrainerCard_Page2_3_PlaceLeadersFaces). Replace
+; that one tile per slot with the tile for the order it was actually
+; obtained in, or blank it out if not yet obtained, instead of always
+; showing its fixed canonical gym position.
+	hlcoord 2, 10
+	ld a, 0
+	call .GetOrderAndPlace
+	hlcoord 6, 10
+	ld a, 1
+	call .GetOrderAndPlace
+	hlcoord 10, 10
+	ld a, 2
+	call .GetOrderAndPlace
+	hlcoord 14, 10
+	ld a, 3
+	call .GetOrderAndPlace
+	hlcoord 2, 13
+	ld a, 4
+	call .GetOrderAndPlace
+	hlcoord 6, 13
+	ld a, 5
+	call .GetOrderAndPlace
+	hlcoord 10, 13
+	ld a, 6
+	call .GetOrderAndPlace
+	hlcoord 14, 13
+	ld a, 7
+	call .GetOrderAndPlace
+	ret
+
+.GetOrderAndPlace:
+; a = badge index (0-7), hl = tilemap address of this slot's number-box tile
+; wJohtoBadgeOrder packs two 4-bit order values per byte (index/2, low
+; nibble for even indexes, high nibble for odd).
+	push hl
+	ld b, a
+	ld e, a
+	srl e
+	ld d, 0
+	ld hl, wJohtoBadgeOrder
+	add hl, de
+	ld c, [hl]
+	ld a, b
+	and 1
+	jr nz, .high_nibble
+
+	ld a, c
+	and $0f
+	jr .got_order
+
+.high_nibble
+	ld a, c
+	swap a
+	and $0f
+
+.got_order
+	pop hl
+	; fall through with a = order (0-8) for this slot
+
+.PlaceBadgeNumber:
+; a = order this badge was obtained in (0 if not yet obtained, else 1-8)
+; hl = tilemap address of this slot's number-box tile
+	and a
+	jr z, .blank
+	cp NUM_JOHTO_BADGES + 1
+	jr nc, .blank ; out-of-range value (e.g. uninitialized save data); treat as not obtained
+	jr .obtained
+
+.blank
+	ld [hl], $7f ; blank (space tile, already resident in vTiles2)
+	ret
+
+.obtained
+	push hl
+	dec a
+	ld c, a
+	ld b, 0
+	ld hl, .BadgeNumberTiles
+	add hl, bc
+	ld a, [hl]
+	pop hl
+	ld [hl], a
+	ret
+
+.BadgeNumberTiles:
+	db $29, $33, $3d, $47, $51, $5b, $65, $6f
+
+TrainerCard_Page2_3_PrintLevelCap:
+; Obedience level cap is 10 + 5 per Johto badge, uncapped after the Elite Four.
+; Mirrors the threshold table in BattleCommand_CheckObedience.
+	hlcoord 8, 9
+	ld de, .LevelCapText
+	call PlaceString
+
+	ld de, EVENT_BEAT_ELITE_FOUR
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr nz, .no_cap
+
+	ld hl, wJohtoBadges
+	ld b, 1
+	call CountSetBits
+	ld hl, .LevelCapTable
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	jr .got_cap
+
+.no_cap
+	ld a, MAX_LEVEL
+
+.got_cap
+	ld [wTrainerCardLevelCap], a
+	hlcoord 16, 9
+	ld de, wTrainerCardLevelCap
+	lb bc, 1, 3
+	call PrintNum
+	ret
+
+.LevelCapText:
+	db "LVL MAX:@"
+
+.LevelCapTable:
+	db 10, 15, 20, 25, 30, 35, 40, 45, 50
 
 TrainerCardSetup_PlaceTilemapString:
 .loop

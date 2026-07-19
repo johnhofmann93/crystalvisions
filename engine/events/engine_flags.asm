@@ -66,8 +66,24 @@ EngineFlagAction::
 ; Set the given flag.
 .set
 	ld a, [de]
+	ld b, a
 	or c
 	ld [de], a
+
+; If this newly set a Johto badge flag, record the order it was obtained in.
+	ld a, e
+	cp LOW(wJohtoBadges)
+	jr nz, .done_set
+	ld a, d
+	cp HIGH(wJohtoBadges)
+	jr nz, .done_set
+	ld a, b
+	and c
+	jr nz, .done_set ; bit was already set; not newly obtained
+
+	call RecordJohtoBadgeOrder
+
+.done_set
 	ret
 
 ; Reset the given flag.
@@ -78,6 +94,66 @@ EngineFlagAction::
 	ld a, [de]
 	and c
 	ld [de], a
+	ret
+
+RecordJohtoBadgeOrder:
+; c = bit mask of the Johto badge that was just obtained
+	push af
+	push bc
+	push de
+	push hl
+
+	ld b, c
+	ld a, 0
+.find_bit
+	srl b
+	jr c, .found_bit
+	inc a
+	jr .find_bit
+.found_bit
+; a = badge index (0-7)
+	push af
+	ld hl, wJohtoBadges
+	ld b, 1
+	call CountSetBits
+; c = number of badges now set, including the one just obtained
+	pop af
+
+; wJohtoBadgeOrder packs two 4-bit order values per byte (index/2, low
+; nibble for even indexes, high nibble for odd).
+	ld e, a
+	srl e
+	ld d, 0
+	ld hl, wJohtoBadgeOrder
+	add hl, de
+
+	and 1
+	jr nz, .high_nibble
+
+	ld a, [hl]
+	and $f0
+	ld d, a
+	ld a, c
+	and $0f
+	or d
+	ld [hl], a
+	jr .done_record
+
+.high_nibble
+	ld a, [hl]
+	and $0f
+	ld d, a
+	ld a, c
+	swap a
+	and $f0
+	or d
+	ld [hl], a
+
+.done_record
+	pop hl
+	pop de
+	pop bc
+	pop af
 	ret
 
 INCLUDE "data/events/engine_flags.asm"
