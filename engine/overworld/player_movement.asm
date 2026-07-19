@@ -494,10 +494,10 @@ DoPlayerMovement::
 	jump_step LEFT
 	jump_step RIGHT
 .SlideStep:
-	fast_slide_step DOWN
-	fast_slide_step UP
-	fast_slide_step LEFT
-	fast_slide_step RIGHT
+	slide_step DOWN
+	slide_step UP
+	slide_step LEFT
+	slide_step RIGHT
 .BackJumpStep:
 	jump_step UP
 	jump_step DOWN

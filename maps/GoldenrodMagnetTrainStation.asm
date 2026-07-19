@@ -4,7 +4,7 @@
 
 GoldenrodMagnetTrainStation_MapScripts:
 	def_scene_scripts
-	scene_script GoldenrodMagnetTrainStationNoopScene, SCENE_GOLDENRODMAGNETTRAINSTATION_ARRIVE_FROM_SAFFRON
+	scene_script GoldenrodMagnetTrainStationNoopScene, SCENE_GOLDENRODMAGNETTRAINSTATION_ARRIVE_FROM_BLACKTHORN
 
 	def_callbacks
 
@@ -14,19 +14,9 @@ GoldenrodMagnetTrainStationNoopScene:
 GoldenrodMagnetTrainStationOfficerScript:
 	faceplayer
 	opentext
-	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue .MagnetTrainToSaffron
-	writetext GoldenrodMagnetTrainStationOfficerTheTrainHasntComeInText
-	waitbutton
-	closetext
-	end
-
-.MagnetTrainToSaffron:
 	writetext GoldenrodMagnetTrainStationOfficerAreYouComingAboardText
 	yesorno
 	iffalse .DecidedNotToRide
-	checkitem PASS
-	iffalse .PassNotInBag
 	writetext GoldenrodMagnetTrainStationOfficerRightThisWayText
 	waitbutton
 	closetext
@@ -44,19 +34,13 @@ GoldenrodMagnetTrainStationOfficerScript:
 	turn_head DOWN
 	step_end
 
-.PassNotInBag:
-	writetext GoldenrodMagnetTrainStationOfficerYouDontHaveARailPassText
-	waitbutton
-	closetext
-	end
-
 .DecidedNotToRide:
 	writetext GoldenrodMagnetTrainStationOfficerHopeToSeeYouAgainText
 	waitbutton
 	closetext
 	end
 
-Script_ArriveFromSaffron:
+Script_ArriveFromBlackthorn:
 	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, GoldenrodMagnetTrainStationOfficerApproachTrainDoorMovement
 	applymovement PLAYER, GoldenrodMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement
 	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, GoldenrodMagnetTrainStationOfficerReturnToBoardingGateMovement
@@ -103,36 +87,17 @@ GoldenrodMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement:
 	turn_head UP
 	step_end
 
-GoldenrodMagnetTrainStationOfficerTheTrainHasntComeInText:
-	text "The train hasn't"
-	line "come in…"
-
-	para "I know! I'll carry"
-	line "the passengers on"
-	cont "my back!"
-
-	para "That won't work."
-	done
-
 GoldenrodMagnetTrainStationOfficerAreYouComingAboardText:
 	text "We'll soon depart"
-	line "for SAFFRON."
+	line "for BLACKTHORN."
 
 	para "Are you coming"
 	line "aboard?"
 	done
 
 GoldenrodMagnetTrainStationOfficerRightThisWayText:
-	text "May I see your"
-	line "rail PASS, please?"
-
-	para "OK. Right this"
-	line "way, please."
-	done
-
-GoldenrodMagnetTrainStationOfficerYouDontHaveARailPassText:
-	text "Sorry. You don't"
-	line "have a rail PASS."
+	text "Right this way,"
+	line "please."
 	done
 
 GoldenrodMagnetTrainStationOfficerHopeToSeeYouAgainText:
@@ -158,8 +123,8 @@ GoldenrodMagnetTrainStationGentlemanText:
 	line "#MON."
 
 	para "It really brings"
-	line "JOHTO much closer"
-	cont "to KANTO."
+	line "GOLDENROD closer"
+	cont "to BLACKTHORN."
 	done
 
 GoldenrodMagnetTrainStation_MapEvents:
@@ -168,11 +133,11 @@ GoldenrodMagnetTrainStation_MapEvents:
 	def_warp_events
 	warp_event  8, 17, GOLDENROD_CITY, 5
 	warp_event  9, 17, GOLDENROD_CITY, 5
-	warp_event  6,  5, SAFFRON_MAGNET_TRAIN_STATION, 4
-	warp_event 11,  5, SAFFRON_MAGNET_TRAIN_STATION, 3
+	warp_event  6,  5, BLACKTHORN_MAGNET_TRAIN_STATION, 4
+	warp_event 11,  5, BLACKTHORN_MAGNET_TRAIN_STATION, 3
 
 	def_coord_events
-	coord_event 11,  6, SCENE_GOLDENRODMAGNETTRAINSTATION_ARRIVE_FROM_SAFFRON, Script_ArriveFromSaffron
+	coord_event 11,  6, SCENE_GOLDENRODMAGNETTRAINSTATION_ARRIVE_FROM_BLACKTHORN, Script_ArriveFromBlackthorn
 
 	def_bg_events
 
