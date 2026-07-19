@@ -66,10 +66,10 @@ SageEdmondBeatenText:
 
 SageEdmondAfterBattleText:
 	text "I tried to copy"
-	line "BELLSPROUT's"
+	line "SUNFLORA's"
 
-	para "gentle movements"
-	line "for battle…"
+	para "cheerful energy"
+	line "in battle…"
 
 	para "But I didn't train"
 	line "well enough."

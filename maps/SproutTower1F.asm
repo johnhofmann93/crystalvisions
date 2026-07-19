@@ -77,7 +77,7 @@ SproutTower1FSage2Text:
 	done
 
 SproutTower1FGrannyText:
-	text "A BELLSPROUT over"
+	text "A SUNFLORA over"
 	line "100 feet tall…"
 
 	para "People say that it"
