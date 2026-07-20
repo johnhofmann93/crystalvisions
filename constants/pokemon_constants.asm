@@ -31,18 +31,18 @@
 	const CATERPIE   ; 0a
 	const METAPOD    ; 0b
 	const BUTTERFREE ; 0c
-	const WEEDLE     ; 0d
-	const KAKUNA     ; 0e
-	const BEEDRILL   ; 0f
-	const PIDGEY     ; 10
-	const PIDGEOTTO  ; 11
-	const PIDGEOT    ; 12
-	const RATTATA    ; 13
-	const RATICATE   ; 14
+	const TOGEKISS   ; 0d
+	const AZURILL    ; 0e
+	const BONSLY     ; 0f
+	const AMBIPOM    ; 10
+	const YANMEGA    ; 11
+	const HONCHKROW  ; 12
+	const MISMAGIUS  ; 13
+	const WYNAUT     ; 14
 	const SPEAROW    ; 15
 	const FEAROW     ; 16
-	const EKANS      ; 17
-	const ARBOK      ; 18
+	const GLISCOR    ; 17
+	const OVERQWIL   ; 18
 	const PIKACHU    ; 19
 	const RAICHU     ; 1a
 	const SANDSHREW  ; 1b
@@ -70,8 +70,8 @@
 	const VENOMOTH   ; 31
 	const DIGLETT    ; 32
 	const DUGTRIO    ; 33
-	const MEOWTH     ; 34
-	const PERSIAN    ; 35
+	const WEAVILE    ; 34
+	const MAMOSWINE  ; 35
 	const PSYDUCK    ; 36
 	const GOLDUCK    ; 37
 	const MANKEY     ; 38
@@ -132,7 +132,7 @@
 	const RHYHORN    ; 6f
 	const RHYDON     ; 70
 	const CHANSEY    ; 71
-	const TANGELA    ; 72
+	const WYRDEER    ; 72
 	const KANGASKHAN ; 73
 	const HORSEA     ; 74
 	const SEADRA     ; 75
@@ -145,7 +145,7 @@
 	const JYNX       ; 7c
 	const ELECTABUZZ ; 7d
 	const MAGMAR     ; 7e
-	const PINSIR     ; 7f
+	const MANTYKE    ; 7f
 	const TAUROS     ; 80
 	const MAGIKARP   ; 81
 	const GYARADOS   ; 82

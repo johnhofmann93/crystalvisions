@@ -9,6 +9,7 @@
 	const STARTMENUITEM_EXIT     ; 6
 	const STARTMENUITEM_POKEGEAR ; 7
 	const STARTMENUITEM_QUIT     ; 8
+	const STARTMENUITEM_DEBUG    ; 9
 
 StartMenu::
 	call ClearWindowData
@@ -185,6 +186,7 @@ StartMenu::
 	dw StartMenu_Exit,     .ExitString,     .ExitDesc
 	dw StartMenu_Pokegear, .PokegearString, .PokegearDesc
 	dw StartMenu_Quit,     .QuitString,     .QuitDesc
+	dw StartMenu_Debug,    .DebugString,    .DebugDesc
 
 .PokedexString:  db "#DEX@"
 .PartyString:    db "#MON@"
@@ -195,6 +197,7 @@ StartMenu::
 .ExitString:     db "EXIT@"
 .PokegearString: db "<POKE>GEAR@"
 .QuitString:     db "QUIT@"
+.DebugString:    db "DEBUG@"
 
 .PokedexDesc:
 	db   "#MON"
@@ -231,6 +234,10 @@ StartMenu::
 .QuitDesc:
 	db   "Quit and"
 	next "be judged.@"
+
+.DebugDesc:
+	db   "Testing"
+	next "tools@"
 
 .OpenMenu:
 	ld a, [wMenuSelection]
@@ -338,6 +345,8 @@ endr
 	ld a, STARTMENUITEM_OPTION
 	call .AppendMenuList
 	ld a, STARTMENUITEM_EXIT
+	call .AppendMenuList
+	ld a, STARTMENUITEM_DEBUG
 	call .AppendMenuList
 	ld a, c
 	ld [wMenuItemsList], a
@@ -490,6 +499,15 @@ StartMenu_Pack:
 
 .used_item
 	call ExitAllMenus
+	ld a, 4
+	ret
+
+StartMenu_Debug:
+; Open the debug menu (runs as a queued script).
+
+	ld a, BANK(DebugMenuScript)
+	ld hl, DebugMenuScript
+	call FarQueueScript
 	ld a, 4
 	ret
 

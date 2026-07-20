@@ -547,7 +547,7 @@ GoldenrodPokecomCenterPerson2Text: ; unreferenced
 	line "new thing for the"
 	cont "TRADE CORNER!"
 
-	para "I make a PIDGEY"
+	para "I make a YANMEGA"
 	line "hold MAIL, then"
 
 	para "put it up for"
@@ -560,7 +560,7 @@ GoldenrodPokecomCenterPerson2Text: ; unreferenced
 	para "be traded with all"
 	line "sorts of people!"
 
-	para "I call it PIDGEY"
+	para "I call it YANMEGA"
 	line "MAIL!"
 
 	para "If it becomes"

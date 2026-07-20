@@ -299,8 +299,8 @@ PokefanfJaimeBeatenText:
 	done
 
 PokefanfJaimeAfterBattleText:
-	text "I met my MEOWTH at"
-	line "night, right here"
+	text "I met my WEAVILE"
+	line "at night, right"
 	cont "on ROUTE 39."
 
 	para "I'm not sure why,"

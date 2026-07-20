@@ -315,9 +315,9 @@ SageNealAfterBattleText:
 	done
 
 SproutTower3FPaintingText:
-	text "It's a powerful"
+	text "It's a wonderful"
 	line "painting of a"
-	cont "SUNFLORA."
+	cont "SUNKERN."
 	done
 
 SproutTower3FStatueText:

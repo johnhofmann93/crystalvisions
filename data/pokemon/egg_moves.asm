@@ -36,19 +36,18 @@ SquirtleEggMoves:
 	db FLAIL
 	db -1 ; end
 
-PidgeyEggMoves:
+AmbipomEggMoves:
 	db PURSUIT
 	db FAINT_ATTACK
-	db FORESIGHT
+	db BATON_PASS
 	db -1 ; end
 
-RattataEggMoves:
+MismagiusEggMoves:
 	db SCREECH
 	db FLAME_WHEEL
-	db FURY_SWIPES
-	db BITE
+	db SPITE
 	db COUNTER
-	db REVERSAL
+	db PERISH_SONG
 	db -1 ; end
 
 SpearowEggMoves:
@@ -59,10 +58,10 @@ SpearowEggMoves:
 	db TRI_ATTACK
 	db -1 ; end
 
-EkansEggMoves:
+GliscorEggMoves:
 	db PURSUIT
 	db SLAM
-	db SPITE
+	db FIRE_PUNCH
 	db BEAT_UP
 	db CRUNCH
 	db -1 ; end
@@ -142,11 +141,11 @@ DiglettEggMoves:
 	db BEAT_UP
 	db -1 ; end
 
-MeowthEggMoves:
+WeavileEggMoves:
 	db SPITE
-	db CHARM
-	db HYPNOSIS
-	db AMNESIA
+	db BEAT_UP
+	db PURSUIT
+	db SWAGGER
 	db -1 ; end
 
 PsyduckEggMoves:
@@ -346,10 +345,10 @@ ChanseyEggMoves:
 	db HEAL_BELL
 	db -1 ; end
 
-TangelaEggMoves:
+WyrdeerEggMoves:
 	db FLAIL
 	db CONFUSION
-	db MEGA_DRAIN
+	db ZAP_CANNON
 	db REFLECT
 	db AMNESIA
 	db -1 ; end
@@ -392,9 +391,9 @@ ScytherEggMoves:
 	db LIGHT_SCREEN
 	db -1 ; end
 
-PinsirEggMoves:
-	db FURY_ATTACK
-	db FLAIL
+MantykeEggMoves:
+	db AGILITY
+	db BUBBLE
 	db -1 ; end
 
 LaprasEggMoves:

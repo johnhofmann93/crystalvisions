@@ -12,18 +12,18 @@ AnimationPointers:
 	dw CaterpieAnimation
 	dw MetapodAnimation
 	dw ButterfreeAnimation
-	dw WeedleAnimation
-	dw KakunaAnimation
-	dw BeedrillAnimation
-	dw PidgeyAnimation
-	dw PidgeottoAnimation
-	dw PidgeotAnimation
-	dw RattataAnimation
-	dw RaticateAnimation
+	dw TogekissAnimation
+	dw AzurillAnimation
+	dw BonslyAnimation
+	dw AmbipomAnimation
+	dw YanmegaAnimation
+	dw HonchkrowAnimation
+	dw MismagiusAnimation
+	dw WynautAnimation
 	dw SpearowAnimation
 	dw FearowAnimation
-	dw EkansAnimation
-	dw ArbokAnimation
+	dw GliscorAnimation
+	dw OverqwilAnimation
 	dw PikachuAnimation
 	dw RaichuAnimation
 	dw SandshrewAnimation
@@ -51,8 +51,8 @@ AnimationPointers:
 	dw VenomothAnimation
 	dw DiglettAnimation
 	dw DugtrioAnimation
-	dw MeowthAnimation
-	dw PersianAnimation
+	dw WeavileAnimation
+	dw MamoswineAnimation
 	dw PsyduckAnimation
 	dw GolduckAnimation
 	dw MankeyAnimation
@@ -113,7 +113,7 @@ AnimationPointers:
 	dw RhyhornAnimation
 	dw RhydonAnimation
 	dw ChanseyAnimation
-	dw TangelaAnimation
+	dw WyrdeerAnimation
 	dw KangaskhanAnimation
 	dw HorseaAnimation
 	dw SeadraAnimation
@@ -126,7 +126,7 @@ AnimationPointers:
 	dw JynxAnimation
 	dw ElectabuzzAnimation
 	dw MagmarAnimation
-	dw PinsirAnimation
+	dw MantykeAnimation
 	dw TaurosAnimation
 	dw MagikarpAnimation
 	dw GyaradosAnimation

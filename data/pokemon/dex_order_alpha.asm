@@ -6,18 +6,19 @@ AlphabeticalPokedexOrder:
 	db AERODACTYL
 	db AIPOM
 	db ALAKAZAM
+	db AMBIPOM
 	db AMPHAROS
-	db ARBOK
 	db ARCANINE
 	db ARIADOS
 	db ARTICUNO
 	db AZUMARILL
+	db AZURILL
 	db BAYLEEF
-	db BEEDRILL
 	db BELLOSSOM
 	db BELLSPROUT
 	db BLASTOISE
 	db BLISSEY
+	db BONSLY
 	db BULBASAUR
 	db BUTTERFREE
 	db CATERPIE
@@ -51,7 +52,6 @@ AlphabeticalPokedexOrder:
 	db DUGTRIO
 	db DUNSPARCE
 	db EEVEE
-	db EKANS
 	db ELECTABUZZ
 	db ELECTRODE
 	db ELEKID
@@ -71,6 +71,7 @@ AlphabeticalPokedexOrder:
 	db GEODUDE
 	db GIRAFARIG
 	db GLIGAR
+	db GLISCOR
 	db GLOOM
 	db GOLBAT
 	db GOLDEEN
@@ -87,6 +88,7 @@ AlphabeticalPokedexOrder:
 	db HITMONLEE
 	db HITMONTOP
 	db HO_OH
+	db HONCHKROW
 	db HOOTHOOT
 	db HOPPIP
 	db HORSEA
@@ -102,7 +104,6 @@ AlphabeticalPokedexOrder:
 	db KABUTO
 	db KABUTOPS
 	db KADABRA
-	db KAKUNA
 	db KANGASKHAN
 	db KINGDRA
 	db KINGLER
@@ -124,18 +125,20 @@ AlphabeticalPokedexOrder:
 	db MAGMAR
 	db MAGNEMITE
 	db MAGNETON
+	db MAMOSWINE
 	db MANKEY
 	db MANTINE
+	db MANTYKE
 	db MAREEP
 	db MARILL
 	db MAROWAK
 	db MEGANIUM
-	db MEOWTH
 	db METAPOD
 	db MEW
 	db MEWTWO
 	db MILTANK
 	db MISDREAVUS
+	db MISMAGIUS
 	db MOLTRES
 	db MR__MIME
 	db MUK
@@ -154,18 +157,14 @@ AlphabeticalPokedexOrder:
 	db OMANYTE
 	db OMASTAR
 	db ONIX
+	db OVERQWIL
 	db PARAS
 	db PARASECT
-	db PERSIAN
 	db PHANPY
 	db PICHU
-	db PIDGEOT
-	db PIDGEOTTO
-	db PIDGEY
 	db PIKACHU
 	db PILOSWINE
 	db PINECO
-	db PINSIR
 	db POLITOED
 	db POLIWAG
 	db POLIWHIRL
@@ -182,8 +181,6 @@ AlphabeticalPokedexOrder:
 	db RAICHU
 	db RAIKOU
 	db RAPIDASH
-	db RATICATE
-	db RATTATA
 	db REMORAID
 	db RHYDON
 	db RHYHORN
@@ -220,11 +217,11 @@ AlphabeticalPokedexOrder:
 	db SUNFLORA
 	db SUNKERN
 	db SWINUB
-	db TANGELA
 	db TAUROS
 	db TEDDIURSA
 	db TENTACOOL
 	db TENTACRUEL
+	db TOGEKISS
 	db TOGEPI
 	db TOGETIC
 	db TOTODILE
@@ -243,14 +240,17 @@ AlphabeticalPokedexOrder:
 	db VOLTORB
 	db VULPIX
 	db WARTORTLE
-	db WEEDLE
+	db WEAVILE
 	db WEEPINBELL
 	db WEEZING
 	db WIGGLYTUFF
 	db WOBBUFFET
 	db WOOPER
+	db WYNAUT
+	db WYRDEER
 	db XATU
 	db YANMA
+	db YANMEGA
 	db ZAPDOS
 	db ZUBAT
 	assert_table_length NUM_POKEMON

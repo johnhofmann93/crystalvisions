@@ -1461,7 +1461,8 @@
 	const EVENT_BATTLE_TOWER_OPEN_CIVILIANS
 	const EVENT_DEBUG_WARP
 	const EVENT_SAW_HO_OH
-; Unused: next 48 events
+	const EVENT_GOLDENROD_GYM_TEST_GIFT
+; Unused: next 47 events
 
 	const_next 2048
 DEF NUM_EVENTS EQU const_value ; 800

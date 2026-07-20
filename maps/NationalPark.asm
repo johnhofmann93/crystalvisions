@@ -55,7 +55,7 @@ NationalParkPersian:
 	faceplayer
 	opentext
 	writetext NationalParkPersianText
-	cry PERSIAN
+	cry WEAVILE
 	waitbutton
 	closetext
 	end
@@ -375,7 +375,7 @@ NationalParkTeacher2Text:
 	done
 
 NationalParkPersianText:
-	text "PERSIAN: Fufushaa!"
+	text "WEAVILE: Kkrrr!"
 	done
 
 NationalParkGameboyKidText:

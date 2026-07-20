@@ -288,6 +288,7 @@ INCLUDE "engine/events/halloffame.asm"
 
 SECTION "Crystal Features 2", ROMX
 
+INCLUDE "engine/debug/debug_menu.asm"
 INCLUDE "engine/events/kurt.asm"
 INCLUDE "engine/gfx/player_gfx.asm"
 INCLUDE "mobile/mobile_22.asm"

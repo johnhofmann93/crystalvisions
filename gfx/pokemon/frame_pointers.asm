@@ -12,18 +12,18 @@ FramesPointers:
 	dw CaterpieFrames
 	dw MetapodFrames
 	dw ButterfreeFrames
-	dw WeedleFrames
-	dw KakunaFrames
-	dw BeedrillFrames
-	dw PidgeyFrames
-	dw PidgeottoFrames
-	dw PidgeotFrames
-	dw RattataFrames
-	dw RaticateFrames
+	dw TogekissFrames
+	dw AzurillFrames
+	dw BonslyFrames
+	dw AmbipomFrames
+	dw YanmegaFrames
+	dw HonchkrowFrames
+	dw MismagiusFrames
+	dw WynautFrames
 	dw SpearowFrames
 	dw FearowFrames
-	dw EkansFrames
-	dw ArbokFrames
+	dw GliscorFrames
+	dw OverqwilFrames
 	dw PikachuFrames
 	dw RaichuFrames
 	dw SandshrewFrames
@@ -51,8 +51,8 @@ FramesPointers:
 	dw VenomothFrames
 	dw DiglettFrames
 	dw DugtrioFrames
-	dw MeowthFrames
-	dw PersianFrames
+	dw WeavileFrames
+	dw MamoswineFrames
 	dw PsyduckFrames
 	dw GolduckFrames
 	dw MankeyFrames
@@ -113,7 +113,7 @@ FramesPointers:
 	dw RhyhornFrames
 	dw RhydonFrames
 	dw ChanseyFrames
-	dw TangelaFrames
+	dw WyrdeerFrames
 	dw KangaskhanFrames
 	dw HorseaFrames
 	dw SeadraFrames
@@ -126,7 +126,7 @@ FramesPointers:
 	dw JynxFrames
 	dw ElectabuzzFrames
 	dw MagmarFrames
-	dw PinsirFrames
+	dw MantykeFrames
 	dw TaurosFrames
 	dw MagikarpFrames
 	dw GyaradosFrames

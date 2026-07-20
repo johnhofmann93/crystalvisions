@@ -6,5 +6,5 @@
 	next "a secret location."
 
 	page "MURKROW and"
-	next "MEOWTH loot one"
+	next "SNUBBULL loot one"
 	next "another's stashes.@"

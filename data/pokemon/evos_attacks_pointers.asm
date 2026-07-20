@@ -14,18 +14,18 @@ EvosAttacksPointers::
 	dw CaterpieEvosAttacks
 	dw MetapodEvosAttacks
 	dw ButterfreeEvosAttacks
-	dw WeedleEvosAttacks
-	dw KakunaEvosAttacks
-	dw BeedrillEvosAttacks
-	dw PidgeyEvosAttacks
-	dw PidgeottoEvosAttacks
-	dw PidgeotEvosAttacks
-	dw RattataEvosAttacks
-	dw RaticateEvosAttacks
+	dw TogekissEvosAttacks
+	dw AzurillEvosAttacks
+	dw BonslyEvosAttacks
+	dw AmbipomEvosAttacks
+	dw YanmegaEvosAttacks
+	dw HonchkrowEvosAttacks
+	dw MismagiusEvosAttacks
+	dw WynautEvosAttacks
 	dw SpearowEvosAttacks
 	dw FearowEvosAttacks
-	dw EkansEvosAttacks
-	dw ArbokEvosAttacks
+	dw GliscorEvosAttacks
+	dw OverqwilEvosAttacks
 	dw PikachuEvosAttacks
 	dw RaichuEvosAttacks
 	dw SandshrewEvosAttacks
@@ -53,8 +53,8 @@ EvosAttacksPointers::
 	dw VenomothEvosAttacks
 	dw DiglettEvosAttacks
 	dw DugtrioEvosAttacks
-	dw MeowthEvosAttacks
-	dw PersianEvosAttacks
+	dw WeavileEvosAttacks
+	dw MamoswineEvosAttacks
 	dw PsyduckEvosAttacks
 	dw GolduckEvosAttacks
 	dw MankeyEvosAttacks
@@ -115,7 +115,7 @@ EvosAttacksPointers::
 	dw RhyhornEvosAttacks
 	dw RhydonEvosAttacks
 	dw ChanseyEvosAttacks
-	dw TangelaEvosAttacks
+	dw WyrdeerEvosAttacks
 	dw KangaskhanEvosAttacks
 	dw HorseaEvosAttacks
 	dw SeadraEvosAttacks
@@ -128,7 +128,7 @@ EvosAttacksPointers::
 	dw JynxEvosAttacks
 	dw ElectabuzzEvosAttacks
 	dw MagmarEvosAttacks
-	dw PinsirEvosAttacks
+	dw MantykeEvosAttacks
 	dw TaurosEvosAttacks
 	dw MagikarpEvosAttacks
 	dw GyaradosEvosAttacks

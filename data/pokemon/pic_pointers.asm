@@ -15,18 +15,18 @@ PokemonPicPointers::
 	dba_pics CaterpieFrontpic, CaterpieBackpic
 	dba_pics MetapodFrontpic, MetapodBackpic
 	dba_pics ButterfreeFrontpic, ButterfreeBackpic
-	dba_pics WeedleFrontpic, WeedleBackpic
-	dba_pics KakunaFrontpic, KakunaBackpic
-	dba_pics BeedrillFrontpic, BeedrillBackpic
-	dba_pics PidgeyFrontpic, PidgeyBackpic
-	dba_pics PidgeottoFrontpic, PidgeottoBackpic
-	dba_pics PidgeotFrontpic, PidgeotBackpic
-	dba_pics RattataFrontpic, RattataBackpic
-	dba_pics RaticateFrontpic, RaticateBackpic
+	dba_pics TogekissFrontpic, TogekissBackpic
+	dba_pics AzurillFrontpic, AzurillBackpic
+	dba_pics BonslyFrontpic, BonslyBackpic
+	dba_pics AmbipomFrontpic, AmbipomBackpic
+	dba_pics YanmegaFrontpic, YanmegaBackpic
+	dba_pics HonchkrowFrontpic, HonchkrowBackpic
+	dba_pics MismagiusFrontpic, MismagiusBackpic
+	dba_pics WynautFrontpic, WynautBackpic
 	dba_pics SpearowFrontpic, SpearowBackpic
 	dba_pics FearowFrontpic, FearowBackpic
-	dba_pics EkansFrontpic, EkansBackpic
-	dba_pics ArbokFrontpic, ArbokBackpic
+	dba_pics GliscorFrontpic, GliscorBackpic
+	dba_pics OverqwilFrontpic, OverqwilBackpic
 	dba_pics PikachuFrontpic, PikachuBackpic
 	dba_pics RaichuFrontpic, RaichuBackpic
 	dba_pics SandshrewFrontpic, SandshrewBackpic
@@ -54,8 +54,8 @@ PokemonPicPointers::
 	dba_pics VenomothFrontpic, VenomothBackpic
 	dba_pics DiglettFrontpic, DiglettBackpic
 	dba_pics DugtrioFrontpic, DugtrioBackpic
-	dba_pics MeowthFrontpic, MeowthBackpic
-	dba_pics PersianFrontpic, PersianBackpic
+	dba_pics WeavileFrontpic, WeavileBackpic
+	dba_pics MamoswineFrontpic, MamoswineBackpic
 	dba_pics PsyduckFrontpic, PsyduckBackpic
 	dba_pics GolduckFrontpic, GolduckBackpic
 	dba_pics MankeyFrontpic, MankeyBackpic
@@ -116,7 +116,7 @@ PokemonPicPointers::
 	dba_pics RhyhornFrontpic, RhyhornBackpic
 	dba_pics RhydonFrontpic, RhydonBackpic
 	dba_pics ChanseyFrontpic, ChanseyBackpic
-	dba_pics TangelaFrontpic, TangelaBackpic
+	dba_pics WyrdeerFrontpic, WyrdeerBackpic
 	dba_pics KangaskhanFrontpic, KangaskhanBackpic
 	dba_pics HorseaFrontpic, HorseaBackpic
 	dba_pics SeadraFrontpic, SeadraBackpic
@@ -129,7 +129,7 @@ PokemonPicPointers::
 	dba_pics JynxFrontpic, JynxBackpic
 	dba_pics ElectabuzzFrontpic, ElectabuzzBackpic
 	dba_pics MagmarFrontpic, MagmarBackpic
-	dba_pics PinsirFrontpic, PinsirBackpic
+	dba_pics MantykeFrontpic, MantykeBackpic
 	dba_pics TaurosFrontpic, TaurosBackpic
 	dba_pics MagikarpFrontpic, MagikarpBackpic
 	dba_pics GyaradosFrontpic, GyaradosBackpic

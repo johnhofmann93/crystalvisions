@@ -12,18 +12,18 @@ AnimationIdlePointers:
 	dw CaterpieAnimationIdle
 	dw MetapodAnimationIdle
 	dw ButterfreeAnimationIdle
-	dw WeedleAnimationIdle
-	dw KakunaAnimationIdle
-	dw BeedrillAnimationIdle
-	dw PidgeyAnimationIdle
-	dw PidgeottoAnimationIdle
-	dw PidgeotAnimationIdle
-	dw RattataAnimationIdle
-	dw RaticateAnimationIdle
+	dw TogekissAnimationIdle
+	dw AzurillAnimationIdle
+	dw BonslyAnimationIdle
+	dw AmbipomAnimationIdle
+	dw YanmegaAnimationIdle
+	dw HonchkrowAnimationIdle
+	dw MismagiusAnimationIdle
+	dw WynautAnimationIdle
 	dw SpearowAnimationIdle
 	dw FearowAnimationIdle
-	dw EkansAnimationIdle
-	dw ArbokAnimationIdle
+	dw GliscorAnimationIdle
+	dw OverqwilAnimationIdle
 	dw PikachuAnimationIdle
 	dw RaichuAnimationIdle
 	dw SandshrewAnimationIdle
@@ -51,8 +51,8 @@ AnimationIdlePointers:
 	dw VenomothAnimationIdle
 	dw DiglettAnimationIdle
 	dw DugtrioAnimationIdle
-	dw MeowthAnimationIdle
-	dw PersianAnimationIdle
+	dw WeavileAnimationIdle
+	dw MamoswineAnimationIdle
 	dw PsyduckAnimationIdle
 	dw GolduckAnimationIdle
 	dw MankeyAnimationIdle
@@ -113,7 +113,7 @@ AnimationIdlePointers:
 	dw RhyhornAnimationIdle
 	dw RhydonAnimationIdle
 	dw ChanseyAnimationIdle
-	dw TangelaAnimationIdle
+	dw WyrdeerAnimationIdle
 	dw KangaskhanAnimationIdle
 	dw HorseaAnimationIdle
 	dw SeadraAnimationIdle
@@ -126,7 +126,7 @@ AnimationIdlePointers:
 	dw JynxAnimationIdle
 	dw ElectabuzzAnimationIdle
 	dw MagmarAnimationIdle
-	dw PinsirAnimationIdle
+	dw MantykeAnimationIdle
 	dw TaurosAnimationIdle
 	dw MagikarpAnimationIdle
 	dw GyaradosAnimationIdle

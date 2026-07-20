@@ -185,3 +185,9 @@ SpecialsPointers::
 	add_special InitialSetDSTFlag
 	add_special InitialClearDSTFlag
 	add_special UnusedDummySpecial ; unused
+
+; Debug menu
+	add_special DebugGiveMon
+	add_special DebugGiveItem
+	add_special DebugSetFlag
+	add_special DebugPickWildMon

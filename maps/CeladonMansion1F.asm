@@ -15,7 +15,7 @@ CeladonMansionManager:
 CeladonMansion1FMeowth:
 	opentext
 	writetext CeladonMansion1FMeowthText
-	cry MEOWTH
+	cry MISMAGIUS
 	waitbutton
 	closetext
 	end
@@ -49,12 +49,12 @@ CeladonMansionManagerText:
 	para "so I don't ever"
 	line "feel lonely."
 
-	para "MEOWTH even brings"
-	line "money home."
+	para "MISMAGIUS even"
+	line "brings money home."
 	done
 
 CeladonMansion1FMeowthText:
-	text "MEOWTH: Meow!"
+	text "MISMAGIUS…"
 	done
 
 CeladonMansion1FClefairyText:

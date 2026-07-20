@@ -48,7 +48,7 @@ RadioTower4FDJMaryScript:
 RadioTowerMeowth:
 	opentext
 	writetext RadioTowerMeowthText
-	cry MEOWTH
+	cry HONCHKROW
 	waitbutton
 	closetext
 	end
@@ -117,7 +117,7 @@ RadioTower4FDJMaryText:
 	line "I have to suffer"
 	cont "through this?"
 
-	para "MEOWTH, help me!"
+	para "HONCHKROW, help me!"
 	done
 
 RadioTower4FDJMaryText_ClearedRockets:
@@ -145,7 +145,7 @@ RadioTower4FDJMaryText_After:
 	done
 
 RadioTowerMeowthText:
-	text "MEOWTH: Meowth…"
+	text "HONCHKROW: Kroow!"
 	done
 
 GruntM10SeenText:

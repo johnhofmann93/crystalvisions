@@ -5,6 +5,7 @@
 	const GOLDENRODGYM_BEAUTY1
 	const GOLDENRODGYM_BEAUTY2
 	const GOLDENRODGYM_GYM_GUIDE
+	const GOLDENRODGYM_TEST_GIFT_BALL
 
 GoldenrodGym_MapScripts:
 	def_scene_scripts
@@ -18,6 +19,22 @@ GoldenrodGymNoop1Scene:
 
 GoldenrodGymNoop2Scene:
 	end
+
+GoldenrodGymTestGiftScript:
+	givepoke WEAVILE, 50, NO_ITEM, .WeavileNick, .TestGiftOT
+	givepoke HONCHKROW, 50, NO_ITEM, .HonchkrowNick, .TestGiftOT
+	givepoke OVERQWIL, 50, NO_ITEM, .OverqwilNick, .TestGiftOT
+	givepoke MAMOSWINE, 50, NO_ITEM, .MamoswineNick, .TestGiftOT
+	givepoke TOGEKISS, 50, NO_ITEM, .TogekissNick, .TestGiftOT
+	setevent EVENT_GOLDENROD_GYM_TEST_GIFT
+	end
+
+.WeavileNick:   dname "WEAVILE", MON_NAME_LENGTH
+.HonchkrowNick: dname "HONCHKROW", MON_NAME_LENGTH
+.OverqwilNick:  dname "OVERQWIL", MON_NAME_LENGTH
+.MamoswineNick: dname "MAMOSWINE", MON_NAME_LENGTH
+.TogekissNick:  dname "TOGEKISS", MON_NAME_LENGTH
+.TestGiftOT:    db "TESTER@"
 
 GoldenrodGymWhitneyScript:
 	faceplayer
@@ -344,12 +361,12 @@ BeautySamanthaSeenText:
 	done
 
 BeautySamanthaBeatenText:
-	text "No! Oh, MEOWTH,"
+	text "No! Oh, AMBIPOM,"
 	line "I'm so sorry!"
 	done
 
 BeautySamanthaAfterBattleText:
-	text "I taught MEOWTH"
+	text "I taught AMBIPOM"
 	line "moves for taking"
 	cont "on any type…"
 	done
@@ -394,3 +411,4 @@ GoldenrodGym_MapEvents:
 	object_event  0,  2, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBeautyVictoria, -1
 	object_event 19,  5, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBeautySamantha, -1
 	object_event  5, 15, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGymGuideScript, -1
+	object_event  2, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodGymTestGiftScript, EVENT_GOLDENROD_GYM_TEST_GIFT

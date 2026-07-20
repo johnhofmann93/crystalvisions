@@ -150,7 +150,7 @@ wScriptVar:: db
 wPlayerNextMovement:: db
 wPlayerMovement:: db
 
-	ds 2
+wDebugPickerValue:: dw
 
 wMovementObject::
 	db
@@ -158,7 +158,7 @@ wMovementDataBank:: db
 wMovementDataAddress:: dw
 wIndexedMovement2Pointer:: dw
 
-	ds 2
+wDebugPickerMax:: dw
 
 wContinueReadingMovement:: db
 
@@ -3642,8 +3642,7 @@ wScratchTilemap:: ds TILEMAP_AREA
 wScratchAttrmap:: ds TILEMAP_AREA
 
 NEXTU
-wDecompressScratch:: ds $80 tiles
-wDecompressEnemyFrontpic:: ds $80 tiles
+wDecompressScratch:: ds $100 tiles
 
 NEXTU
 ; unidentified uses

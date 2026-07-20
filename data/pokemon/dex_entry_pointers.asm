@@ -13,18 +13,18 @@ PokedexDataPointerTable:
 	dw CaterpiePokedexEntry
 	dw MetapodPokedexEntry
 	dw ButterfreePokedexEntry
-	dw WeedlePokedexEntry
-	dw KakunaPokedexEntry
-	dw BeedrillPokedexEntry
-	dw PidgeyPokedexEntry
-	dw PidgeottoPokedexEntry
-	dw PidgeotPokedexEntry
-	dw RattataPokedexEntry
-	dw RaticatePokedexEntry
+	dw TogekissPokedexEntry
+	dw AzurillPokedexEntry
+	dw BonslyPokedexEntry
+	dw AmbipomPokedexEntry
+	dw YanmegaPokedexEntry
+	dw HonchkrowPokedexEntry
+	dw MismagiusPokedexEntry
+	dw WynautPokedexEntry
 	dw SpearowPokedexEntry
 	dw FearowPokedexEntry
-	dw EkansPokedexEntry
-	dw ArbokPokedexEntry
+	dw GliscorPokedexEntry
+	dw OverqwilPokedexEntry
 	dw PikachuPokedexEntry
 	dw RaichuPokedexEntry
 	dw SandshrewPokedexEntry
@@ -52,8 +52,8 @@ PokedexDataPointerTable:
 	dw VenomothPokedexEntry
 	dw DiglettPokedexEntry
 	dw DugtrioPokedexEntry
-	dw MeowthPokedexEntry
-	dw PersianPokedexEntry
+	dw WeavilePokedexEntry
+	dw MamoswinePokedexEntry
 	dw PsyduckPokedexEntry
 	dw GolduckPokedexEntry
 	dw MankeyPokedexEntry
@@ -114,7 +114,7 @@ PokedexDataPointerTable:
 	dw RhyhornPokedexEntry
 	dw RhydonPokedexEntry
 	dw ChanseyPokedexEntry
-	dw TangelaPokedexEntry
+	dw WyrdeerPokedexEntry
 	dw KangaskhanPokedexEntry
 	dw HorseaPokedexEntry
 	dw SeadraPokedexEntry
@@ -127,7 +127,7 @@ PokedexDataPointerTable:
 	dw JynxPokedexEntry
 	dw ElectabuzzPokedexEntry
 	dw MagmarPokedexEntry
-	dw PinsirPokedexEntry
+	dw MantykePokedexEntry
 	dw TaurosPokedexEntry
 	dw MagikarpPokedexEntry
 	dw GyaradosPokedexEntry

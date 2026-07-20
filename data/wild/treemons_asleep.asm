@@ -4,11 +4,11 @@ AsleepTreeMonsNite:
 	db CATERPIE
 	db METAPOD
 	db BUTTERFREE
-	db WEEDLE
-	db KAKUNA
-	db BEEDRILL
+	db LEDYBA
+	db SPINARAK
+	db ARIADOS
 	db SPEAROW
-	db EKANS
+	db GRIMER
 	db EXEGGCUTE
 	db LEDYBA
 	db AIPOM

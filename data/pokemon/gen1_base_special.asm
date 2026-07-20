@@ -14,18 +14,18 @@ KantoMonSpecials:
 	db  20 ; CATERPIE
 	db  25 ; METAPOD
 	db  80 ; BUTTERFREE
-	db  20 ; WEEDLE
-	db  25 ; KAKUNA
-	db  45 ; BEEDRILL
-	db  35 ; PIDGEY
-	db  50 ; PIDGEOTTO
-	db  70 ; PIDGEOT
-	db  25 ; RATTATA
-	db  50 ; RATICATE
+	db  20 ; TOGEKISS
+	db  25 ; AZURILL
+	db  45 ; BONSLY
+	db  35 ; AMBIPOM
+	db  50 ; YANMEGA
+	db  70 ; HONCHKROW
+	db  25 ; MISMAGIUS
+	db  50 ; WYNAUT
 	db  31 ; SPEAROW
 	db  61 ; FEAROW
-	db  40 ; EKANS
-	db  65 ; ARBOK
+	db  40 ; GLISCOR
+	db  65 ; OVERQWIL
 	db  50 ; PIKACHU
 	db  90 ; RAICHU
 	db  30 ; SANDSHREW
@@ -53,8 +53,8 @@ KantoMonSpecials:
 	db  90 ; VENOMOTH
 	db  45 ; DIGLETT
 	db  70 ; DUGTRIO
-	db  40 ; MEOWTH
-	db  65 ; PERSIAN
+	db  40 ; WEAVILE
+	db  65 ; MAMOSWINE
 	db  50 ; PSYDUCK
 	db  80 ; GOLDUCK
 	db  35 ; MANKEY
@@ -115,7 +115,7 @@ KantoMonSpecials:
 	db  30 ; RHYHORN
 	db  45 ; RHYDON
 	db 105 ; CHANSEY
-	db 100 ; TANGELA
+	db 100 ; WYRDEER
 	db  40 ; KANGASKHAN
 	db  70 ; HORSEA
 	db  95 ; SEADRA
@@ -128,7 +128,7 @@ KantoMonSpecials:
 	db  95 ; JYNX
 	db  85 ; ELECTABUZZ
 	db  85 ; MAGMAR
-	db  55 ; PINSIR
+	db  55 ; MANTYKE
 	db  70 ; TAUROS
 	db  20 ; MAGIKARP
 	db 100 ; GYARADOS

@@ -707,7 +707,7 @@ GruntM16AfterBattleText:
 	done
 
 TeamRocketBaseB1FSecurityCameraText:
-	text "It's a PERSIAN"
+	text "It's a HONCHKROW"
 	line "statue…"
 
 	para "Its eyes are oddly"
